@@ -62,9 +62,15 @@ function NavContent() {
       {/* Header */}
       <header className="app-header">
         <div className="header-logo">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <rect width="28" height="28" rx="6" fill="var(--primary)" />
-            <path d="M14 5l3 6 6 1.5-4.5 4 1 6.5L14 19l-5.5 4 1-6.5L5 12.5l6-1.5z" fill="#fff" />
+          <svg width="32" height="32" viewBox="0 0 56 56" fill="none">
+            <defs>
+              <linearGradient id="front-logo-grad" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#4F8CFF" />
+                <stop offset="100%" stopColor="#8C6CFF" />
+              </linearGradient>
+            </defs>
+            <rect width="56" height="56" rx="14" fill="url(#front-logo-grad)" />
+            <path d="M28 14l4.5 9 9 2.25-6.75 6.75 1.5 9.75L28 35l-8.25 6 1.5-9.75L14.5 25.25l9-2.25z" fill="#fff" />
           </svg>
           <div>
             <div className="header-brand">StarMap</div>
@@ -165,11 +171,11 @@ function NavContent() {
             </div>
             <div className="banner-decoration">
               <svg width="200" height="140" viewBox="0 0 200 140" fill="none">
-                <circle cx="140" cy="40" r="30" fill="var(--primary)" opacity="0.08" />
-                <circle cx="100" cy="80" r="20" fill="var(--primary)" opacity="0.12" />
-                <circle cx="160" cy="90" r="15" fill="var(--primary)" opacity="0.06" />
-                <rect x="80" y="30" width="40" height="40" rx="8" fill="var(--primary)" opacity="0.1" />
-                <rect x="120" y="60" width="30" height="30" rx="6" fill="var(--primary)" opacity="0.08" />
+                <circle cx="140" cy="40" r="30" fill="#4F8CFF" opacity="0.08" />
+                <circle cx="100" cy="80" r="20" fill="#8C6CFF" opacity="0.12" />
+                <circle cx="160" cy="90" r="15" fill="#4F8CFF" opacity="0.06" />
+                <rect x="80" y="30" width="40" height="40" rx="10" fill="#8C6CFF" opacity="0.1" />
+                <rect x="120" y="60" width="30" height="30" rx="8" fill="#4F8CFF" opacity="0.08" />
               </svg>
             </div>
           </div>
@@ -208,7 +214,7 @@ function NavContent() {
               <a key={`${site.name}-${idx}`} href={site.url} target="_blank" rel="noopener noreferrer" className="site-card">
                 <div className="site-card-icon">
                   <img src={site.icon} alt={site.name}
-                    onError={(e) => { (e.target as HTMLImageElement).src = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%231677FF" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`)}` }} />
+                    onError={(e) => { (e.target as HTMLImageElement).src = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%234F8CFF" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`)}` }} />
                 </div>
                 <div className="site-card-info">
                   <div className="site-card-header">

@@ -6,7 +6,7 @@ import { SearchEngines } from './SearchEngines'
 import { Settings } from './Settings'
 import { BookmarkImport } from './BookmarkImport'
 import { Info } from './Info'
-import { clearConfig } from '../services/github'
+import { getMode } from '../services/data'
 
 type AdminTab = 'websites' | 'categories' | 'tags' | 'search' | 'settings' | 'bookmark' | 'info'
 
@@ -26,9 +26,9 @@ interface DashboardProps {
 
 export function Dashboard({ onLogout }: DashboardProps) {
   const [tab, setTab] = useState<AdminTab>('websites')
+  const mode = getMode()
 
   const handleLogout = () => {
-    clearConfig()
     onLogout()
   }
 
@@ -50,11 +50,28 @@ export function Dashboard({ onLogout }: DashboardProps) {
       {/* 侧边栏 */}
       <aside className="admin-sidebar">
         <div className="admin-sidebar-header">
-          <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
-            <rect width="28" height="28" rx="6" fill="#1677FF" />
-            <path d="M14 5l3 6 6 1.5-4.5 4 1 6.5L14 19l-5.5 4 1-6.5L5 12.5l6-1.5z" fill="#fff" />
+          <svg width="32" height="32" viewBox="0 0 56 56" fill="none">
+            <defs>
+              <linearGradient id="sidebar-logo-grad" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#4F8CFF" />
+                <stop offset="100%" stopColor="#8C6CFF" />
+              </linearGradient>
+            </defs>
+            <rect width="56" height="56" rx="16" fill="url(#sidebar-logo-grad)" />
+            <path d="M28 14l4.5 9 9 2.25-6.75 6.75 1.5 9.75L28 35l-8.25 6 1.5-9.75L14.5 25.25l9-2.25z" fill="#fff" />
           </svg>
           <span>管理后台</span>
+        </div>
+
+        {/* 模式标签 */}
+        <div className="admin-mode-badge" style={{
+          background: mode === 'local'
+            ? 'linear-gradient(135deg, rgba(249, 158, 11, 0.12) 0%, rgba(245, 158, 11, 0.08) 100%)'
+            : 'linear-gradient(135deg, rgba(79, 140, 255, 0.12) 0%, rgba(140, 108, 255, 0.12) 100%)',
+          color: mode === 'local' ? '#D97706' : '#4F8CFF',
+          border: `1px solid ${mode === 'local' ? 'rgba(249, 158, 11, 0.2)' : 'rgba(79, 140, 255, 0.2)'}`,
+        }}>
+          {mode === 'local' ? '⚡ 本地模式' : '🔗 GitHub 模式'}
         </div>
 
         <nav className="admin-sidebar-nav">
@@ -71,12 +88,8 @@ export function Dashboard({ onLogout }: DashboardProps) {
         </nav>
 
         <div className="admin-sidebar-footer">
-          <button onClick={handleLogout} className="admin-sidebar-logout">
-            ← 退出登录
-          </button>
-          <a href="../" className="admin-sidebar-back">
-            ↩ 返回前台
-          </a>
+          <a href="../" className="admin-sidebar-back">↩ 返回前台</a>
+          <button onClick={handleLogout} className="admin-sidebar-logout">← 退出管理</button>
         </div>
       </aside>
 

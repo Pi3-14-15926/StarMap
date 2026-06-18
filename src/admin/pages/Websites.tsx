@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { api } from '../services/github'
+import { api } from '../services/data'
 import type { Category } from '@ui/types'
 
 export function Websites() {

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { api } from '../services/github'
+import { api } from '../services/data'
 
 export function BookmarkImport() {
   const [importData, setImportData] = useState('')

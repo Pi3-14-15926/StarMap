@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { api, getConfig } from '../services/github'
+import { api, getMode } from '../services/data'
+import { getConfig } from '../services/github'
 
 export function Info() {
   const [info, setInfo] = useState<any>(null)

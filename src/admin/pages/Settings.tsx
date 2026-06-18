@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { api } from '../services/github'
+import { api } from '../services/data'
 
 export function Settings() {
   const [settings, setSettings] = useState<Record<string, any>>({})
