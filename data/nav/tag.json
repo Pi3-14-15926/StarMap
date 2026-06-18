@@ -1,9 +1,32 @@
 [
-  { "id": 1, "name": "中文", "color": "#1677ff" },
-  { "id": 2, "name": "English", "color": "#52c41a" },
-  { "id": 3, "name": "GitHub", "color": "#333333" },
-  { "id": 4, "name": "精选", "color": "#faad14" },
-  { "id": 5, "name": "免费", "color": "#13c2c2" },
-  { "id": 6, "name": "开源", "color": "#722ed1" },
-  { "id": 7, "name": "AI", "color": "#eb2f96" }
+  {
+    "id": 1,
+    "name": "优选",
+    "color": "#f50000"
+  },
+  {
+    "id": 2,
+    "name": "神器",
+    "color": "#70ffb5"
+  },
+  {
+    "id": 3,
+    "name": "魔法",
+    "color": "#ffd84d"
+  },
+  {
+    "id": 4,
+    "name": "中文",
+    "color": "#4F8CFF"
+  },
+  {
+    "id": 5,
+    "name": "English",
+    "color": "#8C6CFF"
+  },
+  {
+    "id": 6,
+    "name": "GitHub",
+    "color": "#333333"
+  }
 ]

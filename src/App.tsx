@@ -62,16 +62,7 @@ function NavContent() {
       {/* Header */}
       <header className="app-header">
         <div className="header-logo">
-          <svg width="32" height="32" viewBox="0 0 56 56" fill="none">
-            <defs>
-              <linearGradient id="front-logo-grad" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#4F8CFF" />
-                <stop offset="100%" stopColor="#8C6CFF" />
-              </linearGradient>
-            </defs>
-            <rect width="56" height="56" rx="14" fill="url(#front-logo-grad)" />
-            <path d="M28 14l4.5 9 9 2.25-6.75 6.75 1.5 9.75L28 35l-8.25 6 1.5-9.75L14.5 25.25l9-2.25z" fill="#fff" />
-          </svg>
+          <img src="/favicon.png" alt="StarMap" width="32" height="32" />
           <div>
             <div className="header-brand">StarMap</div>
             <div className="header-subtitle">发现最好的工具与资源</div>
@@ -113,7 +104,7 @@ function NavContent() {
               : <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" /></svg>
             }
           </button>
-          <a href="admin/" className="header-admin-btn">管理</a>
+          <a href="admin/dashboard" className="header-admin-btn">管理</a>
         </div>
       </header>
 
@@ -170,7 +161,7 @@ function NavContent() {
               </div>
             </div>
             <div className="banner-decoration">
-              <svg width="200" height="140" viewBox="0 0 200 140" fill="none">
+              <svg width="120" height="80" viewBox="0 0 200 140" fill="none">
                 <circle cx="140" cy="40" r="30" fill="#4F8CFF" opacity="0.08" />
                 <circle cx="100" cy="80" r="20" fill="#8C6CFF" opacity="0.12" />
                 <circle cx="160" cy="90" r="15" fill="#4F8CFF" opacity="0.06" />

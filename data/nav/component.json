@@ -1,14 +1,59 @@
 {
   "zoom": 1,
   "list": [
-    { "type": 1, "name": "Calendar", "enabled": true, "position": "top" },
-    { "type": 2, "name": "OffWork", "enabled": true, "position": "top" },
-    { "type": 3, "name": "Runtime", "enabled": true, "position": "top" },
-    { "type": 4, "name": "Image", "enabled": false, "position": "top" },
-    { "type": 5, "name": "Countdown", "enabled": false, "position": "top" },
-    { "type": 6, "name": "HTML", "enabled": false, "position": "top" },
-    { "type": 7, "name": "Holiday", "enabled": false, "position": "top" },
-    { "type": 8, "name": "News", "enabled": false, "position": "side" },
-    { "type": 9, "name": "Carousel", "enabled": false, "position": "top" }
+    {
+      "type": 1,
+      "name": "Calendar",
+      "enabled": true,
+      "position": "top"
+    },
+    {
+      "type": 2,
+      "name": "OffWork",
+      "enabled": true,
+      "position": "top"
+    },
+    {
+      "type": 3,
+      "name": "Runtime",
+      "enabled": true,
+      "position": "top"
+    },
+    {
+      "type": 4,
+      "name": "Image",
+      "enabled": false,
+      "position": "top"
+    },
+    {
+      "type": 5,
+      "name": "Countdown",
+      "enabled": false,
+      "position": "top"
+    },
+    {
+      "type": 6,
+      "name": "HTML",
+      "enabled": false,
+      "position": "top"
+    },
+    {
+      "type": 7,
+      "name": "Holiday",
+      "enabled": false,
+      "position": "top"
+    },
+    {
+      "type": 8,
+      "name": "News",
+      "enabled": false,
+      "position": "side"
+    },
+    {
+      "type": 9,
+      "name": "Carousel",
+      "enabled": false,
+      "position": "top"
+    }
   ]
 }

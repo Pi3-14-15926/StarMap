@@ -16,17 +16,5 @@
     "icon": "https://www.baidu.com/favicon.ico",
     "url": "https://www.baidu.com/s?wd=",
     "isDefault": false
-  },
-  {
-    "name": "GitHub",
-    "icon": "https://github.githubassets.com/favicons/favicon.svg",
-    "url": "https://github.com/search?q=",
-    "isDefault": false
-  },
-  {
-    "name": "Wikipedia",
-    "icon": "https://www.wikipedia.org/favicon.ico",
-    "url": "https://en.wikipedia.org/w/index.php?search=",
-    "isDefault": false
   }
 ]

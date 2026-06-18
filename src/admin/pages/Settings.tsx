@@ -43,15 +43,49 @@ export function Settings() {
     { key: 'footerHtml', label: '页脚 HTML', type: 'textarea' },
   ]
 
+  const favicon = settings.favicon || ''
+
   return (
     <div>
       <div className="admin-toolbar">
-        <span>系统设置</span>
+        <span>网站设置</span>
         {message && <span className={`admin-msg ${message.startsWith('✅') ? 'ok' : 'err'}`}>{message}</span>}
         <button className="admin-btn-primary" onClick={handleSave} disabled={saving}>{saving ? '保存中...' : '💾 保存到 GitHub'}</button>
       </div>
 
       <div className="admin-settings-grid">
+        {/* 网站图标 */}
+        <div className="admin-settings-field" style={{ gridColumn: '1 / -1' }}>
+          <label>网站图标 (Favicon)</label>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <div style={{
+              width: '2.5rem',
+              height: '2.5rem',
+              borderRadius: '0.5rem',
+              border: '1px solid #E5E7EB',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: '#F8FAFC',
+              flexShrink: 0,
+            }}>
+              {favicon ? (
+                <img src={favicon} alt="favicon" style={{ width: '1.5rem', height: '1.5rem', objectFit: 'contain' }}
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
+              ) : (
+                <span style={{ fontSize: '1.25rem' }}>🌐</span>
+              )}
+            </div>
+            <input
+              type="text"
+              value={favicon}
+              onChange={(e) => update('favicon', e.target.value)}
+              placeholder="输入图标 URL，如 https://example.com/favicon.ico"
+              style={{ flex: 1 }}
+            />
+          </div>
+        </div>
+
         {fields.map((field) => (
           <div key={field.key} className="admin-settings-field">
             <label>{field.label}</label>

@@ -1,197 +1,2248 @@
 [
   {
     "title": "实用工具",
-    "id": 1,
-    "icon": "🛠️",
+    "id": 1018,
+    "icon": "🛠",
     "children": [
       {
-        "title": "效率",
+        "title": "在线工具",
         "id": 101,
         "nav": [
-          { "name": "TinyPNG 图片压缩", "desc": "智能 WebP、PNG 和 JPEG 压缩，提升网站速度", "url": "https://tinypng.com", "icon": "https://tinypng.com/images/apple-touch-icon.png", "rate": 5, "tag": "图片工具" },
-          { "name": "iLoveIMG", "desc": "在线图片编辑、压缩、调整大小、裁剪", "url": "https://www.iloveimg.com", "icon": "https://www.iloveimg.com/img/favicons-img/favicon-16x16.png", "rate": 5, "tag": "图片工具" },
-          { "name": "Convertio", "desc": "在线转换文件的简单工具，支持 300+ 格式", "url": "https://convertio.co", "icon": "https://convertio.co/favicon.ico", "rate": 5, "tag": "格式转换" },
-          { "name": "Canva", "desc": "在线设计平台，轻松创建专业设计", "url": "https://www.canva.com", "icon": "https://www.canva.com/favicon.ico", "rate": 5, "tag": "设计工具" },
-          { "name": "Notion", "desc": "全能笔记与知识库", "url": "https://www.notion.so", "icon": "https://www.notion.so/favicon.ico", "rate": 5, "tag": "效率工具" }
+          {
+            "name": "Yasuotu 图片裁剪",
+            "desc": "在线裁剪照片大小尺寸",
+            "url": "https://www.yasuotu.com/meditor",
+            "icon": "https://www.yasuotu.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Tugaigai Ai P图",
+            "desc": "最简单快速的P图改字方式，智能P图神器，轻松编辑/添加/删除图片中的文字,AI一键P图改字，无需学习P图技术，摆脱重型软件依赖。支持图片文字识别、图片添加水印、图片删除水印、添加图章等功能。",
+            "url": "https://www.tugaigai.com/cn",
+            "icon": "https://www.tugaigai.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Pdfpai Pdf工具",
+            "desc": "PDF派\n几十个强大的PDF在线工具，无限次使用，永久免费，没有注册入口，人人都是VIP！",
+            "url": "https://www.pdfpai.com",
+            "icon": "https://www.pdfpai.com/statics/images/index_logo.png",
+            "rate": 5
+          },
+          {
+            "name": "iLoveIMG 图片编辑",
+            "desc": "iLoveIMG是一款在线处理图片文件的网站。网站的功能有：压缩图像文件、调整文件尺寸、裁剪文件，以及转换文件格式等！",
+            "url": "http://iloveimg.com/zh-cn",
+            "icon": "http://iloveimg.com/img/favicons-img/favicon-16x16.png",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "Youcompress 文件压缩",
+            "desc": "免费在线压缩 MP4、MOV、MP3、PDF、PNG、JPG、JPEG、GIF 文件。压缩视频、PDF 文档、歌曲和图片的文件大小。",
+            "url": "https://www.youcompress.com/zh-cn",
+            "icon": "",
+            "rate": 5
+          },
+          {
+            "name": "TinyPNG 图片压缩",
+            "desc": "智能 AVIF、WebP、PNG 和 JPEG 压缩，提升网站速度",
+            "url": "https://tinypng.com",
+            "icon": "https://tinypng.com/images/apple-touch-icon.png",
+            "rate": 5
+          },
+          {
+            "name": "Audio2edit 音频转换",
+            "desc": "免费的在线音频转换与混音工具。编辑音乐文件、提升音频质量等。",
+            "url": "https://www.audio2edit.com/zh",
+            "icon": "https://www.audio2edit.com/audio2edit-favicon-48x48.ico",
+            "rate": 5
+          },
+          {
+            "name": "Convertio 文件转换",
+            "desc": "Convertio - 在线转换文件的简单工具。支持超过309种不同的文档、图像、电子表格、电子书、文档、演示文稿、音频和视频格式。",
+            "url": "https://convertio.co/zh",
+            "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpFNDY1NDg3RDc3N0JFODExODNENjlCOEE4NDIwQ0ZCMyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpBNzIyRUYxOUU2OEMxMUU5OENDMkRGRDY2MUEyMUNEMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpBNzIyRUYxOEU2OEMxMUU5OENDMkRGRDY2MUEyMUNEMCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjBBQzRBRDc4OEJFNkU5MTE5RDNFOEE4MDBCRkY0NDZDIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkU0NjU0ODdENzc3QkU4MTE4M0Q2OUI4QTg0MjBDRkIzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+6G+jpQAAA/9JREFUeNq0V1lIlFEU/kZbjPYkEysospJGbBW1KAgX2qCHFIpepOVBBFHBpiQiIjIXFIveUiIhCcqXVoPqoZ0CM1qgtB5EsEItNR2TtHO8d3Lm/8//z6/pgY9h/nvvOd+992zXNbR+PRzKDMJOwlbCGsJSwmw99pPwhfCa8JBwi9DjRKnLAYFogoewjzDdIdlfhFpCMaHJbmKIzVgY4SzhHeHQKIxDzz2k1xZrXaMisIzwTO98CsYuvPaI1hVtT+DVKwVgHeGJvufxEtb1eFj3iB3hBDZsYJZ3CQsw/rJgWLeyITrhNH1Uq23VREQACQnA8uVAeDjw5w/Q0QG8eaN21tUVjAhNRCKhj/9M8hs4aWvc5QJSU4H0dMDtBqZONc/p7QWuXQOqqykILaMwTtvy+J8AO90HwmRnGYFSQloacOAAEBlpHm9tBXJzKTN8sdIwQFjFIerzgaOWxtlYUlLgN95dXR2QkQHU15vXLFwIXLigrkuWydrmsBPO1ElGmEbzSkuB8nIgPt483kfXePw4cOWK7CsVFUBoqBWJvWybCewQkwzf+YkTyrCPSEyMWc3QkDJ05455bOVK2to+u2S1gwkki8PZ2cD27YFXcf48sHixTKKoCPj2zTx2+DDtc6YVieQQ7ZWBwp6emWmePncucO6c+pUioLZW2CdtNCXFMiJCdASMCO/a47GOAD4BPvIwIb03NMhrOG9YpHwmMOvfX75vvne+fzuJjQXOnCEXNpSSzk55flSUlaZZnAf6xYJz+TJF6irzkt27VZz/S+ZEoqwM2LIleP4YoPDPyQFevvR9+c1bkHOnvxF/mTcv8P/gIFBYCLx9a2+c55065W+cpYsJNIsLHj2SFa1da/7m9QJ5eUBLizWBkhIpVJtDdHEwy4MHQHe3+fv+/cqzjcL3z8cr+cGlS6pGCIWJCdwXCfCuamrM37kCHjsmOyqfQFZWYCHiXXNaluU+E7itezizMIGPH83ft20D8vNlEk3UAhYUKIfj++Z750QlZA627auGFwkHRRKLFgFVVWrnRrl3Dzh9WiUho3ABa2yUx5RUcd/oI8BdynvLirhkCVBZqaqcUdraVP1nMj2OOnFfOaamAp9CT6ok0aH7/k3i9B8/gBs3VMyvWKGKk3+N2LxZFZ1EanT6Ka18/hyMAJVXXJVasudibTDmdk6tcXEqJzCp9nZ19y9eyAXJ3JIlaR/wI8D9nGoYnxLmY2LkO2Ej2WoiW0JXzAPk44SvE2D867BuZSPo04xP4nrQ63AufOx7pGea1cuIJ3INLdEeO1YZ0DoSrN6Idm9Dr26d3TpP9I7CcJ+Oc7fW4f2f17H/83yX4Xk+xxeohuf5TafP878CDADrJR+o7JYu7QAAAABJRU5ErkJggg==",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "123apps 转换",
+            "desc": "视频、音频、PDF 和文件转换在线工具",
+            "url": "https://123apps.com/cn",
+            "icon": "https://123apps.com/static/i/v3/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "360converter 转换",
+            "desc": "在线免费转换视频,音频,YouTube视频到文字,视频到文字,音频到文字,语音转换成文字",
+            "url": "http://www.360converter.com",
+            "icon": "https://www.360converter.com/images/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Tableconvert 表格转换",
+            "desc": "一个功能强大的在线表格编辑器，支持Excel、Markdown、JSON、CSV、HTML等格式的相互转换",
+            "url": "https://tableconvert.com/zh-cn",
+            "icon": "https://tableconvert.com/static/images/favicon.png",
+            "rate": 5
+          },
+          {
+            "name": "Cool 酷炫背景",
+            "desc": "生成非常酷的彩色背景图像",
+            "url": "https://coolbackgrounds.io",
+            "icon": "https://coolbackgrounds.io/images/favicon-fe5a0ff5.png",
+            "rate": 5
+          },
+          {
+            "name": "Clippingmagic 删除背景",
+            "desc": "删除图像背景在线。使背景透明，白色等编辑，裁剪，旋转，固定颜色，添加阴影，一款在线抠图工具",
+            "url": "https://zh.clippingmagic.com",
+            "icon": "https://d5nunyagcicgy.cloudfront.net/p/assets/m/favicons/cm/apple-touch-icon-180_af4cf0f9e15e37b08198674deb64d2b5.png",
+            "rate": 5
+          },
+          {
+            "name": "Gaoding 抠图",
+            "desc": "稿定设计是一款专为淘宝店主、新媒体运营人员和修图爱好者打造的免费在线抠图工具。",
+            "url": "https://www.gaoding.com/koutu",
+            "icon": "https://www.gaoding.com/logo.svg",
+            "rate": 5
+          },
+          {
+            "name": "10-minutemail 临时邮件",
+            "desc": "免费 10 分钟邮件服务，提供 10 分钟的一次性电子邮件地址。帮助您避免垃圾邮件，保持邮箱清洁，保护您的隐私。",
+            "url": "https://10-minutemail.com",
+            "icon": "https://10-minutemail.com/favicon.ico",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "Pulsoid 心率",
+            "desc": "通过 Pulsoid 的监测，轻松为您的直播内容添加实时心率小部件，这是 Twitch、OBS 等平台的最佳解决方案！兼容 Apple Watch、WearOS 及流行的心率监测器进行流媒体播放",
+            "url": "https://pulsoid.net",
+            "icon": "https://pulsoid-magi.nyc3.cdn.digitaloceanspaces.com/pulsoid-index/favicon.png",
+            "rate": 5
+          },
+          {
+            "name": "Cli 二维码",
+            "desc": "用专业的二维码产品帮助企业创造价值",
+            "url": "https://cli.im/url",
+            "icon": "https://static.clewm.net/static/images/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Mmhtm 文档导出",
+            "desc": "免费下载百度文库文档",
+            "url": "http://wenku.baiduvvv.com/doc",
+            "icon": "https://gimg3.baidu.com/yule/src=https%3A%2F%2Favatar.bdstatic.com%2Fit%2Fu%3D1513894369%2C2256247764%26fm%3D3012%26app%3D3012%26autime%3D1776561825%26size%3Db360%2C360&refer=http%3A%2F%2Fwww.baidu.com&app=2019&size=w931&n=0&g=0n&er=404&q=75&fmt=auto&maxorilen2heic=2000000?sec=1776963600&t=a99b0ebd04cecaec30bd9bf9d1f9950d",
+            "rate": 5
+          }
         ]
       },
       {
-        "title": "开发",
+        "title": "学习工具",
         "id": 102,
         "nav": [
-          { "name": "GitHub", "desc": "全球最大的代码托管平台", "url": "https://github.com", "icon": "https://github.githubassets.com/favicons/favicon.svg", "rate": 5, "tag": "开发工具" },
-          { "name": "Stack Overflow", "desc": "开发者问答社区", "url": "https://stackoverflow.com", "icon": "https://stackoverflow.com/favicon.ico", "rate": 5, "tag": "开发工具" },
-          { "name": "npm", "desc": "Node.js 包管理器", "url": "https://www.npmjs.com", "icon": "https://www.npmjs.com/favicon.ico", "rate": 5, "tag": "开发工具" },
-          { "name": "Vercel", "desc": "现代 Web 应用部署平台", "url": "https://vercel.com", "icon": "https://vercel.com/favicon.ico", "rate": 5, "tag": "开发工具" }
+          {
+            "name": "Qwerty Learner",
+            "desc": "为键盘工作者设计的软件\n简化英语学习与打字技能提升过程，快速建立正确的肌肉记忆单词记忆与键盘输入相结合、音标发音与默写模式、多样化词库选择",
+            "url": "https://qwerty.liumingye.cn/mobile",
+            "icon": "https://qwerty.liumingye.cn/assets/logo-95f41da4.svg",
+            "rate": 5
+          },
+          {
+            "name": "Imgse 路过图床",
+            "desc": "路过图床, 免费公共图床, 提供图片上传和图片外链服务, 原图保存, 全球CDN加速.",
+            "url": "https://imgse.com",
+            "icon": "https://imgchr.com/content/images/system/favicon_1587118523486_91617a.png",
+            "rate": 5
+          },
+          {
+            "name": "Z4A图床",
+            "desc": "NODE2-做中国最良心的免费图床",
+            "url": "https://img.z4a.net",
+            "icon": "https://img.z4a.net/content/images/system/default/favicon.png",
+            "rate": 5
+          },
+          {
+            "name": "Img 水墨图床",
+            "desc": "致力于公益免费外链高速图床",
+            "url": "https://img.ink",
+            "icon": "https://img.ink/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Postimages 图床",
+            "desc": "为论坛提供免费的图片上传与托管集成。为网站和博客提供免费图片托管与照片分享。",
+            "url": "https://postimages.org",
+            "icon": "https://postimgs.org/favicon.ico",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "Tsinghua 镜像站",
+            "desc": "清华大学开源软件镜像站，致力于为国内和校内用户提供高质量的开源软件镜像、Linux 镜像源服务，帮助用户更方便地获取开源软件。",
+            "url": "https://mirrors.tuna.tsinghua.edu.cn/help/pypi",
+            "icon": "https://mirrors.tuna.tsinghua.edu.cn/static/img/favicon.png",
+            "rate": 5
+          },
+          {
+            "name": "Kukuw 打字练习",
+            "desc": "本站免费提供在线打字测试、打字练习。",
+            "url": "https://dazi.kukuw.com",
+            "icon": "https://dazi.kukuw.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "LinuxMirrors 换源脚本",
+            "desc": "GNU/Linux 更换系统软件源脚本及 Docker 安装与换源脚本.",
+            "url": "https://github.com/SuperManito/LinuxMirrors",
+            "icon": "https://github.com/SuperManito/LinuxMirrors/raw/main/docs/assets/images/brand/light/3.png",
+            "rate": 5,
+            "tag": "GitHub"
+          },
+          {
+            "name": "Cmd5 查MD5",
+            "desc": "MD5在线解密|md5在线破解|批量破解md5网站",
+            "url": "http://www.cmd5.com",
+            "icon": "http://www.chamd5.org/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Jwt 解码",
+            "desc": "jwt 在线解码",
+            "url": "https://jwt.io",
+            "icon": "https://jwt.io/img/favicon/apple-icon-76x76.png",
+            "rate": 5
+          },
+          {
+            "name": "Xpcha 解码",
+            "desc": "base64在线解码编码",
+            "url": "http://base64.xpcha.com",
+            "icon": "http://www.xpcha.com/favicon.ico",
+            "rate": 5
+          }
         ]
       },
       {
-        "title": "图片",
+        "title": "开发相关",
         "id": 103,
         "nav": [
-          { "name": "Figma", "desc": "协作式 UI 设计工具", "url": "https://www.figma.com", "icon": "https://www.figma.com/favicon.ico", "rate": 5, "tag": "设计工具" },
-          { "name": "Coolors", "desc": "配色方案生成器", "url": "https://coolors.co", "icon": "https://coolors.co/favicon.ico", "rate": 5, "tag": "设计工具" },
-          { "name": "Unsplash", "desc": "免费高质量图片素材库", "url": "https://unsplash.com", "icon": "https://unsplash.com/favicon.ico", "rate": 5, "tag": "图片工具" }
+          {
+            "name": "Phpstudy 小皮面板",
+            "desc": "phpStudy官网2019正式推出phpStudy V8.0版本PHP集成环境，支持Windows与Linux系统，支持WEB面板操作管理，一键网站开发环境搭建配置，另经典版本phpStudy2016/2018/JspStudy环境套件同步更新中，欢迎网站开发者或运维下载使用！",
+            "url": "https://old.xp.cn",
+            "icon": "https://old.xp.cn/static/images/min-logo.png",
+            "rate": 5
+          },
+          {
+            "name": "UTools 工具平台",
+            "desc": "人与 AI Agent 共用的工具平台\n让人更高效，让 Agent 更全能",
+            "url": "http://www.u.tools",
+            "icon": "https://res.u-tools.cn/website5/assets/logo.png",
+            "rate": 5
+          },
+          {
+            "name": "Android ADB工具",
+            "desc": "Android SDK Platform-Tools 是 Android SDK 的一个组件。",
+            "url": "https://developer.android.google.cn/tools/releases/platform-tools?skip&hl=zh-cn",
+            "icon": "https://www.gstatic.cn/devrel-devsite/prod/v2f052e0cca7362dede225b85c12aee59eabee5b8fbb05d44fc345ffb54861aec/android/images/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "OpenCode  AI 编程代理",
+            "desc": "OpenCode - 开源编程代理。",
+            "url": "https://opencode.ai",
+            "icon": "https://opencode.ai/favicon-96x96-v3.png",
+            "rate": 5
+          },
+          {
+            "name": "Vscode 编辑器",
+            "desc": "VScode是一款轻量级的编辑器，自由。 建立在开源上。 无处不在。",
+            "url": "https://code.visualstudio.com",
+            "icon": "https://code.visualstudio.com/apple-touch-icon.png",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "Zan-proxy 调试",
+            "desc": "本地代码调试线上页面，环境再也不是问题",
+            "url": "https://youzan.github.io/zan-proxy",
+            "icon": "https://avatars2.githubusercontent.com/u/11404085?s=200&v=4",
+            "rate": 5
+          },
+          {
+            "name": "UPX 打包",
+            "desc": "UPX-可执行文件的终极打包器",
+            "url": "https://github.com/upx/upx",
+            "icon": "https://avatars.githubusercontent.com/u/21360319?s=48&v=4",
+            "rate": 5,
+            "tag": "GitHub"
+          },
+          {
+            "name": "GitHub-readme-stats",
+            "desc": "在你的 README 中 获取动态生成的 GitHub 统计信息",
+            "url": "https://github.com/anuraghazra/github-readme-stats",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5,
+            "tag": "GitHub"
+          },
+          {
+            "name": "Jsfiddle 代码演示",
+            "desc": "强大的前端代码在线演示的网站",
+            "url": "http://jsfiddle.net",
+            "icon": "https://jsfiddle.net/img/favicon.png",
+            "rate": 5
+          },
+          {
+            "name": "Digitalocean Nginx配置",
+            "desc": "nginx配置生成器",
+            "url": "https://www.digitalocean.com/community/tools/nginx#?",
+            "icon": "https://www.digitalocean.com/favicon.ico",
+            "rate": 5,
+            "tag": "GitHub"
+          },
+          {
+            "name": "Patorjk 转换",
+            "desc": "将文本转换成ASCII",
+            "url": "http://patorjk.com/software/taag/#p=display&f=Graffiti&t=xiejiahe",
+            "icon": "",
+            "rate": 5
+          },
+          {
+            "name": "Public-Apis 开放接口",
+            "desc": "一些可用在 Web 或软件开发的开放 API 接口",
+            "url": "https://github.com/public-apis/public-apis",
+            "icon": "https://avatars.githubusercontent.com/u/51121562?s=48&v=4",
+            "rate": 5,
+            "tag": "GitHub"
+          },
+          {
+            "name": "Locyanfrp 映射",
+            "desc": "一项公益 Frp 项目",
+            "url": "https://dashboard.locyanfrp.cn",
+            "icon": "https://dashboard.locyanfrp.cn/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Ngrok 映射",
+            "desc": "支持内网HTTP映射 免费服务器支持绑定自定义域名 实现内外网通讯 外网访问内网服务器不再是距离",
+            "url": "https://www.ngrok.cc",
+            "icon": "",
+            "rate": 5
+          },
+          {
+            "name": "Frp 代理",
+            "desc": "一个快速反向代理，可帮助您将NAT或防火墙后面的本地服务器暴露给Internet。",
+            "url": "https://github.com/fatedier/frp",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5,
+            "tag": "优选,GitHub"
+          },
+          {
+            "name": "Ngrok 代理",
+            "desc": "ngrok是一个反向代理，通过在公共的端点和本地运行的 Web 服务器之间建立一个安全的通道。ngrok可捕获和分析所有通道上的流量，便于后期分析和重放",
+            "url": "https://ngrok.com",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5,
+            "tag": "GitHub"
+          }
         ]
-      },
+      }
+    ]
+  },
+  {
+    "title": "影视音乐",
+    "id": 1046,
+    "icon": "🎥",
+    "children": [
       {
-        "title": "格式转换",
+        "title": "影视",
         "id": 104,
         "nav": [
-          { "name": "Audio2edit", "desc": "免费在线音频转换与混音工具", "url": "https://www.audio2edit.com", "icon": "https://www.audio2edit.com/favicon.ico", "rate": 5, "tag": "格式转换" },
-          { "name": "CloudConvert", "desc": "在线文件转换，支持 200+ 格式", "url": "https://cloudconvert.com", "icon": "https://cloudconvert.com/favicon.ico", "rate": 4, "tag": "格式转换" }
+          {
+            "name": "Letu",
+            "desc": "电视剧 电影 动漫 综艺 线上看  视频内嵌广告",
+            "url": "https://www.letu.me",
+            "icon": "https://cibn-edge-5g.1ljx.com/img/src=https://www.letu.me/upload/site/20260313-1/bb8db3f659d66b0a1705d70a162b4e34.png",
+            "rate": 4
+          },
+          {
+            "name": "好好看",
+            "desc": "线路丰富 资源最全 最新Netflix新剧_韩国电影免费在线观看",
+            "url": "https://www.hhkan0.com",
+            "icon": "https://t1.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https://www.hhkan0.com/",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "555电影",
+            "desc": "最新奈飞新剧，有少许广告",
+            "url": "https://www.55dy7.com",
+            "icon": "https://vpic.cms.qq.com/nj_vpic/3272248629/1738571619832751129/5716822510667367545",
+            "rate": 4.5
+          },
+          {
+            "name": "爱看机器人",
+            "desc": "爱看机器人是一个利用网络爬虫技术检索全网免费在线观看影视资源的搜素引擎。",
+            "url": "https://v.ikanbot.com",
+            "icon": "https://v.ikanbot.com/resources/logo.svg",
+            "rate": 5
+          },
+          {
+            "name": "爱粤语网",
+            "desc": "主更粤语港剧，无广告，多线路",
+            "url": "https://www.iyueyuw.xyz",
+            "icon": "https://www.iyueyuw.xyz/upload/site/20240703-1/c6019a5caec338d03bb3b1a733d6f91b.png",
+            "rate": 5
+          },
+          {
+            "name": "港剧屋",
+            "desc": "主更港剧、粤语电影、粤漫，无广告",
+            "url": "https://www.gj5.tv",
+            "icon": "https://t1.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https://www.gj5.tv/",
+            "rate": 5
+          },
+          {
+            "name": "追新番",
+            "desc": "主更日剧，无广告，免费网盘和磁力下载",
+            "url": "https://www.fanxinzhui.com",
+            "icon": "https://www.fanxinzhui.com/res/logo.png",
+            "rate": 5
+          },
+          {
+            "name": "日剧跑",
+            "desc": "热爱日剧，分享日剧。还有日影、动漫分享，百度网盘高清下载，迅雷高速下载。",
+            "url": "https://www.rijupao.com",
+            "icon": "https://www.rijupao.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "韩剧网",
+            "desc": "新韩剧网是中文最大的韩剧视频网站，提供最新韩剧,推荐好看的韩剧在线观看、韩剧排行榜，欢迎韩剧爱好者观看2025最新韩剧，韩国电视剧排行榜让你及时掌握最新韩剧动态。。",
+            "url": "https://www.hanju7.com",
+            "icon": "https://www.hanju7.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "天天美剧",
+            "desc": "天天美剧为全球美剧迷提供搜集分享最新美剧、美影、美漫以及综艺等视频的网站，提供免费完整全集在线观看播放。",
+            "url": "https://www.meijuttk.cc",
+            "icon": "https://www.meijuttk.cc/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "BD影视聚合下载",
+            "desc": "BD影视分享,主要提供丰富的影视资源下载,并且可以在线云播预览,上映之后三个月内发布枪版,三个月之后发布蓝光高清下载,免费下载电影就来BD影视",
+            "url": "https://www.bdjuhe.com",
+            "icon": "https://www.bdjuhe.com/img/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "七味电影网",
+            "desc": "观影换皮",
+            "url": "https://www.qwnull.com",
+            "icon": "https://www.qwnull.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "SeedHub下载",
+            "desc": "SeedHub 每天为您分享优质的电影、电视剧和动漫资讯。免费分享，无需注册，更新及时，我们致力打造最好的影视资讯分享站！",
+            "url": "https://www.seedhub.cc",
+            "icon": "https://sh1.pcie.pppoe.top/static/img/favicon.ico",
+            "rate": 4,
+            "tag": "优选"
+          },
+          {
+            "name": "摩羯座BT资源站",
+            "desc": "最新",
+            "url": "https://bt.mojiez.com",
+            "icon": "https://bt.mojiez.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "美剧粉",
+            "desc": "1080p美剧|720p高清|BT下载|最新美剧|最多资源的美剧网站|",
+            "url": "https://www.mjf2020.com",
+            "icon": "https://css.bapiw.com/wp-content/themes/ribapiw/assets/img/favicon.png",
+            "rate": 5
+          },
+          {
+            "name": "高原下",
+            "desc": "超高画质的磁力链接",
+            "url": "https://gaoyuanxia.cn/ying-shi",
+            "icon": "https://gaoyuanxia.cn/wp-content/uploads/2024/12/tu-biao.png",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "盘搜吧",
+            "desc": "盘搜吧 - 聚合网盘资源搜索工具，专业夸克网盘搜索。支持阿里云盘、夸克网盘、百度网盘、蓝奏云盘等主流网盘资源搜索。",
+            "url": "https://www.panso678.com",
+            "icon": "https://www.panso678.com/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "小云搜索",
+            "desc": "轻松简单的云盘搜索 | 网盘搜索引擎",
+            "url": "https://www.yunso.net",
+            "icon": "data:img/png;base64,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",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "聚盘搜",
+            "desc": "聚盘搜 - 聚合网盘资源搜索工具，专业夸克网盘搜索。支持阿里云盘、夸克网盘、百度网盘、蓝奏云盘等主流网盘资源搜索。",
+            "url": "https://www.panso567.com",
+            "icon": "https://www.panso567.com/vite.svg",
+            "rate": 5
+          },
+          {
+            "name": "射手网(伪)",
+            "desc": "字幕下载，字幕组，中文字幕，美剧字幕，英剧字幕，双语字幕，新番字幕",
+            "url": "https://assrt.net",
+            "icon": "https://assrt.net/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Zimuku",
+            "desc": "字幕库字幕下载",
+            "url": "https://zimuku.org",
+            "icon": "https://yinghezhinan.com/wp-content/uploads/2025/04/d0229b38e2b7905fc2d86fa5f16203097774.webp",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "SubHD",
+            "desc": "",
+            "url": "https://subhd.tv",
+            "icon": "https://yinghezhinan.com/wp-content/uploads/2025/04/3ebb3e849211f03c58ec29f4875f24eb1578.webp",
+            "rate": 5
+          },
+          {
+            "name": "瓜子影视",
+            "desc": "终身免费，全球片源",
+            "url": "https://gz44.app",
+            "icon": "https://gz44.app/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "小苹果影视",
+            "desc": "小苹果APP官网永久发布页",
+            "url": "https://ys123.app",
+            "icon": "https://ys123.app/icon.png",
+            "rate": 5
+          },
+          {
+            "name": "免费影视APP下载",
+            "desc": "免费影视APP官网永久发布页",
+            "url": "https://www.mfysapp.vip",
+            "icon": "https://www.mfysapp.vip/img/5.png",
+            "rate": 5
+          }
+        ]
+      },
+      {
+        "title": "动漫",
+        "id": 105,
+        "nav": [
+          {
+            "name": "Omofuns动漫",
+            "desc": "一个免费的动漫分享门户",
+            "url": "https://www.omofuns.com",
+            "icon": "https://www.omofuns.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "樱之空",
+            "desc": "桜空学園之始：桜空アニメ，樱之空动漫【原 迷子樱舞】愿樱花四季于此欢乐长舞，域名skr.cc是sakura的缩写哟！本站有好看的动漫日剧以及歌曲，是一个不随大流、极具个人色彩、神秘又温馨的二次元圣地！",
+            "url": "https://skr.skr3.cc:666",
+            "icon": "https://kycloud3.koyoo.cn/20250227d1aac202502271726072552.png",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "AGE动漫",
+            "desc": "Age动漫专业的在线动漫网站，动漫免费在线观看，高品质画质，实时更新，追番利器!",
+            "url": "https://www.agedm.io",
+            "icon": "https://www.agedm.io/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "蜜柑计划",
+            "desc": "一个番剧 BT 资源整合网站，其主要特点是整合某部番剧现有的字幕组资源，按番剧放送时间分门别类，并支持更精细的简繁分类",
+            "url": "https://mikanani.me",
+            "icon": "https://mikanani.me/images/favicon.ico?v=2",
+            "rate": 5,
+            "tag": "魔法"
+          },
+          {
+            "name": "動漫花園資源網",
+            "desc": "动漫花园信息网是一个动漫爱好者交流的平台，提供最及时，最全面的动画，漫画，动漫音乐，动漫下载，BT，ED，动漫游戏，信息，分享，交流，讨论.",
+            "url": "https://dmhy.org",
+            "icon": "https://dmhy.org/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Nyaa",
+            "desc": "一个专注于东亚媒体的 BitTorrent 社区，包括动漫、漫画、音乐等",
+            "url": "https://nyaa.si",
+            "icon": "https://nyaa.si/static/favicon.png",
+            "rate": 5,
+            "tag": "优选,魔法"
+          },
+          {
+            "name": "ACG.RIP",
+            "desc": "",
+            "url": "https://acg.rip",
+            "icon": "https://acg.rip/favicon.ico",
+            "rate": 5,
+            "tag": "魔法"
+          },
+          {
+            "name": "Anime Garden 動漫花園資源網镜像站",
+            "desc": "Anime Garden 動漫花園資源網镜像站, 动漫花园动画 BT 资源聚合站",
+            "url": "https://animes.garden",
+            "icon": "https://animes.garden/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "VCB-Studio",
+            "desc": "很好的一个压制组",
+            "url": "https://vcb-s.com",
+            "icon": "",
+            "rate": 5
+          },
+          {
+            "name": "Animeko",
+            "desc": "集找番、追番、看番的一站式弹幕追番平台，云收藏同步 (Bangumi)，离线缓存，BitTorrent，弹幕云过滤。",
+            "url": "https://github.com/open-ani/animeko",
+            "icon": "https://camo.githubusercontent.com/38de27098f3e24f39918595764d339454b9bb4c3631d5afc9b0fd3af5fa739de/68747470733a2f2f736f6369616c6966792e6769742e63692f6f70656e2d616e692f616e696d656b6f2f696d6167653f6465736372697074696f6e3d31266465736372697074696f6e4564697461626c653d25453925394225383625453625383925424525453725393525414125453325383025383125453825424625424425453725393525414125453325383025383125453725394325384225453725393525414125453725394125383425453425423825383025453725414225393925453525424325384625453525424325423925453525423925393525453825424625424425453725393525414125453525423925423325453525384625423026666f6e743d4a6f7374266c6f676f3d68747470732533412532462532467261772e67697468756275736572636f6e74656e742e636f6d2532466f70656e2d616e69253246616e696d656b6f2532467265667325324668656164732532466d61696e2532462e6769746875622532466173736574732532466c6f676f2e706e67266e616d653d31266f776e65723d31267061747465726e3d506c7573267468656d653d4c69676874",
+            "rate": 5
+          },
+          {
+            "name": "Kazumi",
+            "desc": "基于自定义规则的番剧采集APP，支持流媒体在线观看，支持弹幕，支持实时超分辨率。",
+            "url": "https://github.com/Predidit/Kazumi",
+            "icon": "https://yinghezhinan.com/wp-content/uploads/2025/04/0a148ac5007e43d6b0f9a95bdc8041f1.webp",
+            "rate": 5
+          }
+        ]
+      },
+      {
+        "title": "音乐",
+        "id": 106,
+        "nav": [
+          {
+            "name": "Video Game Music Downloads",
+            "desc": "电子游戏音乐 MP3 与无损下载",
+            "url": "https://downloads.khinsider.com/?page=2",
+            "icon": "https://downloads.khinsider.com/images/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "放屁网",
+            "desc": "免注册、支持下载",
+            "url": "https://www.fangpi.net",
+            "icon": "https://t1.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https://www.gequbao.com/",
+            "rate": 5
+          },
+          {
+            "name": "泡椒音乐",
+            "desc": "无套路/无损音质",
+            "url": "https://pjmp3.com",
+            "icon": "https://t1.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https://pjmp3.com/",
+            "rate": 5
+          },
+          {
+            "name": "音乐魔石",
+            "desc": "音乐魔石官网提供全网无损音乐、Mp3歌曲免费下载、MP3免费下载、WAV免费下载",
+            "url": "https://music.yym4.com",
+            "icon": "https://music.yym4.com/img/favicon.png",
+            "rate": 5
+          },
+          {
+            "name": "歌曲宝",
+            "desc": "网盘音乐/打包下载",
+            "url": "https://www.gequbao.com",
+            "icon": "https://t1.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https://www.gequbao.com/",
+            "rate": 5
+          },
+          {
+            "name": "LX Music",
+            "desc": "LX Music - 一个免费&开源的音乐查找工具",
+            "url": "https://lxmusic.toside.cn",
+            "icon": "https://lxmusic.toside.cn/img/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "MusicFree",
+            "desc": "MusicFree —— 一个插件化、定制化、无广告的音乐播放器。",
+            "url": "https://musicfree.catcat.work",
+            "icon": "https://musicfree.catcat.work/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "椒盐音乐",
+            "desc": "Moriafly Official | 不要糖醋放椒盐 | 椒盐音乐 | Salt Player",
+            "url": "https://moriafly.com",
+            "icon": "https://moriafly.com/spa.png",
+            "rate": 5
+          },
+          {
+            "name": "QingMusic",
+            "desc": "青听音乐-一款免费无广告的本地音乐播放器。",
+            "url": "https://github.com/kejichangqing/QingMusic",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          }
         ]
       }
     ]
   },
   {
-    "title": "在线工具",
-    "id": 2,
-    "icon": "🧰",
+    "title": "阅读资源",
+    "id": 1045,
+    "icon": "📖",
     "children": [
       {
-        "title": "开发工具",
-        "id": 201,
+        "title": "书籍获取",
+        "id": 107,
         "nav": [
-          { "name": "CodePen", "desc": "在线前端代码编辑器", "url": "https://codepen.io", "icon": "https://codepen.io/favicon.ico", "rate": 5, "tag": "开发工具" },
-          { "name": "JSFiddle", "desc": "在线 JavaScript 测试工具", "url": "https://jsfiddle.net", "icon": "https://jsfiddle.net/favicon.ico", "rate": 4, "tag": "开发工具" }
+          {
+            "name": "书籍知识库",
+            "desc": "优质mobi,azw3,TXT,PDF,epub格式电子书分享站",
+            "url": "https://www.zhishikoo.com",
+            "icon": "https://t1.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https://www.zhishikoo.com/",
+            "rate": 5
+          },
+          {
+            "name": "Anna’s Archive 安娜的档案",
+            "desc": "世界上最大的开源、开放数据图书馆。不仅是 Sci-Hub, Library Genesis, Z-Library 等站的镜像。",
+            "url": "https://zh.annas-archive.gl",
+            "icon": "https://zh.annas-archive.gl/apple-touch-icon.png?hash=d2fa3410fb1ae23ef0ab",
+            "rate": 5,
+            "tag": "魔法"
+          },
+          {
+            "name": "Z-Library",
+            "desc": "世界上最大的图书馆",
+            "url": "https://z-lib.rest",
+            "icon": "https://www.lovejay.top/wp-content/uploads/2025/11/1762937185-256.webp",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "八零电子书",
+            "desc": "80电子书是专业的完本小说TXT电子书免费下载网站,提供txt全集下载,好看的全本手机电子书免费下载,完整版全集TXT小说免费下载,优秀的完结小说,全文TXT格式电子书下载网,txt小说下载,手机电子书请记住txt808.com。",
+            "url": "https://m.8080txt.com",
+            "icon": "https://m.8080txt.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "搜书吧",
+            "desc": "搜书吧提供各种格式小说下载",
+            "url": "www.soushu2030.com",
+            "icon": "https://vfd3.vdf5ge5a.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "鸠摩搜索",
+            "desc": "鸠摩搜索引擎",
+            "url": "https://www.jiumodiary.com",
+            "icon": "https://www2.jiumodiary.com/images/front/eleps.png",
+            "rate": 5
+          },
+          {
+            "name": "时光图书馆",
+            "desc": "时光图书馆--经典珍藏图书、文章系列软件 电子书合集打包下载",
+            "url": "https://atimebook.com",
+            "icon": "https://atimebook.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "爱下电子书",
+            "desc": "爱下电子书提供热门排行榜，分类榜单小说的在线阅读，一起享受极致阅读乐趣。",
+            "url": "https://ixdzs8.com",
+            "icon": "https://ixdzs8.com/images/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "书栈网",
+            "desc": "书栈网，IT程序员互联网开源编程书籍阅读分享，囊括小程序、前端、后端、移动端、云计算、大数据、区块链、机器学习、人工智能和面试笔试等相关书籍，助你【码】力十足！",
+            "url": "https://www.bookstack.cn",
+            "icon": "https://www.bookstack.cn/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "SoBooks",
+            "desc": "电子书下载",
+            "url": "https://sobooks.cc",
+            "icon": "https://sobooks.cc/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "科学文库",
+            "desc": "专业书籍、课本下载首选，当前数据库总品种数已达7万余种，每年保持约2500种的稳定更新量",
+            "url": "https://book.sciencereading.cn/shop/main/Login/shopFrame.do",
+            "icon": "https://book.sciencereading.cn/images/icons/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "免费的编程中文书籍索引",
+            "desc": "免费的编程中文书籍索引",
+            "url": "https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md",
+            "icon": "https://avatars1.githubusercontent.com/u/14127308?s=200&v=4",
+            "rate": 5
+          },
+          {
+            "name": "码农书籍网",
+            "desc": "码农书籍网,为程序员提供IT技术书籍pdf电子书下载,涵盖了java、python、人工智能、大数据、linux、php、c语言、Go、R语言等二十多种热门语言分类",
+            "url": "https://www.manongbook.com",
+            "icon": "https://www.manongbook.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "IT-eBOOK",
+            "desc": "IT类技术书籍PDF",
+            "url": "https://github.com/asyncfun/IT-eBOOK",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "ChinaTextbook",
+            "desc": "所有小初高、大学PDF教材。",
+            "url": "https://github.com/TapXWorld/ChinaTextbook",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          }
         ]
       },
       {
-        "title": "文本工具",
-        "id": 202,
+        "title": "阅读软件",
+        "id": 108,
         "nav": [
-          { "name": "Markdown 编辑器", "desc": "在线 Markdown 编辑与预览", "url": "https://stackedit.io", "icon": "https://stackedit.io/favicon.ico", "rate": 4, "tag": "效率工具" },
-          { "name": "Regex101", "desc": "在线正则表达式测试工具", "url": "https://regex101.com", "icon": "https://regex101.com/favicon.ico", "rate": 5, "tag": "开发工具" }
+          {
+            "name": "Talebook",
+            "desc": "一个简单好用的个人书库.",
+            "url": "https://github.com/talebook/talebook",
+            "icon": "https://avatars.githubusercontent.com/u/4410246?s=48&v=4",
+            "rate": 5
+          },
+          {
+            "name": "Legado 3.0",
+            "desc": "阅读3.0, 阅读是一款可以自定义来源阅读网络内容的工具，为广大网络文学爱好者提供一种方便、快捷舒适的试读体验。",
+            "url": "https://github.com/gedoor/legado",
+            "icon": "https://github.com/gedoor/legado/raw/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+            "rate": 5,
+            "tag": "神器,优选"
+          },
+          {
+            "name": "Anx-reader",
+            "desc": "它具备强大的人工智能能力，支持多种电子书格式，使阅读更加智能和专注。 - GitHub - Anxcye/anx-reader：具备强大的 AI 功能，支持多种电子书格式，使阅读更智能、更专注。",
+            "url": "https://github.com/Anxcye/anx-reader",
+            "icon": "https://github.com/Anxcye/anx-reader/raw/develop/docs/images/Anx-logo.jpg",
+            "rate": 5
+          },
+          {
+            "name": "Yiove 书源仓库",
+            "desc": "欢迎来到我们的书源整合网站，这是一个专为小说阅读爱好者设计的平台。我们提供最新最全的书源配置文件，让你在各种阅读APP上轻松搜索到心仪的小说。",
+            "url": "https://shuyuan.yiove.com",
+            "icon": "https://shuyuan.yiove.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "源仓库",
+            "desc": "书源仓库",
+            "url": "https://www.yckceo.com",
+            "icon": "https://www.yckceo.com/favicon.ico",
+            "rate": 5,
+            "tag": "优选"
+          }
         ]
       }
     ]
   },
   {
-    "title": "AI 工具",
-    "id": 3,
-    "icon": "🤖",
+    "title": "游戏资源",
+    "id": 1044,
+    "icon": "🎮",
     "children": [
       {
-        "title": "对话 AI",
-        "id": 301,
+        "title": "游戏下载",
+        "id": 109,
         "nav": [
-          { "name": "ChatGPT", "desc": "OpenAI 的对话式 AI 助手", "url": "https://chat.openai.com", "icon": "https://chat.openai.com/favicon.ico", "rate": 5, "tag": "AI 工具" },
-          { "name": "DeepSeek", "desc": "深度求索 AI 助手", "url": "https://www.deepseek.com", "icon": "https://www.deepseek.com/favicon.ico", "rate": 5, "tag": "AI 工具" },
-          { "name": "Claude", "desc": "Anthropic 的 AI 助手", "url": "https://claude.ai", "icon": "https://claude.ai/favicon.ico", "rate": 5, "tag": "AI 工具" }
+          {
+            "name": "植物僵尸相关下载",
+            "desc": "",
+            "url": "http://jspvz.com/download.htm",
+            "icon": "https://gcore.jsdelivr.net/gh/Pi3-14-15926/Nav@image/1776819173272.png",
+            "rate": 5
+          },
+          {
+            "name": "Game-Cheats-Manager",
+            "desc": "轻松下载和管理单人游戏作弊码，方便使用",
+            "url": "https://github.com/dyang886/Game-Cheats-Manager",
+            "icon": "https://github.com/dyang886/Game-Cheats-Manager/raw/main/src/assets/logo.png",
+            "rate": 5
+          },
+          {
+            "name": "ThatSkyMod",
+            "desc": "官方的 That Sky Mod 发布仓库，重点是兼容最新版本的 Sky： CotL - XeTrinityz/ThatSkyMod",
+            "url": "https://github.com/XeTrinityz/ThatSkyMod",
+            "icon": "https://camo.githubusercontent.com/e9f5579ffa24598536284f16e403acbbb683f8cee8a2f14e36a3a56623774f42/68747470733a2f2f692e6962622e636f2f714c3554533271342f69636f6e2e706e67",
+            "rate": 5
+          },
+          {
+            "name": "Flysheep资源避难所",
+            "desc": "flysheep资源避难所是一个免费的二次元风格游戏站 站内分类清晰，覆盖 PC、VR、模拟器等多种游戏类型 提供Steam/Epic单机游戏、框架文件、工具下载、站内图文教程简洁、萌新不会站长手把手教 站内气氛友善活跃是一个游戏与二次元爱好者的交流平台",
+            "url": "https://www.flysheep6.com",
+            "icon": "https://images.weserv.nl/?url=https://r534.com/flysheep/i/2023/02/25/5fgq.jpg",
+            "rate": 5
+          },
+          {
+            "name": "全游网",
+            "desc": "全游网前身是原著名的模拟游戏网站-模拟MAX，全游网名字的意思是为玩家提供360度无死角全方位的游戏服务。我们的宗旨是用心对待每一个游戏，目标是成为全国新老游戏玩家的游戏天堂，为玩家保留儿时心中永久的记忆。",
+            "url": "https://www.youxi360.net",
+            "icon": "https://www.youxi360.net/static/front/images/icon/favorite.ico",
+            "rate": 5
+          },
+          {
+            "name": "3DM游戏网",
+            "desc": "3DM游戏网为玩家提供最新的游戏新闻、攻略、单机游戏资源、汉化资源、游戏补丁、游戏论坛等，经过多年努力已成为游戏玩家首要选择的游戏资讯、游戏资源网站。",
+            "url": "https://www.3dmgame.com",
+            "icon": "https://www.3dmgame.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Gamer520",
+            "desc": "全球游戏白嫖网",
+            "url": "https://www.gamer520.com",
+            "icon": "https://yinghezhinan.com/wp-content/uploads/2025/04/de9744f081c1b956a1026a8e846e719d3005.webp",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "梨子乐游戏",
+            "desc": "全球游戏网-switch游戏下载-pc游戏下载-switch游戏下载-pc游戏下载-switch-手机游戏",
+            "url": "https://lzlgo.com",
+            "icon": "http://lzlgo.com/wp-content/uploads/2025/04/1.png",
+            "rate": 5
+          },
+          {
+            "name": "VR下载吧",
+            "desc": "提供Steam VR游戏、Oculus Quest游戏、PS VR游戏与VR视频资源下载",
+            "url": "https://www.vrxzb.com",
+            "icon": "https://cdn.wwwo.work/vrxzb/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Game Share",
+            "desc": "专注于分享优质游戏资源的社区平台，每周为大家更新PC破解游戏，手机破解游戏，收录最新最全的STEAM单机破解游戏，本站游戏免安装，下载即玩。",
+            "url": "https://www.gameshare.cc",
+            "icon": "https://www.gameshare.cc/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "哈基米游戏",
+            "desc": "网站游戏以网盘资源为主",
+            "url": "https://www.hajimigames.com",
+            "icon": "https://www.hajimigames.com/wp-content/uploads/IMG_20251128_135426.jpg",
+            "rate": 5
+          },
+          {
+            "name": "Koyso",
+            "desc": "免费预装 PC 游戏，可直接下载。只需下载并游玩即可。",
+            "url": "https://koysobackup.com",
+            "icon": "https://koysobackup.com/static/picture/logo_u.ico",
+            "rate": 5
+          },
+          {
+            "name": "机地游戏",
+            "desc": "提供大量steam游戏免费下载，还有游戏周边，比如MOD下载、修改器、以及存档，多渠道下载",
+            "url": "https://jidiyouxi.com",
+            "icon": "https://jidiyouxi.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "老机库 Laojiku",
+            "desc": "干净、完整、可用。",
+            "url": "https://laojiku.com/#console",
+            "icon": "https://laojiku.com/wp-content/uploads/attachment/2026/20260403021400_69cf2268ec51c.png",
+            "rate": 5
+          },
+          {
+            "name": "游戏 - FC图库",
+            "desc": "FC游戏下载,FC下载",
+            "url": "https://fcpic.nesbbs.com/game.html",
+            "icon": "https://fcpic.nesbbs.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "围炉游戏论坛",
+            "desc": "围炉游戏论坛 - 怀旧游戏动漫",
+            "url": "https://www.wlgooo.com",
+            "icon": "https://img.wlgooo.com/wp-content/uploads/2024/01/20240128124252884.png",
+            "rate": 5
+          },
+          {
+            "name": "肖琪街模拟游戏",
+            "desc": "肖琪街模拟游戏论坛",
+            "url": "https://bbs.xqemu.cn/index.php?mobile=no",
+            "icon": "https://bbs.xqemu.cn/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "MAMEdev.org",
+            "desc": "街机模拟器",
+            "url": "https://www.mamedev.org",
+            "icon": "https://www.mamedev.org/_include/img/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "老男人游戏网",
+            "desc": "仓储式主机资源站 精校 完整 极致 静待您的垂青",
+            "url": "https://www.oldmantvg.net",
+            "icon": "https://www.oldmantvg.net/favicon.ico",
+            "rate": 5
+          }
         ]
       },
       {
-        "title": "AI 绘画",
-        "id": 302,
+        "title": "在线游玩",
+        "id": 110,
         "nav": [
-          { "name": "Midjourney", "desc": "AI 图像生成工具", "url": "https://www.midjourney.com", "icon": "https://www.midjourney.com/favicon.ico", "rate": 5, "tag": "AI 工具" },
-          { "name": "Stable Diffusion", "desc": "开源的 AI 图像生成模型", "url": "https://stablediffusionweb.com", "icon": "https://stablediffusionweb.com/favicon.ico", "rate": 5, "tag": "AI 工具" },
-          { "name": "DALL·E", "desc": "OpenAI 的图像生成工具", "url": "https://openai.com/dall-e-3", "icon": "https://openai.com/favicon.ico", "rate": 4, "tag": "AI 工具" }
-        ]
-      },
-      {
-        "title": "AI 编程",
-        "id": 303,
-        "nav": [
-          { "name": "GitHub Copilot", "desc": "AI 代码助手", "url": "https://github.com/features/copilot", "icon": "https://github.githubassets.com/favicons/favicon.svg", "rate": 5, "tag": "AI 工具" },
-          { "name": "Cursor", "desc": "AI 代码编辑器", "url": "https://cursor.sh", "icon": "https://cursor.sh/favicon.ico", "rate": 5, "tag": "AI 工具" }
+          {
+            "name": "Poki (宝玩)",
+            "desc": "与Poki (宝玩)一起探索免费在线游戏的世界！即刻玩耍，无需下载，享受与所有设备兼容的游戏。",
+            "url": "https://poki.com/zh",
+            "icon": "https://a.poki-cdn.com/icons/apple-touch-icon.png",
+            "rate": 5
+          },
+          {
+            "name": "免费线上游戏",
+            "desc": "Y8 Games 是一个全球在线游戏平台，为玩家提供全球规模最大的浏览器游戏库之一，涵盖HTML5、WebGL、多人游戏、支持玩家互动的换装游戏，以及完整的Flash游戏存档。",
+            "url": "https://zh.y8.com",
+            "icon": "https://img.y8.com/assets/y8/favicon-32ba556e0026f47b8a6774c589575902155c4469a8116a68880669d1a5bedd0d.ico",
+            "rate": 5
+          },
+          {
+            "name": "在线 DOS 游戏",
+            "desc": "在浏览器中在线游玩 DOS 游戏！",
+            "url": "https://dos.lol",
+            "icon": "https://dos.lol/apple-touch-icon.png",
+            "rate": 5
+          },
+          {
+            "name": "Flash 保存计划",
+            "desc": "保存闪客时代的历史，纪念带给我们无限欢乐的 Flash 作品。",
+            "url": "https://flash.homes",
+            "icon": "https://flash.homes/favicon.ico",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "海拥🐬游戏大全",
+            "desc": "海拥游戏大全，提供最新、最热门的在线游戏。涵盖动作、棋牌、益智、策略、3D、休闲、射击、GBA游戏、fc红白机、经典、赛车、闯关等多种类型，所有游戏均可免费畅玩，满足你的游戏需求！",
+            "url": "https://game.haiyong.site",
+            "icon": "https://blog.haiyong.site/img/favicon.png",
+            "rate": 5
+          },
+          {
+            "name": "Oldswf",
+            "desc": "无需安装flash即可在线游玩的小游戏站",
+            "url": "https://oldswf.com",
+            "icon": "https://yinghezhinan.com/wp-content/uploads/2025/07/oldswf.webp",
+            "rate": 5
+          },
+          {
+            "name": "Puzzle Games",
+            "desc": "发现并畅玩最棒的在线游戏。我们精选了超过 29156 款免费游戏，无需下载，即可在浏览器中立即畅玩。",
+            "url": "https://playgames.fan",
+            "icon": "https://playgames.fan/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "FC在线游戏",
+            "desc": "魂斗罗，超级玛丽，热血足球，三国志，合金弹头，拳皇。这些小时候的回忆，黑白电视机前玩着小霸王游戏机的那种感觉令人怀念，希望大家可以找回童年的快乐",
+            "url": "https://www.yikm.net",
+            "icon": "https://yinghezhinan.com/wp-content/uploads/2025/05/yikm.webp",
+            "rate": 5
+          },
+          {
+            "name": "复古游戏",
+            "desc": "直接在您的浏览器中玩 NES、SNES、Genesis、Neo Geo、GB、GBA、N64、PS 和街机模拟器游戏。免费下载复古游戏 ROM。",
+            "url": "https://classicjoy.games/zh",
+            "icon": "https://classicjoy.games/logo.svg",
+            "rate": 5
+          },
+          {
+            "name": "在线玩模拟器",
+            "desc": "在浏览器中免费在线玩模拟器游戏！",
+            "url": "https://www.emu666.com",
+            "icon": "https://asset.emu666.com/_next/static/media/favicon.4a2ea280.ico",
+            "rate": 5
+          },
+          {
+            "name": "老游戏在线玩",
+            "desc": "在电脑和手机浏览器里畅玩 2500+ 中文老游戏，支持触屏、键盘、存档！包括 FC, SFC, N64, GB, GBC, GBA, NDS 等多种游戏机平台。",
+            "url": "https://zaixianwan.app",
+            "icon": "https://zaixianwan.app/apple-touch-icon.png",
+            "rate": 5
+          }
         ]
       }
     ]
   },
   {
     "title": "学习资源",
-    "id": 4,
+    "id": 1043,
     "icon": "📚",
     "children": [
       {
-        "title": "前端开发",
-        "id": 401,
+        "title": "项目刷题",
+        "id": 111,
         "nav": [
-          { "name": "MDN Web Docs", "desc": "Mozilla 的 Web 开发文档", "url": "https://developer.mozilla.org", "icon": "https://developer.mozilla.org/favicon.ico", "rate": 5, "tag": "开发工具" },
-          { "name": "React 官方文档", "desc": "React 框架官方文档", "url": "https://react.dev", "icon": "https://react.dev/favicon.ico", "rate": 5, "tag": "开发工具" },
-          { "name": "Vue.js", "desc": "渐进式 JavaScript 框架", "url": "https://vuejs.org", "icon": "https://vuejs.org/favicon.ico", "rate": 5, "tag": "开发工具" }
+          {
+            "name": "Codewars",
+            "desc": "适合所有编程水平的编程练习网站——加入超过 300 万开发者的社区，提升你在 55 种以上编程语言中的编程技能！",
+            "url": "https://www.codewars.com",
+            "icon": "https://cdn.prod.website-files.com/62e3ee10882dc50bcae8d07a/64fdd06dd5d080d41055024f_Codewars%2032.png",
+            "rate": 5
+          },
+          {
+            "name": "LintCode",
+            "desc": "强大的编程培训系统。LintCode 在面试问题最多的领域涵盖了 Google、Facebook、LinkedIn、亚马逊、Microsoft 等。我们为全球的程序员提供中文和英文版本。",
+            "url": "https://www.lintcode.com",
+            "icon": "https://jsn.lintcode.com/static/img/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "LeetCode",
+            "desc": "提高你的编码技能，快速找到一份工作。这是扩展你知识和为下一次面试做好准备的最佳地方。",
+            "url": "https://leetcode-cn.com",
+            "icon": "https://static.leetcode-cn.com/cn-assets/icons/favicon-96x96.png",
+            "rate": 5,
+            "tag": "英文"
+          },
+          {
+            "name": "牛客网",
+            "desc": "牛客网是互联网求职神器，C++、Java、前端、产品、运营技能学习/备考/求职题库",
+            "url": "https://www.nowcoder.com",
+            "icon": "https://www.nowcoder.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "CS-Notes",
+            "desc": "技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计、Java、Python、C++",
+            "url": "https://cyc2018.github.io/CS-Notes",
+            "icon": "https://cyc-1256109796.cos.ap-guangzhou.myqcloud.com/LogoMakr_1J56bI.png",
+            "rate": 5,
+            "tag": "GitHub"
+          },
+          {
+            "name": "数据结构和算法动态可视化",
+            "desc": "数据结构和算法动态可视化",
+            "url": "https://visualgo.net/zh",
+            "icon": "https://visualgo.net/img/favicon.png",
+            "rate": 5
+          },
+          {
+            "name": "Algorithm-pattern",
+            "desc": "算法模板，最科学的刷题方式，最快速的刷题路径，你值得拥有~",
+            "url": "https://github.com/greyireland/algorithm-pattern",
+            "icon": "https://github.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "CSS Diner",
+            "desc": "一个有趣的游戏，帮助你学习和练习 CSS 选择器。",
+            "url": "https://flukeout.github.io",
+            "icon": "https://flukeout.github.io/favicon.png",
+            "rate": 5
+          },
+          {
+            "name": "Coding Games and Programming",
+            "desc": "CodinGame 是一个面向程序员的挑战型培训平台，你可以在这里玩最热门的编程话题。解游戏，编写 AI 机器人代码，向同伴学习，享受乐趣。",
+            "url": "https://www.codingame.com/start",
+            "icon": "https://www.codingame.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Codédex",
+            "desc": "Codédex 是一种适合儿童和成人学习编程的新方式。在 Python、HTML、CSS 或 JavaScript 的奇幻世界中冒险，赚取经验值（XP）以解锁新区域，并按自己的节奏收集所有徽章。今天就开始你的冒险吧。",
+            "url": "https://www.codedex.io",
+            "icon": "https://www.codedex.io/images/favicon.png",
+            "rate": 5
+          },
+          {
+            "name": "VisuAlgo",
+            "desc": "从简单的排序算法到复杂的图数据结构。虽然专门为修读各种数据结构和算法课程（CS1010/等效课程、CS2040/等效课程（包括 IT5003）、CS3230、CS3233 和 CS4234）设计，但作为在线学习的倡导者，我们也希望全球好奇的人们也能发现这些可视化工具非常有用。",
+            "url": "https://visualgo.net/zh",
+            "icon": "https://visualgo.net/img/favicon.png",
+            "rate": 5
+          },
+          {
+            "name": "Gh-proxy 加速项目",
+            "desc": "GitHub Release、Archive 以及项目文件的加速项目。通过在 GitHub 创建一个账号，参与 hunshcn/gh-proxy 的开发。",
+            "url": "https://github.com/hunshcn/gh-proxy",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "Cloudflare_temp_email",
+            "desc": "CloudFlare free temp domain email 免费收发 临时域名邮箱 支持附件 IMAP SMTP",
+            "url": "https://github.com/dreamhunter2333/cloudflare_temp_email",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "Coding-interview-university",
+            "desc": "成为软件工程师的完整计算机科学学习计划。",
+            "url": "https://github.com/jwasham/coding-interview-university",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "Dart_simple_live",
+            "desc": "简简单单的看直播.",
+            "url": "https://github.com/xiaoyaocz/dart_simple_live",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "BiliTools",
+            "desc": "跨平台哔哩哔哩工具箱，支持下载视频、番剧等等各类资源",
+            "url": "https://github.com/btjawa/BiliTools",
+            "icon": "https://github.com/btjawa/BiliTools/raw/master/.github/logo.svg",
+            "rate": 5
+          },
+          {
+            "name": "Auto_Symlink",
+            "desc": "实时监控文件夹，创建与更新软链接/strm文件，自动复制与更新元数据，清空无效文件夹，清空无效软链接",
+            "url": "https://github.com/shenxianmq/Auto_Symlink",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "Netdisk-fast-download",
+            "desc": "聚合多种主流网盘的直链解析下载服务, 一键解析下载，已支持夸克网盘/uc网盘/蓝奏云/蓝奏优享/小飞机盘/123云盘等. 支持文件夹分享解析.",
+            "url": "https://github.com/qaiu/netdisk-fast-download",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "BongoCat",
+            "desc": "🐱 跨平台互动桌宠 BongoCat，为桌面增添乐趣！",
+            "url": "https://github.com/ayangweb/BongoCat",
+            "icon": "https://camo.githubusercontent.com/5e675c7f74e98df5c697429ce6e5fc74deb2570f6f73364781af706b458a3cfe/68747470733a2f2f736f6369616c6966792e6769742e63692f6179616e677765622f426f6e676f4361742f696d6167653f637573746f6d5f6465736372697074696f6e3d266465736372697074696f6e3d3126666f6e743d536f757263652b436f64652b50726f26666f726b733d31266973737565733d31266c6f676f3d68747470732533412532462532466769746875622e636f6d2532466179616e67776562253246426f6e676f436174253246626c6f622532466d61737465722532467372632d74617572692532466173736574732532466c6f676f2d6d61632e706e6725334672617725334474727565266e616d653d31266f776e65723d31267061747465726e3d466c6f6174696e672b436f67732670756c6c733d31267374617267617a6572733d31267468656d653d4175746f",
+            "rate": 5
+          },
+          {
+            "name": "Home",
+            "desc": "个人主页，我的个人主页，个人主页源码，主页模板",
+            "url": "https://github.com/imsyy/home",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "GitHub",
+            "desc": "GitHub 漫游指南",
+            "url": "https://github.com/phodal/github",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "Bbs-go",
+            "desc": "基于Golang的开源社区系统。简洁对话，高效互动，社区新体验！",
+            "url": "https://github.com/mlogclub/bbs-go",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "Awesome-Love-Code",
+            "desc": "表白代码收藏馆~谁说程序猿不懂浪漫❤️.",
+            "url": "https://github.com/sun0225SUN/Awesome-Love-Code",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "Leleo-home-page",
+            "desc": "一个用Vue.js和Vuetify构建的个人主页，可轻松部署在Vercel上。.",
+            "url": "https://github.com/leleo886/leleo-home-page",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "MediaCrawler",
+            "desc": "小红书笔记 | 评论爬虫、抖音视频 | 评论爬虫、快手视频 | 评论爬虫、B 站视频 ｜ 评论爬虫、微博帖子 ｜ 评论爬虫、百度贴吧帖子 ｜ 百度贴吧评论回复爬虫  | 知乎问答文章｜评论爬虫 - NanmiCoder/MediaCrawler",
+            "url": "https://github.com/NanmiCoder/MediaCrawler",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "Python-100-Days",
+            "desc": "Python - 100天从新手到大师.",
+            "url": "https://github.com/jackfrued/Python-100-Days",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "Sky-page",
+            "desc": "一个简约耐看的光遇小站HTML+PHP页面.",
+            "url": "https://github.com/xiaoyanu/sky-page",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "OpenCut",
+            "desc": "开源的 CapCut 替代品。",
+            "url": "https://github.com/OpenCut-app/OpenCut",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          }
         ]
       },
       {
-        "title": "后端开发",
-        "id": 402,
+        "title": "教程文档",
+        "id": 112,
         "nav": [
-          { "name": "Node.js", "desc": "Node.js 运行时官方文档", "url": "https://nodejs.org", "icon": "https://nodejs.org/favicon.ico", "rate": 5, "tag": "开发工具" },
-          { "name": "Rust 中文文档", "desc": "Rust 语言官方文档中文版", "url": "https://www.rust-lang.org/zh-CN", "icon": "https://www.rust-lang.org/favicon.ico", "rate": 5, "tag": "开发工具" }
-        ]
-      },
-      {
-        "title": "算法",
-        "id": 403,
-        "nav": [
-          { "name": "LeetCode", "desc": "在线编程练习平台", "url": "https://leetcode.com", "icon": "https://leetcode.com/favicon.ico", "rate": 5, "tag": "效率工具" },
-          { "name": "VisuAlgo", "desc": "数据结构和算法可视化", "url": "https://visualgo.net", "icon": "https://visualgo.net/favicon.ico", "rate": 4, "tag": "效率工具" }
-        ]
-      },
-      {
-        "title": "教程",
-        "id": 404,
-        "nav": [
-          { "name": "freeCodeCamp", "desc": "免费编程学习平台", "url": "https://www.freecodecamp.org", "icon": "https://www.freecodecamp.org/favicon.ico", "rate": 5, "tag": "效率工具" },
-          { "name": "Codecademy", "desc": "交互式编程学习", "url": "https://www.codecademy.com", "icon": "https://www.codecademy.com/favicon.ico", "rate": 4, "tag": "效率工具" }
+          {
+            "name": "Freecodecamp",
+            "desc": "免费学习编程，免费提升你的技能",
+            "url": "https://www.freecodecamp.org/chinese",
+            "icon": "https://www.freecodecamp.org/chinese/favicon-32x32.png",
+            "rate": 5
+          },
+          {
+            "name": "编程导航",
+            "desc": "编程导航是专业的程序员一站式编程学习交流社区，为编程小白提供了100多条2026年最新的零基础编程学习路线、50+企业级Java/AI/前端/C++/Go/Python项目实战教程以及海量的程序员学习资源求职面经，和上百万名开发者一起学习交流，帮助你从零基础入门到精通，快速提升编程技能，顺利拿offer。",
+            "url": "https://www.codefather.cn",
+            "icon": "https://www.codefather.cn/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "菜鸟教程",
+            "desc": "提供了编程的基础技术教程, 介绍了HTML、CSS、Javascript、Python，Java，Ruby，C，PHP , MySQL等各种编程语言的基础知识。 同时本站中也提供了大量的在线实例，通过实例，您可以更好的学习编程",
+            "url": "https://www.runoob.com",
+            "icon": "https://static.runoob.com/images/icon/mobile-icon.png",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "Docker — 从入门到实践",
+            "desc": "Docker — 从入门到实践",
+            "url": "https://yeasy.gitbooks.io/docker_practice",
+            "icon": "https://github.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Docker官方映像文档",
+            "desc": "docker-library中的Docker官方映像文档",
+            "url": "https://github.com/docker-library/docs",
+            "icon": "https://github.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Docker Hub",
+            "desc": "Docker 镜像仓库",
+            "url": "https://hub.docker.com",
+            "icon": "https://avatars2.githubusercontent.com/u/7739233?s=200&v=4",
+            "rate": 5
+          },
+          {
+            "name": "Docker-Compose",
+            "desc": "使用Docker定义和运行多容器应用程序",
+            "url": "https://docs.docker.com/compose",
+            "icon": "https://avatars2.githubusercontent.com/u/7739233?s=200&v=4",
+            "rate": 5,
+            "tag": "GitHub"
+          },
+          {
+            "name": "Git-manual",
+            "desc": "Git常用命令参考手册 (推荐学习)",
+            "url": "https://github.com/xjh22222228/git-manual",
+            "icon": "https://github.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "GitHub Docs",
+            "desc": "github 官方帮助文档",
+            "url": "https://help.github.com/cn",
+            "icon": "https://github.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Awesome-actions",
+            "desc": "精选的GitHub上很棒的Action列表",
+            "url": "https://github.com/sdras/awesome-actions",
+            "icon": "https://github.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Github - Actions",
+            "desc": "Github 官方Actions 资源列表",
+            "url": "https://github.com/marketplace?type=actions",
+            "icon": "https://github.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Growing-up",
+            "desc": "程序猿成长计划",
+            "url": "https://github.com/mylxsw/growing-up",
+            "icon": "https://github.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Nginx",
+            "desc": "nginx参考文档",
+            "url": "https://www.docs4dev.com/docs/zh/nginx/current/reference#toolbar-title",
+            "icon": "https://avatars0.githubusercontent.com/u/1412239?s=200&v=4",
+            "rate": 5,
+            "tag": "英文,中文,GitHub"
+          },
+          {
+            "name": "Nginx开发从入门到精通",
+            "desc": "Nginx开发从入门到精通",
+            "url": "http://tengine.taobao.org/book/index.html",
+            "icon": "https://avatars0.githubusercontent.com/u/1412239?s=200&v=4",
+            "rate": 5,
+            "tag": "GitHub"
+          },
+          {
+            "name": "redis",
+            "desc": "Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据结构",
+            "url": "http://www.redis.cn",
+            "icon": "https://avatars3.githubusercontent.com/u/1529926?s=200&v=4",
+            "rate": 5,
+            "tag": "英文,中文,GitHub"
+          },
+          {
+            "name": "MySQL",
+            "desc": "MySQL数据库服务是一个完全托管的数据库服务，可使用世界上最受欢迎的开源数据库来部署云原生应用程序。 它是百分百由MySQL原厂开发，管理和提供支持",
+            "url": "https://www.mysql.com/cn",
+            "icon": "https://labs.mysql.com/common/themes/sakila/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Linux 常用命令参考手册",
+            "desc": "Linux 常用命令参考手册",
+            "url": "https://github.com/xjh22222228/linux-manual",
+            "icon": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/linux/linux.png",
+            "rate": 5
+          },
+          {
+            "name": "Linux-command",
+            "desc": "Linux命令大全搜索工具，内容包含Linux命令手册、详解、学习、搜集",
+            "url": "https://git.io/linux",
+            "icon": "https://wangchujiang.com/linux-command/img/favicon.ico",
+            "rate": 5,
+            "tag": "GitHub"
+          },
+          {
+            "name": "Learn-regex",
+            "desc": "正则表达式学习",
+            "url": "https://github.com/ziishaned/learn-regex",
+            "icon": "https://github.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "The-art-of-command-line",
+            "desc": "命令行的艺术",
+            "url": "https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md",
+            "icon": "https://github.com/favicon.ico",
+            "rate": 5
+          }
         ]
       }
     ]
   },
   {
-    "title": "设计资源",
-    "id": 5,
-    "icon": "🎨",
+    "title": "资源获取",
+    "id": 1062,
+    "icon": "📦",
     "children": [
       {
-        "title": "图标库",
-        "id": 501,
+        "title": "资源导航",
+        "id": 113,
         "nav": [
-          { "name": "Icônes", "desc": "Iconify 的图标浏览器", "url": "https://icones.js.org", "icon": "https://icones.js.org/favicon.ico", "rate": 5, "tag": "设计工具" },
-          { "name": "Tabler Icons", "desc": "开源的 SVG 图标库", "url": "https://tabler-icons.io", "icon": "https://tabler-icons.io/favicon.ico", "rate": 4, "tag": "设计工具" },
-          { "name": "Lucide", "desc": "漂亮的开源图标", "url": "https://lucide.dev", "icon": "https://lucide.dev/favicon.ico", "rate": 5, "tag": "设计工具" }
+          {
+            "name": "站长源码",
+            "desc": "站长下载提供免费网站源码下载(asp源码，php源码，.net源码)，源码动态，使用教程和源码评测；为站长推介有价值的源码，为开发者宣传源码作品。",
+            "url": "https://down.chinaz.com",
+            "icon": "https://down.chinaz.com/favicon.ico",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "安鹿小栈",
+            "desc": "安鹿小栈(www.anlu1314.com)整合无捆绑安全软件、高质量苹果工具、优质开源源码、干货满满逆向教程，打造资源+教程一体化平台，每日上新优质内容，免费来拿不等待！",
+            "url": "https://www.anlu1314.com",
+            "icon": "https://alx.tcbmcg.top/wp-content/uploads/2025/11/20251128120201148.png",
+            "rate": 5
+          },
+          {
+            "name": "ØMagnet",
+            "desc": "让种子/磁力链接分享变得轻松",
+            "url": "https://04mag.top",
+            "icon": "https://04mag.top/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "种子吧",
+            "desc": "种子吧成立于2013年",
+            "url": "https://zzb01.top",
+            "icon": "https://zzb01.top/favicon.ico",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "磁力狗",
+            "desc": "磁力狗是干净好用的资源搜索引擎。提供影视、书籍、软件等资源推荐以及整合信息。",
+            "url": "https://clg54.top",
+            "icon": "https://clg54.top/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "盘搜吧",
+            "desc": "盘搜吧 - 聚合网盘资源搜索工具，专业夸克网盘搜索。支持阿里云盘、夸克网盘、百度网盘、蓝奏云盘等主流网盘资源搜索。",
+            "url": "https://www.panso678.com",
+            "icon": "https://www.panso678.com/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "小云搜索",
+            "desc": "轻松简单的云盘搜索 | 网盘搜索引擎",
+            "url": "https://www.yunso.net",
+            "icon": "data:img/png;base64,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",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "聚盘搜",
+            "desc": "聚盘搜 - 聚合网盘资源搜索工具，专业夸克网盘搜索。支持阿里云盘、夸克网盘、百度网盘、蓝奏云盘等主流网盘资源搜索。",
+            "url": "https://www.panso567.com",
+            "icon": "https://www.panso567.com/vite.svg",
+            "rate": 5
+          },
+          {
+            "name": "澎湃OS/MIUI历史版本",
+            "desc": "追踪更新MIUI与澎湃OS历来发布版本信息，涵括各型号手机、平板、路由器等设备澎湃OS和MULI历史版本刷机包",
+            "url": "https://miuiver.com",
+            "icon": "https://miuiver.com/favicon.png",
+            "rate": 5
+          },
+          {
+            "name": "开发者导航",
+            "desc": "开发者导航网（codernav.com）收录了大量免费优质的AI人工智能、资源干货、在线工具等众多分类的网站，千余良心网站供您随时享用，是一个能够提高生活质量、工作效率和学习成绩的综合类导航网站。",
+            "url": "https://codernav.com",
+            "icon": "https://gcore.jsdelivr.net/gh/Pi3-14-15926/Nav@image/1776819509063.png",
+            "rate": 5
+          },
+          {
+            "name": "酷狗联盟",
+            "desc": "酷狗网-酷狗导航◕‿◕『CoolDog.CC』一个很酷的综合类型网址,微信,公众号,小程序,书籍,app及运营技术的推广网站。",
+            "url": "https://cooldog.cc",
+            "icon": "https://cooldog.cc/favicon.png",
+            "rate": 5
+          },
+          {
+            "name": "果汁实验室",
+            "desc": "【果汁实验室】是果汁导航旗下子站，专注于发现国内外优质、实用、有趣的网络资源。",
+            "url": "http://guozhivip.com/lab",
+            "icon": "http://guozhivip.com/images/ic.ico",
+            "rate": 5
+          },
+          {
+            "name": "图欧学习资源导航",
+            "desc": "B站UP主图欧君的资源宝藏 海量学习生活办公娱乐影视软件游戏等资源免费分享",
+            "url": "https://tuostudy.upnb.top",
+            "icon": "https://tuostudy.upnb.top/wp-content/uploads/2025/03/LOGO-AI.png",
+            "rate": 5
+          },
+          {
+            "name": "下次一定 白嫖网站",
+            "desc": "为白嫖怪提供信息干货及资源,站内所有收集的资源都能免费下载,保证资源真实可靠,大家可放心使用。",
+            "url": "https://www.iiice.cn/#",
+            "icon": "https://www.iiice.cn/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "发现导航",
+            "desc": "学习资源导航",
+            "url": "https://nav3.cn/#",
+            "icon": "https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/logo.svg",
+            "rate": 5
+          },
+          {
+            "name": "几米导航",
+            "desc": "几米导航专业的导航网站，收集影视在线播放、资源网站、开发工具等各类优质网站集合，帮助您快速找到所需资源。",
+            "url": "https://jmnav.top",
+            "icon": "\"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'",
+            "rate": 5
+          },
+          {
+            "name": "Jay的资源库",
+            "desc": "互联网净土，白嫖党天堂，聚合全网优质资源，致力于做到一个网站解决所有问题",
+            "url": "https://www.lovejay.top",
+            "icon": "https://www.lovejay.top/wp-content/uploads/2023/08/80.png",
+            "rate": 5
+          },
+          {
+            "name": "硬核指南",
+            "desc": "资源丰富",
+            "url": "https://yinghezhinan.com",
+            "icon": "https://gcore.jsdelivr.net/gh/Pi3-14-15926/Nav@image/1776819429980.webp",
+            "rate": 5
+          }
         ]
       },
       {
-        "title": "配色",
-        "id": 502,
+        "title": "软件导航",
+        "id": 114,
         "nav": [
-          { "name": "Coolors", "desc": "配色方案生成器", "url": "https://coolors.co", "icon": "https://coolors.co/favicon.ico", "rate": 5, "tag": "设计工具" },
-          { "name": "Adobe Color", "desc": "Adobe 配色工具", "url": "https://color.adobe.com", "icon": "https://color.adobe.com/favicon.ico", "rate": 5, "tag": "设计工具" }
+          {
+            "name": "火哥分享",
+            "desc": "安卓APP，谷歌商店版本的APP，厂商定制版APP，苹果APP，服务器，VPS，金融支付等方面的知识。",
+            "url": "https://www.firepx.com",
+            "icon": "https://www.firepx.com/wp-content/uploads/2020/04/cropped-f-1-32x32.png",
+            "rate": 5
+          },
+          {
+            "name": "423Down",
+            "desc": "安卓软件综合下载专区,提供安卓最新软件下载及安卓软件破解版下载及安卓软件去广告版应用,包括:安卓软件谷歌版,安卓纯净版软件,安卓破解软件.",
+            "url": "https://www.423down.com/apk",
+            "icon": "https://www.423down.com/wp-content/themes/D7/img/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "BigKaka: AGC9.6.19_V3.0",
+            "desc": "Download AGC9.6.19_V3.0 by BigKaka.",
+            "url": "https://www.celsoazevedo.com/files/android/google-camera/dev-BigKaka/f/dl83",
+            "icon": "https://www.celsoazevedo.com/favicon-96x96.png",
+            "rate": 5
+          },
+          {
+            "name": "Google Camera",
+            "desc": "下载 2026 年所有安卓手机的最新 GCam（谷歌相机）APK。用 HDR+、夜视等增强你的摄影效果。",
+            "url": "https://gcamapk.io",
+            "icon": "https://gcamapk.io/favicon-96x96.png",
+            "rate": 5
+          },
+          {
+            "name": "9mod.",
+            "desc": "",
+            "url": "https://9mod.com",
+            "icon": "",
+            "rate": 5
+          },
+          {
+            "name": "LiteApks",
+            "desc": "",
+            "url": "https://liteapks.com",
+            "icon": "",
+            "rate": 5
+          },
+          {
+            "name": "APKPure",
+            "desc": "",
+            "url": "https://apkpure.net/game",
+            "icon": "https://apkpure.net/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "51Play",
+            "desc": "免费下载最受欢迎的游戏。你能找到的最佳模组 APK 文件",
+            "url": "https://5play.org/en",
+            "icon": "https://5play.org/templates/5ui/img/favicon/apple-touch-icon.png",
+            "rate": 5
+          },
+          {
+            "name": "Rutracker.",
+            "desc": "俄罗斯资源网站",
+            "url": "https://rutracker.org/forum/index.php",
+            "icon": "https://static.rutracker.cc/logo/logo-3.svg",
+            "rate": 5
+          },
+          {
+            "name": "Go破解",
+            "desc": "狗破解◕‿◕『Go破解』GoPoJie.COM是一个软件分享、游戏分享、源码分享，素材分享,技术教程学习分享经验的一个网站!",
+            "url": "https://www.gopojie.com",
+            "icon": "https://gopojie.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "果核剥壳",
+            "desc": "果核剥壳是一个长期更新的综合科技网站，内容涵盖绿色软件、系统工具、效率应用与科技资讯，坚持分享真正有用、有价值的资源与观点。",
+            "url": "https://www.ghxi.com",
+            "icon": "https://www.ghxi.com/favicon.ico",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "好料空间",
+            "desc": "好料空间（H6ROOM）是专注于互联网优质资源分享的网站。内容侧重于安卓手机软件应用及工具App，电视TV盒子端应用App，PC个人电脑常用绿色软件等。",
+            "url": "https://www.h6room.com",
+            "icon": "https://www.h6room.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "当快软件园",
+            "desc": "发现好应用、好游戏，做有态度的应用市场",
+            "url": "https://m.downkuai.com",
+            "icon": "https://www.downkuai.com/images/logo-index.png",
+            "rate": 5
+          },
+          {
+            "name": "Old versions",
+            "desc": "下载 Windows 旧版软件。因为新不一定更好。",
+            "url": "https://www.oldversion.com",
+            "icon": "https://oldversion-prod-storage.nyc3.digitaloceanspaces.com/app_assets/themes/shared/images/favicon.20ee24b6e02a.ico",
+            "rate": 5
+          },
+          {
+            "name": "Microsoft Store",
+            "desc": "Microsoft 商店的在线链接生成器。你可以用它获取几乎所有 Microsoft Store 应用、游戏、主题的链接。",
+            "url": "https://store.rg-adguard.net",
+            "icon": "https://gcore.jsdelivr.net/gh/Pi3-14-15926/Nav@image/1776819670184.png",
+            "rate": 5
+          },
+          {
+            "name": "软件仓库",
+            "desc": "设计类软件仓库合集",
+            "url": "https://www.ruancang.net",
+            "icon": "",
+            "rate": 5
+          }
         ]
       },
       {
-        "title": "灵感",
-        "id": 503,
+        "title": "推荐应用",
+        "id": 115,
         "nav": [
-          { "name": "Dribbble", "desc": "设计师作品展示平台", "url": "https://dribbble.com", "icon": "https://dribbble.com/favicon.ico", "rate": 5, "tag": "设计工具" },
-          { "name": "Behance", "desc": "Adobe 创意作品展示平台", "url": "https://www.behance.net", "icon": "https://www.behance.net/favicon.ico", "rate": 5, "tag": "设计工具" }
+          {
+            "name": "Google浏览器",
+            "desc": "最干净简洁的电脑浏览器",
+            "url": "https://www.google.cn/intl/zh-CN/chrome",
+            "icon": "https://www.google.cn/chrome/static/images/favicons/favicon-16x16.png",
+            "rate": 5
+          },
+          {
+            "name": "Steam",
+            "desc": "Steam 是玩游戏、讨论和创作游戏的终极目的地。",
+            "url": "https://store.steampowered.com",
+            "icon": "https://store.steampowered.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Windows Update Blocker",
+            "desc": "Windows Update Blocker 是一款免费软件，只需单击按钮即可帮助您完全禁用或启用 Windows 系统的自动更新。",
+            "url": "https://www.sordum.org/9470/windows-update-blocker-v1-8",
+            "icon": "https://www.sordum.org/wp-content/uploads/2023/03/windows_update_blocker_wub.png",
+            "rate": 5
+          },
+          {
+            "name": "TrafficMonitor 监听",
+            "desc": "这是一个用于显示当前网速、CPU及内存利用率的桌面悬浮窗软件，并支持任务栏显示，支持更换皮肤。",
+            "url": "https://github.com/zhongyang219/TrafficMonitor",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "PixPin 截图",
+            "desc": "PixPin 是一款专业级免费截图软件，集截图、贴图、长截图、OCR文字识别、屏幕录制于一体。支持 Windows 和 macOS，为您提供高效的桌面办公体验。",
+            "url": "https://pixpin.cn",
+            "icon": "https://pixpin.cn/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Obsidian笔记",
+            "desc": "从个人笔记到日记、知识库和项目管理，Obsidian 为您提供产生想法和组织想法的工具。",
+            "url": "https://obsidian.md",
+            "icon": "https://obsidian.md/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Bandizip 压缩软件",
+            "desc": "Bandizip 是一个强大的多功能压缩文件管理工具，可提供很快的解压缩速度和其他各种实用功能。\n这是一个免费的软件，其付费版本更是可以使用更多的实用功能。",
+            "url": "https://www.bandisoft.com/bandizip",
+            "icon": "https://www.bandisoft.com/img.front/bandizip_logo.png",
+            "rate": 5
+          },
+          {
+            "name": "Agiso自动发货软件",
+            "desc": "淘宝自动发货可以自动发送买家聊天窗口，智能答复及转接24小时离线发货，发货稳定，秒发百万级卡券用户游刃有余。拼多多自动发货可以自动发送到拼多多聊天窗口, 黑名单系统, 智能答复设置, 自动更新订单状态为已发货",
+            "url": "https://www.agiso.com/product/alds#buy",
+            "icon": "https://res-static.agiso.com/imgs/www/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "MuMu Android模拟器",
+            "desc": "网易MuMu[手游模拟器][安卓模拟器]",
+            "url": "http://mumu.163.com",
+            "icon": "http://mumu.163.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "360安全卫士",
+            "desc": "守护用户电脑安全，业界领先的安全杀毒产品",
+            "url": "https://weishi.360.cn",
+            "icon": "https://p5.ssl.qhimg.com/t110b9a930118b13a6757f5758f.png",
+            "rate": 5
+          },
+          {
+            "name": "网易UU远程",
+            "desc": "网易UU远程，是一款由网易出品的专业远程控制软件。支持手机、平板、Mac 、PC、TV 与掌机等多设备远控电脑，满足远程游戏、办公和协助需求。",
+            "url": "https://uuyc.163.com",
+            "icon": "https://uuyc.163.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "123云盘",
+            "desc": "123云盘，安全高速的云存储与分享服务，支持多端同步与大文件传输。",
+            "url": "https://www.123pan.com",
+            "icon": "https://statics.123pan.com/static/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "百度网盘",
+            "desc": "为你电脑/手机中的文件提供云备份、预览、分享等服务，帮你更便捷安全地管理数据。",
+            "url": "https://pan.baidu.com",
+            "icon": "https://nd-static.bdstatic.com/m-static/wp-brand/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Everything",
+            "desc": "基于名称快速定位文件和文件夹。",
+            "url": "https://www.voidtools.com/zh-cn",
+            "icon": "https://www.voidtools.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "LocalSend",
+            "desc": "LocalSend 是一个自由、开源的应用程序，允许你在本地网络上安全地与附近设备分享文件和消息，无需互联网连接。",
+            "url": "https://localsend.org/zh-CN",
+            "icon": "https://gcore.jsdelivr.net/gh/Pi3-14-15926/Nav@image/1776819850821.png",
+            "rate": 5
+          },
+          {
+            "name": "File Converter文件转换器",
+            "desc": "文件转换器是一个非常简单的工具，它允许您使用 Windows 资源管理器的上下文菜单转换和压缩一个或多个文件。",
+            "url": "https://github.com/Tichau/FileConverter",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "菲菲更名宝贝",
+            "desc": "一款优秀的批量更名软件和批量文件处理工具，是获奖软件。本软件以功能强大著称，在国内文件处理和批量更名类软件中占有一定地位。",
+            "url": "http://www.ffhome.com/works/1406.html",
+            "icon": "http://www.ffhome.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Fideo-live-record",
+            "desc": "一款方便的直播录制软件! 支持tiktok, youtube, twitch, 抖音，虎牙，斗鱼，快手，微博，网易cc，bilibili，花椒, 淘宝, 京东",
+            "url": "https://github.com/chenfan0/fideo-live-record",
+            "icon": "https://raw.githubusercontent.com/chenfan0/fideo-live-record/main/src/renderer/src/assets/images/light/logo.png",
+            "rate": 5
+          },
+          {
+            "name": "OpenList-Desktop",
+            "desc": "OpenList 的桌面应用程序。",
+            "url": "https://github.com/OpenListTeam/OpenList-Desktop",
+            "icon": "https://avatars.githubusercontent.com/u/215780325?s=48&v=4",
+            "rate": 5
+          },
+          {
+            "name": "Namida",
+            "desc": "一款美丽且功能丰富的音乐和视频播放器，支持 YouTube",
+            "url": "https://github.com/namidaco/namida",
+            "icon": "https://github.com/namidaco/namida/raw/main/assets/namida_icon.png",
+            "rate": 5
+          },
+          {
+            "name": "Sesame-TK",
+            "desc": "芝你麻咸鱼的粒-TK.",
+            "url": "https://github.com/Fansirsqi/Sesame-TK",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "ZygiskNext",
+            "desc": "Zygisk 的独立实现。",
+            "url": "https://github.com/Dr-TSNG/ZygiskNext",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "Anime4K",
+            "desc": "一款高质量的实时动画视频升频器。",
+            "url": "https://github.com/bloc97/Anime4K",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "SingleFile",
+            "desc": "用于在单一 HTML 文件中保存完整网页副本的网页扩展",
+            "url": "https://github.com/gildas-lormeau/SingleFile",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "QtScrcpy",
+            "desc": "安卓实时显示控制软件。",
+            "url": "https://github.com/barry-ran/QtScrcpy",
+            "icon": "https://avatars.githubusercontent.com/u/18702692?s=48&v=4",
+            "rate": 5
+          },
+          {
+            "name": "V2ray 代理",
+            "desc": "用于构建代理绕过网络限制的平台。",
+            "url": "https://github.com/v2ray/v2ray-core",
+            "icon": "https://avatars0.githubusercontent.com/u/14110142?s=200&v=4",
+            "rate": 5
+          },
+          {
+            "name": "PicGo 上传",
+            "desc": "高效创作者的终极图片上传平台。支持 Obsidian、Typora、VS Code 等，以及 60+ 图像托管服务（S3、GitHub、Cloudflare R2、Imgur、Aliyun OSS 等）。粘贴，上传，完成。",
+            "url": "https://github.com/Molunerfinn/PicGo",
+            "icon": "https://raw.githubusercontent.com/Molunerfinn/test/master/picgo/New%20LOGO-150.png",
+            "rate": 5
+          },
+          {
+            "name": "OpenList 文件挂载",
+            "desc": "OpenList 是一个有韧性的、由社区驱动的文件列表程序，支持多个云存储平台。作为 AList 的安全分支构建，具备增强的安全性和长期治理。",
+            "url": "https://doc.oplist.org.cn",
+            "icon": "https://doc.oplist.org.cn/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "NetMount 挂载存储",
+            "desc": "NetMount是一个云存储管理工具，一个软件轻松管理所有云存储，像操作本地磁盘一样组织文件。支持国内外近100种云存储，如OneDrive、百度网盘、S3对象存储、天翼云盘等。",
+            "url": "https://www.netmount.cn",
+            "icon": "https://www.netmount.cn/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Clash Verge",
+            "desc": "一个基于Tauri的现代GUI客户端，设计用于在Windows、macOS和Linux上运行，以提供定制的代理体验",
+            "url": "https://github.com/clash-verge-rev/clash-verge-rev",
+            "icon": "https://avatars.githubusercontent.com/u/152534467?s=48&v=4",
+            "rate": 5
+          },
+          {
+            "name": "Bitwarden密码管理器",
+            "desc": "个人和企业在任何设备上存储，共享和保护敏感数据的最简单，最安全的方法",
+            "url": "https://bitwarden.com",
+            "icon": "https://avatars.githubusercontent.com/u/15990069?s=200&v=4",
+            "rate": 5
+          },
+          {
+            "name": "OBS 录制",
+            "desc": "用于视频录制和直播的免费开源软件。",
+            "url": "https://obsproject.com",
+            "icon": "https://obsproject.com/favicon-32x32.png",
+            "rate": 5
+          },
+          {
+            "name": "Listary 查找",
+            "desc": "Listary是Windows的革命性搜索实用程序，它使休闲用户和高级用户都能快速找到文件并启动应用程序！",
+            "url": "https://www.listary.com",
+            "icon": "https://www.listary.com/images/Vectors-Wrapper.svg",
+            "rate": 5
+          },
+          {
+            "name": "LKY_OfficeTools",
+            "desc": "一键自动化 下载、安装、激活 Office 的利器",
+            "url": "https://github.com/OdysseusYuan/LKY_OfficeTools",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "Microsoft-Activation-Scripts",
+            "desc": "开源的 Windows 和 Office 激活器，支持 HWID、Ohook、TSforge 和 Online KMS 激活方法，并具备高级故障排除功能。",
+            "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
+            "icon": "https://camo.githubusercontent.com/d010db59ee5f338bc18b852df982e73cac8b6aff17b9ddfb4867d57a820a8475/68747470733a2f2f6d61737367726176652e6465762f696d672f6c6f676f5f736d616c6c2e706e67",
+            "rate": 5
+          }
         ]
       }
     ]
   },
   {
-    "title": "社交媒体",
-    "id": 6,
-    "icon": "🌐",
+    "title": "Ai 相关",
+    "id": 1170,
+    "icon": "🤖",
     "children": [
       {
-        "title": "技术社区",
-        "id": 601,
+        "title": "Ai 项目",
+        "id": 116,
         "nav": [
-          { "name": "V2EX", "desc": "技术创意社区", "url": "https://www.v2ex.com", "icon": "https://www.v2ex.com/favicon.ico", "rate": 5, "tag": "效率工具" },
-          { "name": "知乎", "desc": "中文问答社区", "url": "https://www.zhihu.com", "icon": "https://www.zhihu.com/favicon.ico", "rate": 4, "tag": "效率工具" },
-          { "name": "掘金", "desc": "开发者技术社区", "url": "https://juejin.cn", "icon": "https://juejin.cn/favicon.ico", "rate": 4, "tag": "效率工具" }
+          {
+            "name": "Airi",
+            "desc": "你拥有的 Grok Companion，一个老婆灵魂的容器，网络生命体，将他们带入我们的世界，渴望达到神经大人的高度。支持实时语音聊天、Minecraft、Factorio 游戏。支持网页 / macOS / Windows。- 莫埃鲁-艾/艾里",
+            "url": "https://github.com/moeru-ai/airi",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "Roubao",
+            "desc": "基于视觉语言模型的 Android 自动化工具",
+            "url": "https://github.com/Turbo1123/roubao",
+            "icon": "https://github.com/Turbo1123/roubao/raw/main/docs/images/logo.png",
+            "rate": 5
+          },
+          {
+            "name": "Open-AutoGLM",
+            "desc": "为所有人解锁 AI 手机",
+            "url": "https://github.com/zai-org/Open-AutoGLM",
+            "icon": "https://avatars.githubusercontent.com/u/223098841?s=48&v=4",
+            "rate": 5
+          },
+          {
+            "name": "Openclaw",
+            "desc": "你自己的个人 AI 助手。任何操作系统。任何平台。",
+            "url": "https://github.com/openclaw/openclaw",
+            "icon": "https://avatars.githubusercontent.com/u/252820863?s=48&v=4",
+            "rate": 5
+          },
+          {
+            "name": "Awesome-openclaw-skills",
+            "desc": "精彩的 OpenClaw 技能合集。5,400+ 项技能，筛选并分类自官方 OpenClaw 技能注册库。🦞",
+            "url": "https://github.com/VoltAgent/awesome-openclaw-skills",
+            "icon": "https://avatars.githubusercontent.com/u/201282378?s=48&v=4",
+            "rate": 5
+          },
+          {
+            "name": "Ilow-cli",
+            "desc": "iFlow CLI 是一款全面的命令行智能，嵌入您的终端，分析仓库，执行编码任务，跨上下文解读需求，并通过执行从简单文件操作到复杂工作流自动化的任务提升效率。- iflow-ai/iflow-cli",
+            "url": "https://github.com/iflow-ai/iflow-cli",
+            "icon": "https://avatars.githubusercontent.com/u/223050564?s=48&v=4",
+            "rate": 5
+          },
+          {
+            "name": "Gpt4free",
+            "desc": "官方 gpt4free 仓库 |各种强大语言模型集合",
+            "url": "https://github.com/xtekky/gpt4free",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "Free-llm-api-resources",
+            "desc": "通过 API 访问的免费 LLM 推理资源列表。",
+            "url": "https://github.com/cheahjs/free-llm-api-resources",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "Chat2api",
+            "desc": "一个可以将网络上的 ChatGPT 转换为 OpenAI API 格式的服务。",
+            "url": "https://github.com/lanqian528/chat2api",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "Openclaw-channel-dingtalk",
+            "desc": "Dingtalk 频道插件，适用于 OpenClaw。通过在 GitHub 上创建一个账号，为 soimy/openclaw-channel-dingtalk 的开发做出贡献。",
+            "url": "https://github.com/soimy/openclaw-channel-dingtalk",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "Qmd",
+            "desc": "一个迷你 CLI 搜索引擎，用于你的文档、知识库、会议记录等。跟踪当前 SOTA 进近且全为本地化——tobi/qmd",
+            "url": "https://github.com/tobi/qmd",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "CC-switch: A cross-platform desktop All-in-One assistant tool for Claude Code, Codex, OpenCode, openclaw & Gemini CLI. · GitHub",
+            "desc": "一款跨平台桌面一体化辅助工具，支持 Claude Code、Codex、OpenCode、openclaw 和 Gemini CLI。- farion1231/cc-交换机",
+            "url": "https://github.com/farion1231/cc-switch",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "MemTensor",
+            "desc": "OpenClaw 官方 MemOS Cloud 插件。通过在执行前回忆上下文并在每次运行后保存对话，实现代理的长期记忆。- MemTensor/MemOS-Cloud-OpenClaw 插件",
+            "url": "https://github.com/MemTensor/MemOS-Cloud-OpenClaw-Plugin",
+            "icon": "https://avatars.githubusercontent.com/u/210160027?s=48&v=4",
+            "rate": 5
+          },
+          {
+            "name": "Awesome-openclaw-skills-zh:",
+            "desc": "OpenClaw 中文官方技能库 | 翻译自 Clawdbot 官方技能，按场景分类整理，支持中文自然语言调用 - clawdbot-ai/awesome-openclaw-skills-zh",
+            "url": "https://github.com/clawdbot-ai/awesome-openclaw-skills-zh",
+            "icon": "https://avatars.githubusercontent.com/u/257971763?s=48&v=4",
+            "rate": 5
+          },
+          {
+            "name": "Qwen3.6:",
+            "desc": "Qwen3.6 是由阿里集团 Qwen 团队开发的大型语言模型系列。- QwenLM/Qwen3.6",
+            "url": "https://github.com/QwenLM/Qwen3.6",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "Awesome",
+            "desc": "😎 关于各种有趣话题的精彩列表——sindresorhus/awesome",
+            "url": "https://github.com/sindresorhus/awesome",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "One-api",
+            "desc": "LLM API 管理 & 分发系统，支持 OpenAI、Azure、Anthropic Claude、Google Gemini、DeepSeek、字节豆包、ChatGLM、文心一言、讯飞星火、通义千问、360 智脑、腾讯混元等主流模型，统一 API 适配，可用于 key 管理与二次分发。单可执行文件，提供 Docker 镜像，一键部署，开箱即用。",
+            "url": "https://github.com/songquanpeng/one-api",
+            "icon": "https://raw.githubusercontent.com/songquanpeng/one-api/main/web/default/public/logo.png",
+            "rate": 5
+          },
+          {
+            "name": "Page-agent",
+            "desc": "JavaScript 页面内 GUI 代理。用自然语言控制网页界面。",
+            "url": "https://github.com/alibaba/page-agent",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "Hermes-agent",
+            "desc": "内置学习循环的智能体——它能从经验中创造技能，在使用过程中不断改进，自我提醒以巩固知识，搜索过往对话，并在不同会话中逐步构建更深入的自我认知模型。它可以运行在 5 美元的 VPS、GPU 集群或几乎零成本的无服务器基础设施上。",
+            "url": "https://github.com/NousResearch/hermes-agent",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          }
         ]
-      },
+      }
+    ]
+  },
+  {
+    "title": "免费资源",
+    "id": 1042,
+    "icon": "💰",
+    "children": [
       {
-        "title": "资讯",
-        "id": 602,
+        "title": "云主机",
+        "id": 117,
         "nav": [
-          { "name": "Hacker News", "desc": "硅谷科技资讯", "url": "https://news.ycombinator.com", "icon": "https://news.ycombinator.com/favicon.ico", "rate": 5, "tag": "效率工具" },
-          { "name": "Product Hunt", "desc": "新产品发现平台", "url": "https://www.producthunt.com", "icon": "https://www.producthunt.com/favicon.ico", "rate": 5, "tag": "效率工具" }
+          {
+            "name": "Github",
+            "desc": "面向开源及私有软件项目的托管平台",
+            "url": "https://github.com",
+            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+            "rate": 5
+          },
+          {
+            "name": "码云",
+            "desc": "码云专为开发者提供稳定、高效、安全的云端软件开发协作平台",
+            "url": "https://gitee.com",
+            "icon": "https://gitee.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "GitLab",
+            "desc": "用于仓库管理系统的开源项目，使用Git作为代码管理工具，并在此基础上搭建起来的web服务",
+            "url": "https://gitlab.com",
+            "icon": "https://about.gitlab.com/ico/apple-touch-icon-57x57.png",
+            "rate": 5
+          },
+          {
+            "name": "Coding",
+            "desc": "面向开发者的云端开发平台，提供 git/svn 代码托管，代码质量分析，在线WebIDE，项目管理...",
+            "url": "https://coding.net",
+            "icon": "https://dn-coding-net-production-static.codehub.cn/platform/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Infinityfree",
+            "desc": "5 GB磁盘空间- 无限带宽  - 无限托管域名",
+            "url": "https://dash.infinityfree.com/accounts",
+            "icon": "https://dash.infinityfree.com/images/logo.svg",
+            "rate": 5
+          },
+          {
+            "name": "ClawCloud Run",
+            "desc": "限制：请务必每月至少登录一次游戏主机\n180天以上的GitHub账号\n性能：包含5美元信用额度，最多支持 4 个 vCPU / 8GB 内存 ，10GiB 磁盘及流量受限，1个工作区/可用区",
+            "url": "https://ap-northeast-1.run.claw.cloud",
+            "icon": "https://ap-northeast-1.run.claw.cloud/icons/favicon-32x32.png",
+            "rate": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "社区论坛",
+    "id": 873,
+    "icon": "💻",
+    "children": [
+      {
+        "title": "社区论坛",
+        "id": 119,
+        "nav": [
+          {
+            "name": "知乎",
+            "desc": "知乎，中文互联网最大的知识分享和社交平台",
+            "url": "https://www.zhihu.com",
+            "icon": "https://static.zhihu.com/static/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "MT论坛",
+            "desc": "MT破解论坛",
+            "url": "https://bbs.binmt.cc",
+            "icon": "https://bbs.binmt.cc/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "吾爱破解",
+            "desc": "吾爱破解关注PC软件安全和移动安全领域，致力于软件安全与病毒分析的前沿",
+            "url": "https://www.52pojie.cn",
+            "icon": "https://www.52pojie.cn/favicon.ico",
+            "rate": 5,
+            "tag": "优选"
+          },
+          {
+            "name": "米坛社区",
+            "desc": "米坛社区是大型中文智能穿戴资源交流社区，在这里你可以找到小米手环自定义表盘，小米手环资源包，华米手表以及华为手环手表荣耀手环手表等智能穿戴设备的丰富教程和资源，希望您与我们一起，探索不一样，发现属于你的腕上世界！",
+            "url": "https://www.bandbbs.cn",
+            "icon": "https://static.cloudflare.ltd/Bandbbs_CDN/PWA/pwa_icon_192.png",
+            "rate": 5
+          },
+          {
+            "name": "123分享社区",
+            "desc": "123分享是一个非官方的站点，主要分享123云盘的资源下载。本站不储存、复制、传播、控制编辑任何网盘文件，也不提供下载服务，其链接跳转至各大网盘，文件的有效性和安全性需要您自行判断，如有侵权内容请联系我们。",
+            "url": "https://pan1.me",
+            "icon": "https://pan1.me/view/img/logo.png",
+            "rate": 5
+          },
+          {
+            "name": "Segmentfault",
+            "desc": "是中文领域最大的技术问答交流社区平台",
+            "url": "https://segmentfault.com",
+            "icon": "https://cdn.segmentfault.com/v-5f64887f/global/img/touch-icon.png",
+            "rate": 5
+          },
+          {
+            "name": "掘金",
+            "desc": "一个帮助开发者成长的社区",
+            "url": "https://juejin.im",
+            "icon": "https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web/e08da34488b114bd4c665ba2fa520a31.svg",
+            "rate": 5
+          },
+          {
+            "name": "FreeBuf",
+            "desc": "FreeBuf黑客与极客,国内关注度最高的全球互联网安全媒体平台",
+            "url": "http://www.freebuf.com",
+            "icon": "https://www.freebuf.com/favicon.ico",
+            "rate": 5
+          },
+          {
+            "name": "Stack Overflow",
+            "desc": "全球最大的技术问答网站，是一个与程序相关的IT技术问答网站",
+            "url": "https://stackoverflow.com",
+            "icon": "https://cdn.sstatic.net/Sites/stackoverflow/Img/apple-touch-icon.png?v=c78bd457575a",
+            "rate": 5
+          }
         ]
       }
     ]

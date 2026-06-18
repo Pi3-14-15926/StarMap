@@ -43,16 +43,7 @@ export function Login({ onSuccess }: LoginProps) {
     <div className="admin-login">
       <div className="admin-login-card">
         <div className="admin-login-logo">
-          <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
-            <defs>
-              <linearGradient id="logo-grad" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#4F8CFF" />
-                <stop offset="100%" stopColor="#8C6CFF" />
-              </linearGradient>
-            </defs>
-            <rect width="56" height="56" rx="16" fill="url(#logo-grad)" />
-            <path d="M28 14l4.5 9 9 2.25-6.75 6.75 1.5 9.75L28 35l-8.25 6 1.5-9.75L14.5 25.25l9-2.25z" fill="#fff" />
-          </svg>
+          <img src="/favicon.png" alt="StarMap" width="56" height="56" />
         </div>
         <h1 className="admin-login-title">StarMap 管理后台</h1>
         <p className="admin-login-desc">使用 GitHub Token 登录，通过 GitHub API 管理数据</p>
@@ -86,7 +77,7 @@ export function Login({ onSuccess }: LoginProps) {
           </button>
 
           <p className="admin-login-tip">
-            本地模式下可直接管理数据，无需配置 Token。后续可在「系统设置」中连接 GitHub。
+            本地模式下可直接管理数据，无需配置 Token。后续可在「网站设置」中连接 GitHub。
           </p>
         </div>
       </div>
