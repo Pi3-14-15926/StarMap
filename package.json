@@ -1,0 +1,43 @@
+{
+  "name": "starmap",
+  "version": "1.0.0",
+  "private": true,
+  "description": "StarMap 导航站 - 发现最好的导航工具",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "build:admin": "cd admin && vite build",
+    "build:all": "npm run build && npm run build:admin",
+    "preview": "vite preview",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "axios": "^1.13.0",
+    "dayjs": "^1.11.13",
+    "file-saver": "^2.0.5",
+    "js-base64": "^3.7.8",
+    "js-yaml": "^4.1.1",
+    "localforage": "^1.10.0",
+    "mitt": "^3.0.1",
+    "nprogress": "^0.2.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.5.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.4",
+    "@types/file-saver": "^2.0.7",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^25.9.3",
+    "@types/nprogress": "^0.2.3",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^4.4.1",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.4",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.2"
+  }
+}

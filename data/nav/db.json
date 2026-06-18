@@ -1,0 +1,199 @@
+[
+  {
+    "title": "实用工具",
+    "id": 1,
+    "icon": "🛠️",
+    "children": [
+      {
+        "title": "效率",
+        "id": 101,
+        "nav": [
+          { "name": "TinyPNG 图片压缩", "desc": "智能 WebP、PNG 和 JPEG 压缩，提升网站速度", "url": "https://tinypng.com", "icon": "https://tinypng.com/images/apple-touch-icon.png", "rate": 5, "tag": "图片工具" },
+          { "name": "iLoveIMG", "desc": "在线图片编辑、压缩、调整大小、裁剪", "url": "https://www.iloveimg.com", "icon": "https://www.iloveimg.com/img/favicons-img/favicon-16x16.png", "rate": 5, "tag": "图片工具" },
+          { "name": "Convertio", "desc": "在线转换文件的简单工具，支持 300+ 格式", "url": "https://convertio.co", "icon": "https://convertio.co/favicon.ico", "rate": 5, "tag": "格式转换" },
+          { "name": "Canva", "desc": "在线设计平台，轻松创建专业设计", "url": "https://www.canva.com", "icon": "https://www.canva.com/favicon.ico", "rate": 5, "tag": "设计工具" },
+          { "name": "Notion", "desc": "全能笔记与知识库", "url": "https://www.notion.so", "icon": "https://www.notion.so/favicon.ico", "rate": 5, "tag": "效率工具" }
+        ]
+      },
+      {
+        "title": "开发",
+        "id": 102,
+        "nav": [
+          { "name": "GitHub", "desc": "全球最大的代码托管平台", "url": "https://github.com", "icon": "https://github.githubassets.com/favicons/favicon.svg", "rate": 5, "tag": "开发工具" },
+          { "name": "Stack Overflow", "desc": "开发者问答社区", "url": "https://stackoverflow.com", "icon": "https://stackoverflow.com/favicon.ico", "rate": 5, "tag": "开发工具" },
+          { "name": "npm", "desc": "Node.js 包管理器", "url": "https://www.npmjs.com", "icon": "https://www.npmjs.com/favicon.ico", "rate": 5, "tag": "开发工具" },
+          { "name": "Vercel", "desc": "现代 Web 应用部署平台", "url": "https://vercel.com", "icon": "https://vercel.com/favicon.ico", "rate": 5, "tag": "开发工具" }
+        ]
+      },
+      {
+        "title": "图片",
+        "id": 103,
+        "nav": [
+          { "name": "Figma", "desc": "协作式 UI 设计工具", "url": "https://www.figma.com", "icon": "https://www.figma.com/favicon.ico", "rate": 5, "tag": "设计工具" },
+          { "name": "Coolors", "desc": "配色方案生成器", "url": "https://coolors.co", "icon": "https://coolors.co/favicon.ico", "rate": 5, "tag": "设计工具" },
+          { "name": "Unsplash", "desc": "免费高质量图片素材库", "url": "https://unsplash.com", "icon": "https://unsplash.com/favicon.ico", "rate": 5, "tag": "图片工具" }
+        ]
+      },
+      {
+        "title": "格式转换",
+        "id": 104,
+        "nav": [
+          { "name": "Audio2edit", "desc": "免费在线音频转换与混音工具", "url": "https://www.audio2edit.com", "icon": "https://www.audio2edit.com/favicon.ico", "rate": 5, "tag": "格式转换" },
+          { "name": "CloudConvert", "desc": "在线文件转换，支持 200+ 格式", "url": "https://cloudconvert.com", "icon": "https://cloudconvert.com/favicon.ico", "rate": 4, "tag": "格式转换" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "在线工具",
+    "id": 2,
+    "icon": "🧰",
+    "children": [
+      {
+        "title": "开发工具",
+        "id": 201,
+        "nav": [
+          { "name": "CodePen", "desc": "在线前端代码编辑器", "url": "https://codepen.io", "icon": "https://codepen.io/favicon.ico", "rate": 5, "tag": "开发工具" },
+          { "name": "JSFiddle", "desc": "在线 JavaScript 测试工具", "url": "https://jsfiddle.net", "icon": "https://jsfiddle.net/favicon.ico", "rate": 4, "tag": "开发工具" }
+        ]
+      },
+      {
+        "title": "文本工具",
+        "id": 202,
+        "nav": [
+          { "name": "Markdown 编辑器", "desc": "在线 Markdown 编辑与预览", "url": "https://stackedit.io", "icon": "https://stackedit.io/favicon.ico", "rate": 4, "tag": "效率工具" },
+          { "name": "Regex101", "desc": "在线正则表达式测试工具", "url": "https://regex101.com", "icon": "https://regex101.com/favicon.ico", "rate": 5, "tag": "开发工具" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "AI 工具",
+    "id": 3,
+    "icon": "🤖",
+    "children": [
+      {
+        "title": "对话 AI",
+        "id": 301,
+        "nav": [
+          { "name": "ChatGPT", "desc": "OpenAI 的对话式 AI 助手", "url": "https://chat.openai.com", "icon": "https://chat.openai.com/favicon.ico", "rate": 5, "tag": "AI 工具" },
+          { "name": "DeepSeek", "desc": "深度求索 AI 助手", "url": "https://www.deepseek.com", "icon": "https://www.deepseek.com/favicon.ico", "rate": 5, "tag": "AI 工具" },
+          { "name": "Claude", "desc": "Anthropic 的 AI 助手", "url": "https://claude.ai", "icon": "https://claude.ai/favicon.ico", "rate": 5, "tag": "AI 工具" }
+        ]
+      },
+      {
+        "title": "AI 绘画",
+        "id": 302,
+        "nav": [
+          { "name": "Midjourney", "desc": "AI 图像生成工具", "url": "https://www.midjourney.com", "icon": "https://www.midjourney.com/favicon.ico", "rate": 5, "tag": "AI 工具" },
+          { "name": "Stable Diffusion", "desc": "开源的 AI 图像生成模型", "url": "https://stablediffusionweb.com", "icon": "https://stablediffusionweb.com/favicon.ico", "rate": 5, "tag": "AI 工具" },
+          { "name": "DALL·E", "desc": "OpenAI 的图像生成工具", "url": "https://openai.com/dall-e-3", "icon": "https://openai.com/favicon.ico", "rate": 4, "tag": "AI 工具" }
+        ]
+      },
+      {
+        "title": "AI 编程",
+        "id": 303,
+        "nav": [
+          { "name": "GitHub Copilot", "desc": "AI 代码助手", "url": "https://github.com/features/copilot", "icon": "https://github.githubassets.com/favicons/favicon.svg", "rate": 5, "tag": "AI 工具" },
+          { "name": "Cursor", "desc": "AI 代码编辑器", "url": "https://cursor.sh", "icon": "https://cursor.sh/favicon.ico", "rate": 5, "tag": "AI 工具" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "学习资源",
+    "id": 4,
+    "icon": "📚",
+    "children": [
+      {
+        "title": "前端开发",
+        "id": 401,
+        "nav": [
+          { "name": "MDN Web Docs", "desc": "Mozilla 的 Web 开发文档", "url": "https://developer.mozilla.org", "icon": "https://developer.mozilla.org/favicon.ico", "rate": 5, "tag": "开发工具" },
+          { "name": "React 官方文档", "desc": "React 框架官方文档", "url": "https://react.dev", "icon": "https://react.dev/favicon.ico", "rate": 5, "tag": "开发工具" },
+          { "name": "Vue.js", "desc": "渐进式 JavaScript 框架", "url": "https://vuejs.org", "icon": "https://vuejs.org/favicon.ico", "rate": 5, "tag": "开发工具" }
+        ]
+      },
+      {
+        "title": "后端开发",
+        "id": 402,
+        "nav": [
+          { "name": "Node.js", "desc": "Node.js 运行时官方文档", "url": "https://nodejs.org", "icon": "https://nodejs.org/favicon.ico", "rate": 5, "tag": "开发工具" },
+          { "name": "Rust 中文文档", "desc": "Rust 语言官方文档中文版", "url": "https://www.rust-lang.org/zh-CN", "icon": "https://www.rust-lang.org/favicon.ico", "rate": 5, "tag": "开发工具" }
+        ]
+      },
+      {
+        "title": "算法",
+        "id": 403,
+        "nav": [
+          { "name": "LeetCode", "desc": "在线编程练习平台", "url": "https://leetcode.com", "icon": "https://leetcode.com/favicon.ico", "rate": 5, "tag": "效率工具" },
+          { "name": "VisuAlgo", "desc": "数据结构和算法可视化", "url": "https://visualgo.net", "icon": "https://visualgo.net/favicon.ico", "rate": 4, "tag": "效率工具" }
+        ]
+      },
+      {
+        "title": "教程",
+        "id": 404,
+        "nav": [
+          { "name": "freeCodeCamp", "desc": "免费编程学习平台", "url": "https://www.freecodecamp.org", "icon": "https://www.freecodecamp.org/favicon.ico", "rate": 5, "tag": "效率工具" },
+          { "name": "Codecademy", "desc": "交互式编程学习", "url": "https://www.codecademy.com", "icon": "https://www.codecademy.com/favicon.ico", "rate": 4, "tag": "效率工具" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "设计资源",
+    "id": 5,
+    "icon": "🎨",
+    "children": [
+      {
+        "title": "图标库",
+        "id": 501,
+        "nav": [
+          { "name": "Icônes", "desc": "Iconify 的图标浏览器", "url": "https://icones.js.org", "icon": "https://icones.js.org/favicon.ico", "rate": 5, "tag": "设计工具" },
+          { "name": "Tabler Icons", "desc": "开源的 SVG 图标库", "url": "https://tabler-icons.io", "icon": "https://tabler-icons.io/favicon.ico", "rate": 4, "tag": "设计工具" },
+          { "name": "Lucide", "desc": "漂亮的开源图标", "url": "https://lucide.dev", "icon": "https://lucide.dev/favicon.ico", "rate": 5, "tag": "设计工具" }
+        ]
+      },
+      {
+        "title": "配色",
+        "id": 502,
+        "nav": [
+          { "name": "Coolors", "desc": "配色方案生成器", "url": "https://coolors.co", "icon": "https://coolors.co/favicon.ico", "rate": 5, "tag": "设计工具" },
+          { "name": "Adobe Color", "desc": "Adobe 配色工具", "url": "https://color.adobe.com", "icon": "https://color.adobe.com/favicon.ico", "rate": 5, "tag": "设计工具" }
+        ]
+      },
+      {
+        "title": "灵感",
+        "id": 503,
+        "nav": [
+          { "name": "Dribbble", "desc": "设计师作品展示平台", "url": "https://dribbble.com", "icon": "https://dribbble.com/favicon.ico", "rate": 5, "tag": "设计工具" },
+          { "name": "Behance", "desc": "Adobe 创意作品展示平台", "url": "https://www.behance.net", "icon": "https://www.behance.net/favicon.ico", "rate": 5, "tag": "设计工具" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "社交媒体",
+    "id": 6,
+    "icon": "🌐",
+    "children": [
+      {
+        "title": "技术社区",
+        "id": 601,
+        "nav": [
+          { "name": "V2EX", "desc": "技术创意社区", "url": "https://www.v2ex.com", "icon": "https://www.v2ex.com/favicon.ico", "rate": 5, "tag": "效率工具" },
+          { "name": "知乎", "desc": "中文问答社区", "url": "https://www.zhihu.com", "icon": "https://www.zhihu.com/favicon.ico", "rate": 4, "tag": "效率工具" },
+          { "name": "掘金", "desc": "开发者技术社区", "url": "https://juejin.cn", "icon": "https://juejin.cn/favicon.ico", "rate": 4, "tag": "效率工具" }
+        ]
+      },
+      {
+        "title": "资讯",
+        "id": 602,
+        "nav": [
+          { "name": "Hacker News", "desc": "硅谷科技资讯", "url": "https://news.ycombinator.com", "icon": "https://news.ycombinator.com/favicon.ico", "rate": 5, "tag": "效率工具" },
+          { "name": "Product Hunt", "desc": "新产品发现平台", "url": "https://www.producthunt.com", "icon": "https://www.producthunt.com/favicon.ico", "rate": 5, "tag": "效率工具" }
+        ]
+      }
+    ]
+  }
+]
