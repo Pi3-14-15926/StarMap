@@ -75,7 +75,6 @@ function NavContent() {
             <path d="M21 21l-4.3-4.3" />
           </svg>
           <input value={searchKeyword} onChange={(e) => setSearchKeyword(e.target.value)} placeholder="搜索网站、工具或资源..." className="header-search-input" />
-          <span className="header-shortcut">⌘K</span>
         </div>
 
         <nav className="header-tabs">
