@@ -30,7 +30,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [searchEngines] = useState<SearchEngine[]>(defaultSearchEngines as SearchEngine[])
   const [currentModule, setCurrentModule] = useState<AppModule>('nav')
   const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(1)
-  const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(null)
+  const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(
+    (defaultNavData as NavData)[0]?.children?.[0]?.title || null
+  )
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [sortBy, setSortBy] = useState<string>('默认排序')
 

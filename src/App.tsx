@@ -112,7 +112,7 @@ function NavContent() {
         <aside className="app-sidebar">
           <nav className="sidebar-nav">
             {navData.map((cat) => (
-              <button key={cat.id} onClick={() => { setSelectedCategoryId(cat.id); setSelectedSubCategory(null) }}
+              <button key={cat.id} onClick={() => { setSelectedCategoryId(cat.id); setSelectedSubCategory(cat.children?.[0]?.title || null) }}
                 className={`sidebar-item ${selectedCategoryId === cat.id ? 'active' : ''}`}>
                 <span className="sidebar-item-icon">{cat.icon}</span>
                 <span className="sidebar-item-title">{cat.title}</span>
@@ -145,36 +145,9 @@ function NavContent() {
 
         {/* Main Content */}
         <main className="app-main">
-          <div className="main-breadcrumb">
-            <span onClick={() => setSelectedCategoryId(null)} className="breadcrumb-item">全部</span>
-            <span className="breadcrumb-sep">/</span>
-            <span className="breadcrumb-item active">{currentCategory?.icon} {currentCategory?.title}</span>
-          </div>
-
-          <div className="main-banner">
-            <div className="banner-content">
-              <div className="banner-icon">{currentCategory?.icon}</div>
-              <div>
-                <h1 className="banner-title">{currentCategory?.title}</h1>
-                <p className="banner-desc">精选高效实用工具，提升工作与生活效率</p>
-              </div>
-            </div>
-            <div className="banner-decoration">
-              <svg width="120" height="80" viewBox="0 0 200 140" fill="none">
-                <circle cx="140" cy="40" r="30" fill="#4F8CFF" opacity="0.08" />
-                <circle cx="100" cy="80" r="20" fill="#8C6CFF" opacity="0.12" />
-                <circle cx="160" cy="90" r="15" fill="#4F8CFF" opacity="0.06" />
-                <rect x="80" y="30" width="40" height="40" rx="10" fill="#8C6CFF" opacity="0.1" />
-                <rect x="120" y="60" width="30" height="30" rx="8" fill="#4F8CFF" opacity="0.08" />
-              </svg>
-            </div>
-          </div>
 
           <div className="main-filters">
             <div className="filter-tags">
-              <button className={`filter-tag ${!selectedSubCategory ? 'active' : ''}`} onClick={() => setSelectedSubCategory(null)}>
-                全部 <span className="filter-count">{filteredSites.length}</span>
-              </button>
               {subCategories.map((sub) => (
                 <button key={sub.id} className={`filter-tag ${selectedSubCategory === sub.title ? 'active' : ''}`}
                   onClick={() => setSelectedSubCategory(sub.title)}>

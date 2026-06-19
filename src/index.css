@@ -420,10 +420,10 @@
 .filter-tag {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 5px 14px;
+  gap: 6px;
+  padding: 8px 18px;
   border-radius: var(--radius-full);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--text-secondary);
   background: var(--bg-card);
@@ -444,7 +444,7 @@
 }
 
 .filter-count {
-  font-size: 10px;
+  font-size: 12px;
   opacity: 0.8;
 }
 
