@@ -1,11 +1,9 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { api } from '../services/data'
 import { commitAllData } from '../services/github'
 import { getRepoDisplay, isAuthenticated } from '../services/auth'
 
-export function Info() {
-  const [info, setInfo] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
+export function ImportExport() {
   const [exporting, setExporting] = useState(false)
   const [importing, setImporting] = useState(false)
   const [publishing, setPublishing] = useState(false)
@@ -19,29 +17,7 @@ export function Info() {
     setTimeout(() => setMessage(''), 4000)
   }
 
-  useEffect(() => {
-    const load = async () => {
-      setLoading(true)
-      try {
-        const [dbRes, tagRes] = await Promise.all([
-          api.getDb(),
-          api.getTags(),
-        ])
-        const db = dbRes?.content || []
-        const totalSites = db.reduce((a: number, cat: any) =>
-          a + (cat.children || []).reduce((b: number, sub: any) => b + (sub.nav?.length || 0), 0), 0)
-        setInfo({
-          totalSites,
-          totalCategories: db.length,
-          totalSubCategories: db.reduce((a: number, cat: any) => a + (cat.children?.length || 0), 0),
-          totalTags: tagRes?.content?.length || 0,
-        })
-      } catch { }
-      finally { setLoading(false) }
-    }
-    load()
-  }, [])
-
+  /* 导出数据 */
   const handleExport = async () => {
     setExporting(true)
     try {
@@ -74,6 +50,7 @@ export function Info() {
     }
   }
 
+  /* 导入数据 */
   const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
@@ -106,6 +83,7 @@ export function Info() {
     reader.readAsText(file)
   }
 
+  /* 写入默认 - 将当前设置烘焙到 src/defaults.ts */
   const handleBakeDefaults = async () => {
     setBaking(true)
     try {
@@ -128,6 +106,7 @@ export function Info() {
     }
   }
 
+  /* 恢复默认 - 重置所有设置为初始值 */
   const handleResetDefaults = async () => {
     try {
       localStorage.removeItem('starmap_local_settings')
@@ -137,6 +116,7 @@ export function Info() {
     }
   }
 
+  /* 发布到 GitHub */
   const handlePublish = async () => {
     setPublishing(true)
     setCommitUrl('')
@@ -151,43 +131,16 @@ export function Info() {
     }
   }
 
-  if (loading) return <div className="admin-loading">加载中...</div>
-
   const repoDisplay = getRepoDisplay()
   const loggedIn = isAuthenticated()
 
   return (
-    <div className="dash-scroll">
-      <div className="page-head">
-        <div>
-          <h2 className="page-title"><span className="page-title-emoji">📊</span>统计概览</h2>
-          <p className="page-desc">StarMap 管理后台概览</p>
-        </div>
+    <div>
+      <div className="admin-toolbar">
+        <span>导入导出</span>
         {message && <span className={`admin-msg ${message.startsWith('✅') ? 'ok' : 'err'}`}>{message}</span>}
       </div>
 
-      {info && (
-        <div className="admin-info-grid">
-          <div className="admin-info-card highlight">
-            <div className="admin-info-label">收录网站</div>
-            <div className="admin-info-value big">{info.totalSites}</div>
-          </div>
-          <div className="admin-info-card highlight">
-            <div className="admin-info-label">一级分类</div>
-            <div className="admin-info-value big">{info.totalCategories}</div>
-          </div>
-          <div className="admin-info-card highlight">
-            <div className="admin-info-label">子分类</div>
-            <div className="admin-info-value big">{info.totalSubCategories}</div>
-          </div>
-          <div className="admin-info-card highlight">
-            <div className="admin-info-label">标签数量</div>
-            <div className="admin-info-value big">{info.totalTags}</div>
-          </div>
-        </div>
-      )}
-
-      {/* 导入导出 */}
       <div className="io-section-header">
         <div className="io-section-icon">📋</div>
         <div>
@@ -197,6 +150,7 @@ export function Info() {
       </div>
 
       <div className="io-grid">
+        {/* 导出数据 */}
         <div className="io-card">
           <div className="io-mini-icon">📤</div>
           <div className="io-content">
@@ -208,6 +162,7 @@ export function Info() {
           </div>
         </div>
 
+        {/* 导入数据 */}
         <div className="io-card">
           <div className="io-mini-icon">📥</div>
           <div className="io-content">
@@ -220,6 +175,7 @@ export function Info() {
           </div>
         </div>
 
+        {/* 写入默认 */}
         <div className="io-card">
           <div className="io-mini-icon">🔧</div>
           <div className="io-content">
@@ -234,6 +190,7 @@ export function Info() {
           </div>
         </div>
 
+        {/* 发布到 GitHub */}
         <div className="io-card">
           <div className="io-mini-icon">🚀</div>
           <div className="io-content">

@@ -5,48 +5,44 @@ import { Dashboard } from './pages/Dashboard'
 import { Websites } from './pages/Websites'
 import { Categories } from './pages/Categories'
 import { Tags } from './pages/Tags'
-import { SearchEngines } from './pages/SearchEngines'
 import { Settings } from './pages/Settings'
-import { BookmarkImport } from './pages/BookmarkImport'
 import { Info } from './pages/Info'
-import { isLoggedIn } from './services/github'
+import { isAuthenticated } from './services/auth'
+import { ConfirmProvider } from './components/ConfirmModal'
+import { ToastProvider } from './components/Toast'
 import './styles.css'
 
-export function isLocalMode(): boolean {
-  return localStorage.getItem('starmap_local_mode') === 'true'
-}
-
 export default function AdminApp() {
-  const [ready, setReady] = useState(false)
+  const [logged, setLogged] = useState(() => isAuthenticated())
 
   useEffect(() => {
-    setReady(true)
+    setLogged(isAuthenticated())
   }, [])
 
-  if (!ready) return null
-
-  const logged = isLoggedIn() || isLocalMode()
-
-  if (!logged) return <Login onSuccess={() => setReady(false)} />
+  if (!logged) return <Login onSuccess={() => setLogged(true)} />
 
   const handleLogout = () => {
-    localStorage.removeItem('starmap_local_mode')
     localStorage.removeItem('starmap_token')
-    setReady(false)
+    localStorage.removeItem('starmap_user')
+    localStorage.removeItem('starmap_repo')
+    localStorage.removeItem('starmap_branch')
+    setLogged(false)
   }
 
   return (
-    <Routes>
-      <Route element={<Dashboard onLogout={handleLogout} />}>
-        <Route index element={<Navigate to="dashboard" replace />} />
-        <Route path="dashboard" element={<Info />} />
-        <Route path="websites" element={<Websites />} />
-        <Route path="categories" element={<Categories />} />
-        <Route path="tags" element={<Tags />} />
-        <Route path="search" element={<SearchEngines />} />
-        <Route path="settings" element={<Settings />} />
-        <Route path="bookmark" element={<BookmarkImport />} />
-      </Route>
-    </Routes>
+    <ToastProvider>
+      <ConfirmProvider>
+        <Routes>
+          <Route element={<Dashboard onLogout={handleLogout} />}>
+            <Route index element={<Navigate to="dashboard" replace />} />
+            <Route path="dashboard" element={<Info />} />
+            <Route path="websites" element={<Websites />} />
+            <Route path="categories" element={<Categories />} />
+            <Route path="tags" element={<Tags />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
+        </Routes>
+      </ConfirmProvider>
+    </ToastProvider>
   )
 }

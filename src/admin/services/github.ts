@@ -1,89 +1,59 @@
 /* GitHub API 服务 - 使用 Token 读写仓库文件 */
-import axios from 'axios'
-import { Base64 } from 'js-base64'
+import { getToken, getRepoInfo } from './auth'
 
 const GITHUB_API = 'https://api.github.com'
 
-export interface GitHubConfig {
-  token: string
-  owner: string
-  repo: string
-  branch: string
-}
-
-/* 从 localStorage 读取配置 */
-export function getConfig(): GitHubConfig | null {
-  const token = localStorage.getItem('starmap_token')
-  const repoUrl = localStorage.getItem('starmap_repo') || ''
-  const branch = localStorage.getItem('starmap_branch') || 'main'
-  if (!token || !repoUrl) return null
-  const match = repoUrl.match(/github\.com[:/]([^/]+)\/([^/.]+)/)
-  if (!match) return null
-  return { token, owner: match[1], repo: match[2], branch }
-}
-
-/* 保存配置到 localStorage */
-export function setConfig(token: string, repoUrl: string, branch: string) {
-  localStorage.setItem('starmap_token', token)
-  localStorage.setItem('starmap_repo', repoUrl)
-  localStorage.setItem('starmap_branch', branch)
-}
-
-/* 清除配置 */
-export function clearConfig() {
-  localStorage.removeItem('starmap_token')
-  localStorage.removeItem('starmap_repo')
-  localStorage.removeItem('starmap_branch')
-}
-
-/* 是否已登录 */
-export function isLoggedIn(): boolean {
-  return !!getConfig()
-}
-
-/* 验证 Token */
-export async function verifyToken(token: string): Promise<{ valid: boolean; user?: string; error?: string }> {
-  try {
-    const res = await axios.get(`${GITHUB_API}/user`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    return { valid: true, user: res.data.login }
-  } catch (err: any) {
-    return { valid: false, error: err.response?.data?.message || '验证失败' }
+/* GitHub API 请求头 */
+function headers(): Record<string, string> {
+  const token = getToken()
+  const h: Record<string, string> = {
+    Accept: 'application/vnd.github.v3+json',
   }
+  if (token) h.Authorization = `Bearer ${token}`
+  return h
 }
 
 /* 获取文件内容和 SHA */
 export async function getFile(path: string): Promise<{ content: any; sha: string } | null> {
-  const config = getConfig()
-  if (!config) throw new Error('未登录')
+  const repo = getRepoInfo()
+  if (!repo) throw new Error('未登录')
   try {
-    const res = await axios.get(
-      `${GITHUB_API}/repos/${config.owner}/${config.repo}/contents/${path}`,
-      { headers: { Authorization: `Bearer ${config.token}` }, params: { ref: config.branch } }
+    const res = await fetch(
+      `${GITHUB_API}/repos/${repo.owner}/${repo.repo}/contents/${path}?ref=${repo.branch}`,
+      { headers: headers() }
     )
-    return { content: JSON.parse(Base64.decode(res.data.content)), sha: res.data.sha }
+    if (!res.ok) {
+      if (res.status === 404) return null
+      throw new Error(`获取文件失败 (HTTP ${res.status})`)
+    }
+    const data = await res.json()
+    const text = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))))
+    return { content: JSON.parse(text), sha: data.sha }
   } catch (err: any) {
-    if (err.response?.status === 404) return null
+    if (err.message?.includes('404')) return null
     throw err
   }
 }
 
 /* 更新文件（Git 提交） */
 export async function updateFile(path: string, data: any, message: string): Promise<void> {
-  const config = getConfig()
-  if (!config) throw new Error('未登录')
+  const repo = getRepoInfo()
+  if (!repo) throw new Error('未登录')
   const existing = await getFile(path)
-  await axios.put(
-    `${GITHUB_API}/repos/${config.owner}/${config.repo}/contents/${path}`,
-    {
-      message,
-      content: Base64.encode(JSON.stringify(data, null, 2)),
-      sha: existing?.sha || undefined,
-      branch: config.branch,
-    },
-    { headers: { Authorization: `Bearer ${config.token}` } }
+  const body: any = {
+    message,
+    content: btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2)))),
+    branch: repo.branch,
+  }
+  if (existing?.sha) body.sha = existing.sha
+  const res = await fetch(
+    `${GITHUB_API}/repos/${repo.owner}/${repo.repo}/contents/${path}`,
+    { method: 'PUT', headers: { ...headers(), 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
   )
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ message: `HTTP ${res.status}` }))
+    throw new Error(err.message || '更新文件失败')
+  }
 }
 
 /* 数据文件路径常量 */
@@ -99,9 +69,115 @@ export const api = {
   getDb: () => getFile(DATA_PATHS.db),
   saveDb: (data: any) => updateFile(DATA_PATHS.db, data, 'update(data): 更新导航数据'),
   getSettings: () => getFile(DATA_PATHS.settings),
-  saveSettings: (data: any) => updateFile(DATA_PATHS.settings, data, 'update(settings): 更新系统设置'),
+  saveSettings: (data: any) => updateFile(DATA_PATHS.settings, data, 'update(settings): 更新网站设置'),
   getSearch: () => getFile(DATA_PATHS.search),
   saveSearch: (data: any) => updateFile(DATA_PATHS.search, data, 'update(search): 更新搜索引擎'),
   getTags: () => getFile(DATA_PATHS.tag),
   saveTags: (data: any) => updateFile(DATA_PATHS.tag, data, 'update(tag): 更新标签'),
+}
+
+/* ===== 批量提交（用于发布到 GitHub） ===== */
+
+/** 通过 Git Trees API 批量提交所有文件（单次 commit） */
+async function commitFilesBatch(files: { path: string; content: string }[], message: string): Promise<void> {
+  const repo = getRepoInfo()
+  if (!repo) throw new Error('未登录')
+  const h = headers()
+
+  // 1. 获取当前 main 分支的 commit SHA 和 tree SHA
+  const refRes = await fetch(`${GITHUB_API}/repos/${repo.owner}/${repo.repo}/git/refs/heads/${repo.branch}`, { headers: h })
+  if (!refRes.ok) throw new Error('获取分支引用失败')
+  const refData = await refRes.json()
+  const currentCommitSha = refData.object.sha
+
+  const commitRes = await fetch(`${GITHUB_API}/repos/${repo.owner}/${repo.repo}/git/commits/${currentCommitSha}`, { headers: h })
+  if (!commitRes.ok) throw new Error('获取 commit 失败')
+  const commitData = await commitRes.json()
+  const baseTreeSha = commitData.tree.sha
+
+  // 2. 创建新 tree（批量添加/更新文件）
+  const treeItems = files.map(f => ({
+    path: f.path,
+    mode: '100644',
+    type: 'blob' as const,
+    content: f.content,
+  }))
+
+  const treeRes = await fetch(`${GITHUB_API}/repos/${repo.owner}/${repo.repo}/git/trees`, {
+    method: 'POST',
+    headers: h,
+    body: JSON.stringify({ base_tree: baseTreeSha, tree: treeItems }),
+  })
+  if (!treeRes.ok) {
+    const err = await treeRes.json().catch(() => ({ message: `HTTP ${treeRes.status}` }))
+    throw new Error(err.message || '创建 tree 失败')
+  }
+  const newTreeSha = (await treeRes.json()).sha
+
+  // 3. 创建 commit（指向新 tree）
+  const newCommitRes = await fetch(`${GITHUB_API}/repos/${repo.owner}/${repo.repo}/git/commits`, {
+    method: 'POST',
+    headers: h,
+    body: JSON.stringify({
+      message,
+      tree: newTreeSha,
+      parents: [currentCommitSha],
+    }),
+  })
+  if (!newCommitRes.ok) {
+    const err = await newCommitRes.json().catch(() => ({ message: `HTTP ${newCommitRes.status}` }))
+    throw new Error(err.message || '创建 commit 失败')
+  }
+  const newCommitSha = (await newCommitRes.json()).sha
+
+  // 4. 更新分支引用
+  const updateRes = await fetch(`${GITHUB_API}/repos/${repo.owner}/${repo.repo}/git/refs/heads/${repo.branch}`, {
+    method: 'PATCH',
+    headers: h,
+    body: JSON.stringify({ sha: newCommitSha, force: false }),
+  })
+  if (!updateRes.ok) {
+    const err = await updateRes.json().catch(() => ({ message: `HTTP ${updateRes.status}` }))
+    throw new Error(err.message || '更新分支失败')
+  }
+}
+
+/** 将所有数据提交到仓库，触发 GitHub Pages 重新构建 */
+export async function commitAllData(): Promise<{ files: number; repo: string }> {
+  const token = getToken()
+  if (!token) throw new Error('未登录，请先登录')
+  const repo = getRepoInfo()
+  if (!repo) throw new Error('未配置仓库')
+
+  const enc = (obj: any) => JSON.stringify(obj, null, 2)
+
+  // 读取所有数据
+  const [dbRes, settingsRes, searchRes, tagRes] = await Promise.all([
+    api.getDb(),
+    api.getSettings(),
+    api.getSearch(),
+    api.getTags(),
+  ])
+
+  const db = dbRes?.content || []
+  const settings = settingsRes?.content || {}
+  const search = searchRes?.content || []
+  const tags = tagRes?.content || []
+
+  if (!db.length) throw new Error('没有数据可提交')
+
+  const timestamp = new Date().toISOString().slice(0, 19).replace('T', ' ')
+  const message = `chore(data): 发布数据更新 ${timestamp}`
+
+  // 构建文件列表
+  const files: { path: string; content: string }[] = [
+    { path: 'data/nav/db.json', content: enc(db) },
+    { path: 'data/nav/settings.json', content: enc(settings) },
+    { path: 'data/nav/search.json', content: enc(search) },
+    { path: 'data/nav/tag.json', content: enc(tags) },
+  ]
+
+  await commitFilesBatch(files, message)
+
+  return { files: files.length, repo: `${repo.owner}/${repo.repo}` }
 }

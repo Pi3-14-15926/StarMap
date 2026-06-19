@@ -1,22 +1,21 @@
-/* 本地数据服务 - 免登录模式，读写 localStorage */
+/* 本地数据服务 - 从 localStorage 读取（有数据则用，没有则回退到 JSON 默认） */
 import defaultDb from '../../../data/nav/db.json'
 import defaultSettings from '../../../data/nav/settings.json'
 import defaultSearch from '../../../data/nav/search.json'
 import defaultTags from '../../../data/nav/tag.json'
 
-const STORAGE_KEYS = {
-  db: 'starmap_local_db',
-  settings: 'starmap_local_settings',
-  search: 'starmap_local_search',
-  tags: 'starmap_local_tags',
-} as const
-
-/* 读取本地数据，没有则用默认值 */
+/* 读取：优先 localStorage，没有或为空则用默认值 */
 function loadLocal<T>(key: string, defaults: T): T {
   try {
     const raw = localStorage.getItem(key)
-    if (raw) return JSON.parse(raw)
-  } catch { /* 解析失败用默认值 */ }
+    if (raw != null && raw !== '') {
+      const parsed = JSON.parse(raw) as any
+      if (parsed != null) {
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed as T
+        if (typeof parsed === 'object' && !Array.isArray(parsed) && Object.keys(parsed).length > 0) return parsed as T
+      }
+    }
+  } catch { /* 忽略 */ }
   return defaults
 }
 
@@ -25,63 +24,38 @@ function saveLocal(key: string, data: any) {
   localStorage.setItem(key, JSON.stringify(data))
 }
 
-/* 本地模式 API - 与 GitHub API 接口一致 */
+/* 本地 API */
 export const localApi = {
-  getDb: async () => ({
-    content: loadLocal(STORAGE_KEYS.db, defaultDb),
-    sha: 'local',
+  getDb: async () => ({ content: loadLocal('starmap_local_db', defaultDb), sha: 'local' as const }),
+  saveDb: async (data: any) => { saveLocal('starmap_local_db', data) },
+
+  getSettings: async () => ({ content: loadLocal('starmap_local_settings', defaultSettings), sha: 'local' as const }),
+  saveSettings: async (data: any) => { saveLocal('starmap_local_settings', data) },
+
+  getSearch: async () => ({ content: loadLocal('starmap_local_search', defaultSearch), sha: 'local' as const }),
+  saveSearch: async (data: any) => { saveLocal('starmap_local_search', data) },
+
+  getTags: async () => ({ content: loadLocal('starmap_local_tags', defaultTags), sha: 'local' as const }),
+  saveTags: async (data: any) => { saveLocal('starmap_local_tags', data) },
+
+  exportAll: () => ({
+    db: loadLocal('starmap_local_db', defaultDb),
+    settings: loadLocal('starmap_local_settings', defaultSettings),
+    search: loadLocal('starmap_local_search', defaultSearch),
+    tags: loadLocal('starmap_local_tags', defaultTags),
   }),
-  saveDb: async (data: any) => {
-    saveLocal(STORAGE_KEYS.db, data)
-  },
 
-  getSettings: async () => ({
-    content: loadLocal(STORAGE_KEYS.settings, defaultSettings),
-    sha: 'local',
-  }),
-  saveSettings: async (data: any) => {
-    saveLocal(STORAGE_KEYS.settings, data)
-  },
-
-  getSearch: async () => ({
-    content: loadLocal(STORAGE_KEYS.search, defaultSearch),
-    sha: 'local',
-  }),
-  saveSearch: async (data: any) => {
-    saveLocal(STORAGE_KEYS.search, data)
-  },
-
-  getTags: async () => ({
-    content: loadLocal(STORAGE_KEYS.tags, defaultTags),
-    sha: 'local',
-  }),
-  saveTags: async (data: any) => {
-    saveLocal(STORAGE_KEYS.tags, data)
-  },
-
-  /* 导出全部数据 */
-  exportAll: () => {
-    return {
-      db: loadLocal(STORAGE_KEYS.db, defaultDb),
-      settings: loadLocal(STORAGE_KEYS.settings, defaultSettings),
-      search: loadLocal(STORAGE_KEYS.search, defaultSearch),
-      tags: loadLocal(STORAGE_KEYS.tags, defaultTags),
-    }
-  },
-
-  /* 导入全部数据 */
   importAll: (data: { db?: any; settings?: any; search?: any; tags?: any }) => {
-    if (data.db) saveLocal(STORAGE_KEYS.db, data.db)
-    if (data.settings) saveLocal(STORAGE_KEYS.settings, data.settings)
-    if (data.search) saveLocal(STORAGE_KEYS.search, data.search)
-    if (data.tags) saveLocal(STORAGE_KEYS.tags, data.tags)
+    if (data.db) saveLocal('starmap_local_db', data.db)
+    if (data.settings) saveLocal('starmap_local_settings', data.settings)
+    if (data.search) saveLocal('starmap_local_search', data.search)
+    if (data.tags) saveLocal('starmap_local_tags', data.tags)
   },
 
-  /* 重置为默认数据 */
   resetAll: () => {
-    localStorage.removeItem(STORAGE_KEYS.db)
-    localStorage.removeItem(STORAGE_KEYS.settings)
-    localStorage.removeItem(STORAGE_KEYS.search)
-    localStorage.removeItem(STORAGE_KEYS.tags)
+    localStorage.removeItem('starmap_local_db')
+    localStorage.removeItem('starmap_local_settings')
+    localStorage.removeItem('starmap_local_search')
+    localStorage.removeItem('starmap_local_tags')
   },
 }
