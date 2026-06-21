@@ -7,11 +7,9 @@ interface ToastItem {
 }
 
 interface ToastContextType {
-  toast: {
-    success: (msg: string) => void
-    error: (msg: string) => void
-    info: (msg: string) => void
-  }
+  success: (msg: string) => void
+  error: (msg: string) => void
+  info: (msg: string) => void
 }
 
 const ToastContext = createContext<ToastContextType | null>(null)
@@ -50,7 +48,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <ToastContext.Provider value={{ toast }}>
+    <ToastContext.Provider value={toast}>
       {children}
       <div className="toast-container">
         {list.map((t) => (

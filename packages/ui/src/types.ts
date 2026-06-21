@@ -52,9 +52,8 @@ export interface Settings {
   showRuntime: boolean
   runtimeDate: string
   showLogin: boolean
-  showSearch: boolean
+  showRating: boolean
   defaultSearchEngine: string
-  showSideImage: boolean
   tags: string[]
   colorPrimary: string
   hashMode: boolean
@@ -62,6 +61,8 @@ export interface Settings {
   gitRepoUrl: string
   imageRepoUrl: string
   version: string
+  iconCdnMode?: 'jsdelivr' | 'statically' | 'githack' | 'custom' | 'none'
+  iconCdnCustomBase?: string
 }
 
 /* 标签 */
@@ -69,6 +70,9 @@ export interface TagItem {
   id: number
   name: string
   color: string
+  desc?: string
+  noOpen?: boolean
+  sort?: number
 }
 
 /* 应用模块 */

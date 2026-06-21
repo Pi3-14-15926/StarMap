@@ -1,12 +1,13 @@
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { getCurrentUser } from '../services/auth'
 
-type AdminTab = 'dashboard' | 'websites' | 'categories' | 'tags' | 'settings'
+type AdminTab = 'dashboard' | 'websites' | 'categories' | 'icons' | 'tags' | 'settings'
 
 const menuItems: { key: AdminTab; icon: string; label: string; path: string }[] = [
   { key: 'dashboard', icon: '📊', label: '统计概览', path: '/admin/dashboard' },
   { key: 'websites', icon: '🌐', label: '网站管理', path: '/admin/websites' },
   { key: 'categories', icon: '📁', label: '分类管理', path: '/admin/categories' },
+  { key: 'icons', icon: '🖼️', label: '图标管理', path: '/admin/icons' },
   { key: 'tags', icon: '🏷️', label: '标签管理', path: '/admin/tags' },
   { key: 'settings', icon: '⚙️', label: '网站设置', path: '/admin/settings' },
 ]

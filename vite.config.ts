@@ -3,9 +3,10 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 import { bakeDefaultsPlugin } from './vite-plugin-bake'
+import { crawlPlugin } from './vite-plugin-crawl'
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), bakeDefaultsPlugin()],
+  plugins: [react(), tailwindcss(), bakeDefaultsPlugin(), crawlPlugin()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),

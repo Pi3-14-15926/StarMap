@@ -1,5 +1,14 @@
 import { useState, useEffect } from 'react'
 import { api } from '../services/data'
+import { describeCdn, type IconCdnMode } from '../services/iconUrl'
+
+const CDN_OPTIONS: { label: string; value: IconCdnMode }[] = [
+  { label: 'jsDelivr（国内可用，推荐）', value: 'jsdelivr' },
+  { label: 'Statically', value: 'statically' },
+  { label: 'GitHack', value: 'githack' },
+  { label: '自定义 Base URL', value: 'custom' },
+  { label: '不使用加速', value: 'none' },
+]
 
 export function Settings() {
   const [settings, setSettings] = useState<Record<string, any>>({})
@@ -44,71 +53,146 @@ export function Settings() {
   ]
 
   const favicon = settings.favicon || ''
+  const cdnMode: IconCdnMode = settings.iconCdnMode || 'jsdelivr'
 
   return (
-    <div>
-      <div className="admin-toolbar">
-        <span>网站设置</span>
-        {message && <span className={`admin-msg ${message.startsWith('✅') ? 'ok' : 'err'}`}>{message}</span>}
-        <button className="admin-btn-primary" onClick={handleSave} disabled={saving}>{saving ? '保存中...' : '💾 保存到 GitHub'}</button>
+    <div className="settings-scroll">
+      {/* 页面头部 */}
+      <div className="page-head">
+        <div>
+          <h2 className="page-title"><span className="page-title-emoji">⚙️</span>网站设置</h2>
+          <p className="page-desc">管理站点基本信息、外观和功能开关</p>
+        </div>
+        <div className="head-actions">
+          {message && <span className={`save-msg ${message.startsWith('✅') ? 'ok' : 'err'}`}>{message}</span>}
+          <button className="btn-primary" onClick={handleSave} disabled={saving}>
+            {saving ? '保存中...' : '💾 保存到 GitHub'}
+          </button>
+        </div>
       </div>
 
-      <div className="admin-settings-grid">
+      {/* 基本信息 */}
+      <section className="settings-card">
+        <header className="card-head">
+          <div className="card-icon">📝</div>
+          <div>
+            <h3 className="card-title">基本信息</h3>
+            <p className="card-desc">站点标题、描述、SEO 等基础配置</p>
+          </div>
+        </header>
+
         {/* 网站图标 */}
-        <div className="admin-settings-field" style={{ gridColumn: '1 / -1' }}>
-          <label>网站图标 (Favicon)</label>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <div style={{
-              width: '2.5rem',
-              height: '2.5rem',
-              borderRadius: '0.5rem',
-              border: '1px solid #E5E7EB',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: '#F8FAFC',
-              flexShrink: 0,
-            }}>
+        <div className="field" style={{ marginBottom: 16 }}>
+          <label className="field-label">网站图标 (Favicon)</label>
+          <div className="favicon-row">
+            <div className="favicon-preview">
               {favicon ? (
-                <img src={favicon} alt="favicon" style={{ width: '1.5rem', height: '1.5rem', objectFit: 'contain' }}
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
+                <img src={favicon} alt="favicon" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
               ) : (
-                <span style={{ fontSize: '1.25rem' }}>🌐</span>
+                <span>🌐</span>
               )}
             </div>
             <input
               type="text"
+              className="field-input"
               value={favicon}
               onChange={(e) => update('favicon', e.target.value)}
               placeholder="输入图标 URL，如 https://example.com/favicon.ico"
-              style={{ flex: 1 }}
             />
           </div>
         </div>
 
-        {fields.map((field) => (
-          <div key={field.key} className="admin-settings-field">
-            <label>{field.label}</label>
-            {field.type === 'textarea' ? (
-              <textarea value={settings[field.key] || ''} onChange={(e) => update(field.key, e.target.value)} rows={3} />
-            ) : (
-              <input type={field.type} value={settings[field.key] || ''} onChange={(e) => update(field.key, e.target.value)} />
-            )}
-          </div>
-        ))}
+        <div className="form-grid-2">
+          {fields.map((field) => (
+            <div key={field.key} className={`field ${field.key === 'footerHtml' || field.key === 'githubUrl' ? 'field-full' : ''}`}>
+              <label className="field-label">{field.label}</label>
+              {field.type === 'textarea' ? (
+                <textarea className="field-textarea" value={settings[field.key] || ''} onChange={(e) => update(field.key, e.target.value)} rows={3} />
+              ) : (
+                <input className="field-input" type={field.type} value={settings[field.key] || ''} onChange={(e) => update(field.key, e.target.value)} />
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
 
-        {/* 布尔值开关 */}
-        {['showGithub', 'showRuntime', 'showLogin', 'showSearch', 'showSideImage'].map((key) => (
-          <div key={key} className="admin-settings-field">
-            <label>{key}</label>
-            <button
-              className={`admin-toggle ${settings[key] ? 'on' : ''}`}
-              onClick={() => update(key, !settings[key])}
-            >
-              {settings[key] ? '✅ 开启' : '❌ 关闭'}
-            </button>
+      {/* 显示开关 */}
+      <section className="settings-card">
+        <header className="card-head">
+          <div className="card-icon" style={{ background: 'linear-gradient(135deg, #10b981, #059669)', boxShadow: '0 6px 20px rgba(16, 185, 129, 0.28)' }}>🎛️</div>
+          <div>
+            <h3 className="card-title">显示设置</h3>
+            <p className="card-desc">控制前台页面元素的显示与隐藏</p>
           </div>
-        ))}
+        </header>
+
+        <div className="switch-grid">
+          {[
+            { key: 'showGithub', name: 'GitHub 按钮', desc: '在首页显示 GitHub 仓库链接按钮' },
+            { key: 'showRuntime', name: '运行时间', desc: '在页脚显示站点运行天数' },
+            { key: 'showLogin', name: '管理入口', desc: '在页脚显示后台管理登录入口' },
+            { key: 'showRating', name: '评分显示', desc: '在网站卡片上显示评分星级' },
+          ].map((item) => (
+            <div key={item.key} className={`switch-card ${settings[item.key] ? 'active' : ''}`}>
+              <div className="switch-info">
+                <div className="switch-name">{item.name}</div>
+                <div className="switch-desc">{item.desc}</div>
+              </div>
+              <button className={`toggle-switch ${settings[item.key] ? 'on' : ''}`} onClick={() => update(item.key, !settings[item.key])}>
+                <span className="toggle-knob" />
+              </button>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 图标 CDN 加速 */}
+      <section className="settings-card">
+        <header className="card-head">
+          <div className="card-icon">🌍</div>
+          <div>
+            <h3 className="card-title">图标 CDN 加速</h3>
+            <p className="card-desc">让所有 GitHub raw 图片自动走更快镜像，国内访问更顺畅</p>
+          </div>
+        </header>
+
+        <div className="field">
+          <label className="field-label">加速策略</label>
+          <select className="field-select" value={cdnMode} onChange={(e) => update('iconCdnMode', e.target.value)}>
+            {CDN_OPTIONS.map((opt) => (
+              <option key={opt.value} value={opt.value}>{opt.label}</option>
+            ))}
+          </select>
+          <p className="field-hint">
+            当前选择：<strong style={{ color: '#3478F6' }}>{describeCdn(cdnMode)}</strong>
+          </p>
+        </div>
+
+        {cdnMode === 'custom' && (
+          <div className="field" style={{ marginTop: 12 }}>
+            <label className="field-label">自定义 Base URL</label>
+            <input
+              className="field-input"
+              type="text"
+              value={settings.iconCdnCustomBase || ''}
+              onChange={(e) => update('iconCdnCustomBase', e.target.value)}
+              placeholder="https://your-cdn.example.com/"
+            />
+            <p className="field-hint">
+              最终 URL 形如：<code>{settings.iconCdnCustomBase || 'https://your-cdn.example.com/'}raw.githubusercontent.com/owner/repo/branch/path</code>
+            </p>
+          </div>
+        )}
+
+        <p className="card-hint">
+          配置后 <code>raw.githubusercontent.com</code> 域名的图标 URL 会自动替换为更快镜像。
+        </p>
+      </section>
+
+      <div className="form-actions">
+        <button className="btn-primary btn-large" onClick={handleSave} disabled={saving}>
+          {saving ? '保存中...' : '保存设置'}
+        </button>
       </div>
     </div>
   )

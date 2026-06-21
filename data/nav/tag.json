@@ -2,31 +2,49 @@
   {
     "id": 1,
     "name": "优选",
-    "color": "#f50000"
+    "color": "#f50000",
+    "desc": "优质精选资源",
+    "noOpen": false,
+    "sort": 1
   },
   {
     "id": 2,
     "name": "神器",
-    "color": "#70ffb5"
+    "color": "#70ffb5",
+    "desc": "强大好用的工具",
+    "noOpen": false,
+    "sort": 2
   },
   {
     "id": 3,
     "name": "魔法",
-    "color": "#ffd84d"
+    "color": "#ffd84d",
+    "desc": "需要特殊技巧",
+    "noOpen": false,
+    "sort": 3
   },
   {
     "id": 4,
     "name": "中文",
-    "color": "#4F8CFF"
+    "color": "#4F8CFF",
+    "desc": "中文界面资源",
+    "noOpen": false,
+    "sort": 4
   },
   {
     "id": 5,
     "name": "English",
-    "color": "#8C6CFF"
+    "color": "#8C6CFF",
+    "desc": "英文界面资源",
+    "noOpen": false,
+    "sort": 5
   },
   {
     "id": 6,
     "name": "GitHub",
-    "color": "#333333"
+    "color": "#333333",
+    "desc": "开源项目",
+    "noOpen": false,
+    "sort": 6
   }
 ]

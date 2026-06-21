@@ -7,6 +7,7 @@ import { Categories } from './pages/Categories'
 import { Tags } from './pages/Tags'
 import { Settings } from './pages/Settings'
 import { Info } from './pages/Info'
+import { Icons } from './pages/Icons'
 import { isAuthenticated } from './services/auth'
 import { ConfirmProvider } from './components/ConfirmModal'
 import { ToastProvider } from './components/Toast'
@@ -38,6 +39,7 @@ export default function AdminApp() {
             <Route path="dashboard" element={<Info />} />
             <Route path="websites" element={<Websites />} />
             <Route path="categories" element={<Categories />} />
+            <Route path="icons" element={<Icons />} />
             <Route path="tags" element={<Tags />} />
             <Route path="settings" element={<Settings />} />
           </Route>

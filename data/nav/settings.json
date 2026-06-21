@@ -14,9 +14,10 @@
   "showRuntime": true,
   "runtimeDate": "2026-06-18",
   "showLogin": true,
-  "showSearch": true,
+  "showRating": true,
   "defaultSearchEngine": "google",
-  "showSideImage": false,
+  "iconCdnMode": "jsdelivr",
+  "iconCdnCustomBase": "",
   "tags": [
     "优选",
     "神器",

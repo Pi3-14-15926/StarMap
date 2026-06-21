@@ -210,21 +210,6 @@ export function Categories() {
         </div>
       </div>
 
-      <div className="cat-stats">
-        <div className="cat-stat-item">
-          <span className="cat-stat-num">{data.length}</span>
-          <span className="cat-stat-label">一级分类</span>
-        </div>
-        <div className="cat-stat-item">
-          <span className="cat-stat-num">{totalSubs}</span>
-          <span className="cat-stat-label">子分类</span>
-        </div>
-        <div className="cat-stat-item">
-          <span className="cat-stat-num">{totalSites}</span>
-          <span className="cat-stat-label">收录网站</span>
-        </div>
-      </div>
-
       <div className="cat-toolbar">
         <label className="cat-check-label">
           <input type="checkbox" checked={selected.size > 0 && [...data].every((cat) => selected.has(`cat-${cat.id}`) && cat.children.every((sub) => selected.has(`sub-${cat.id}-${sub.id}`)))} onChange={toggleSelectAll} />
