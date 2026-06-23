@@ -98,7 +98,7 @@ export function Tags() {
         <div className="page-head-actions">
           <button className="admin-btn" onClick={addTag}>+ 添加标签</button>
           <button className="admin-btn-primary" onClick={handleSave} disabled={saving}>
-            {saving ? '保存中...' : '💾 保存'}
+            {saving ? '保存中...' : '保存'}
           </button>
         </div>
       </div>

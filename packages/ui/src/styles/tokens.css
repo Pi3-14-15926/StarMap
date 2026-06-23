@@ -11,7 +11,7 @@
   --primary-gradient: linear-gradient(135deg, #4F8CFF 0%, #8C6CFF 100%);
 
   /* 背景色 */
-  --bg: #F5F7FA;
+  --bg: #F0F2F5;
   --bg-card: #FFFFFF;
   --bg-sidebar: #FFFFFF;
   --bg-header: rgba(255, 255, 255, 0.72);
@@ -24,13 +24,13 @@
 
   /* 边框 */
   --border: #E5E7EB;
-  --border-light: #EDF1F5;
+  --border-light: #E8ECF1;
 
   /* 阴影 */
-  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.06);
-  --shadow-lg: 0 8px 32px rgba(15, 23, 42, 0.08);
-  --shadow-card: 0 10px 40px rgba(15, 23, 42, 0.05);
+  --shadow-sm: 0 1px 4px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 8px 32px rgba(15, 23, 42, 0.1);
+  --shadow-card: 0 10px 40px rgba(15, 23, 42, 0.07);
 
   /* 间距 */
   --sp-xs: 4px;

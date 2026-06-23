@@ -206,9 +206,20 @@ export function EditWebModal({ visible, title, data, subId, allCategories, allTa
       setCrawling(false)
       setUploading(false)
       if (isAdd && allCategories?.length) {
-        const firstCat = allCategories[0]
-        setCatId(firstCat.id)
-        setTargetSubId(firstCat.children?.[0]?.id || 0)
+        if (subId) {
+          /* 根据 subId 找到所属分类 */
+          for (const cat of allCategories) {
+            if (cat.children?.some(s => s.id === subId)) {
+              setCatId(cat.id)
+              setTargetSubId(subId)
+              break
+            }
+          }
+        } else {
+          const firstCat = allCategories[0]
+          setCatId(firstCat.id)
+          setTargetSubId(firstCat.children?.[0]?.id || 0)
+        }
       }
       setTimeout(() => nameRef.current?.focus(), 100)
     }
@@ -434,6 +445,68 @@ export function ConfirmModal({ visible, title, message, onConfirm, onClose }: Co
           <div style={{ flex: 1 }} />
           <button className="admin-btn" onClick={onClose}>取消</button>
           <button className="admin-btn admin-btn-danger" onClick={onConfirm}>确认删除</button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ===== 移动网站弹窗 ===== */
+interface MoveModalProps {
+  visible: boolean
+  allCategories: Category[]
+  currentCatId: number
+  currentSubId: number
+  websiteName: string
+  onMove: (targetCatId: number, targetSubId: number, copy: boolean) => void
+  onClose: () => void
+}
+
+export function MoveModal({ visible, allCategories, currentCatId, currentSubId, websiteName, onMove, onClose }: MoveModalProps) {
+  const [targetCatId, setTargetCatId] = useState(currentCatId)
+  const [targetSubId, setTargetSubId] = useState(currentSubId)
+  const [copy, setCopy] = useState(false)
+
+  useEffect(() => {
+    if (visible) {
+      setTargetCatId(currentCatId)
+      setTargetSubId(currentSubId)
+      setCopy(false)
+    }
+  }, [visible, currentCatId, currentSubId])
+
+  if (!visible) return null
+
+  const currentCat = allCategories.find(c => c.id === targetCatId)
+  const currentSubs = currentCat?.children || []
+
+  return (
+    <div className="admin-modal-overlay" onClick={onClose}>
+      <div className="admin-modal" onClick={e => e.stopPropagation()}>
+        <h3>移动到</h3>
+        <div className="admin-modal-form">
+          <label>请选择一级分类</label>
+          <select value={targetCatId} onChange={e => {
+            const id = Number(e.target.value)
+            setTargetCatId(id)
+            const cat = allCategories.find(c => c.id === id)
+            setTargetSubId(cat?.children?.[0]?.id || 0)
+          }}>
+            {allCategories.map(c => <option key={c.id} value={c.id}>{c.icon} {c.title}</option>)}
+          </select>
+          <label>请选择二级分类</label>
+          <select value={targetSubId} onChange={e => setTargetSubId(Number(e.target.value))}>
+            {currentSubs.map(s => <option key={s.id} value={s.id}>{s.title}</option>)}
+          </select>
+          <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}>
+            <input type="checkbox" checked={copy} onChange={e => setCopy(e.target.checked)}
+              style={{ width: 16, height: 16 }} />
+            复制
+          </label>
+        </div>
+        <div className="admin-modal-actions">
+          <button className="admin-btn" onClick={onClose}>取消</button>
+          <button className="admin-btn-primary" onClick={() => onMove(targetCatId, targetSubId, copy)}>确定</button>
         </div>
       </div>
     </div>

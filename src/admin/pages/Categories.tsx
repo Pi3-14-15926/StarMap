@@ -205,7 +205,7 @@ export function Categories() {
         </div>
         <div className="page-head-actions">
           <button className="admin-btn-primary" onClick={handleSave} disabled={saving}>
-            {saving ? '保存中...' : '💾 保存'}
+            {saving ? '保存中...' : '保存'}
           </button>
         </div>
       </div>

@@ -168,21 +168,37 @@ export function Info() {
 
       {info && (
         <div className="admin-info-grid">
-          <div className="admin-info-card highlight">
-            <div className="admin-info-label">收录网站</div>
-            <div className="admin-info-value big">{info.totalSites}</div>
+          <div className="admin-info-card stat-blue">
+            <div className="admin-info-icon">🌐</div>
+            <div className="admin-info-content">
+              <div className="admin-info-value">{info.totalSites}</div>
+              <div className="admin-info-label">收录网站</div>
+              <div className="admin-info-desc">所有分类累计</div>
+            </div>
           </div>
-          <div className="admin-info-card highlight">
-            <div className="admin-info-label">一级分类</div>
-            <div className="admin-info-value big">{info.totalCategories}</div>
+          <div className="admin-info-card stat-purple">
+            <div className="admin-info-icon">📂</div>
+            <div className="admin-info-content">
+              <div className="admin-info-value">{info.totalCategories}</div>
+              <div className="admin-info-label">一级分类</div>
+              <div className="admin-info-desc">导航分类总数</div>
+            </div>
           </div>
-          <div className="admin-info-card highlight">
-            <div className="admin-info-label">子分类</div>
-            <div className="admin-info-value big">{info.totalSubCategories}</div>
+          <div className="admin-info-card stat-green">
+            <div className="admin-info-icon">📑</div>
+            <div className="admin-info-content">
+              <div className="admin-info-value">{info.totalSubCategories}</div>
+              <div className="admin-info-label">子分类</div>
+              <div className="admin-info-desc">所有一级分类下</div>
+            </div>
           </div>
-          <div className="admin-info-card highlight">
-            <div className="admin-info-label">标签数量</div>
-            <div className="admin-info-value big">{info.totalTags}</div>
+          <div className="admin-info-card stat-pink">
+            <div className="admin-info-icon">🏷️</div>
+            <div className="admin-info-content">
+              <div className="admin-info-value">{info.totalTags}</div>
+              <div className="admin-info-label">标签数量</div>
+              <div className="admin-info-desc">所有标签累计</div>
+            </div>
           </div>
         </div>
       )}

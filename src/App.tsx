@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { StoreProvider, useStore } from './store'
 import { resolveIconUrl } from './admin/services/iconUrl'
 import { commitAllData } from './admin/services/github'
-import { logout } from './admin/services/auth'
-import { EditWebModal, EditCategoryModal, ConfirmModal } from './components/EditModal'
+
+import { EditWebModal, EditCategoryModal, ConfirmModal, MoveModal } from './components/EditModal'
 import type { WebItem, Category, SubCategory, TagItem } from '@ui/types'
 import AdminApp from './admin'
 
@@ -23,7 +23,6 @@ function NavContent() {
     viewMode,
     setViewMode,
     isLoggedIn,
-    refreshLoginState,
     updateNavData,
   } = useStore()
 
@@ -51,6 +50,7 @@ function NavContent() {
   const [webModal, setWebModal] = useState<{ visible: boolean; data?: WebItem; subId?: number; editIdx?: number }>({ visible: false })
   const [catModal, setCatModal] = useState<{ visible: boolean; data?: SubCategory; editIdx?: number }>({ visible: false })
   const [confirmModal, setConfirmModal] = useState<{ visible: boolean; title: string; message: string; onConfirm: () => void }>({ visible: false, title: '', message: '', onConfirm: () => {} })
+  const [moveModal, setMoveModal] = useState<{ visible: boolean; catId?: number; subId?: number; idx?: number; name?: string }>({ visible: false })
 
   const currentCategory = useMemo(() => {
     return navData.find((c) => c.id === selectedCategoryId) || navData[0]
@@ -98,12 +98,6 @@ function NavContent() {
       setPublishing(false)
     }
   }, [])
-
-  /* ===== 退出登录 ===== */
-  const handleLogout = useCallback(() => {
-    logout()
-    refreshLoginState()
-  }, [refreshLoginState])
 
   /* ===== 网站编辑 ===== */
   const openAddWeb = useCallback((subId: number) => {
@@ -200,7 +194,7 @@ function NavContent() {
       message: `确定要删除「${name}」吗？此操作不可撤销。`,
       onConfirm: handleDeleteWeb,
     })
-    setWebModal({ visible: true, subId, editIdx: idx })
+    setWebModal({ visible: false, subId, editIdx: idx })
   }, [handleDeleteWeb])
 
   const askDeleteCat = useCallback((data: SubCategory) => {
@@ -211,6 +205,53 @@ function NavContent() {
       onConfirm: handleDeleteCat,
     })
   }, [handleDeleteCat])
+
+  /* 移动网站 */
+  const openMoveWeb = useCallback((catId: number, subId: number, idx: number, name: string) => {
+    setMoveModal({ visible: true, catId, subId, idx, name })
+  }, [])
+
+  const handleMoveWeb = useCallback((targetCatId: number, targetSubId: number, copy: boolean) => {
+    const { catId, subId, idx } = moveModal
+    if (catId == null || subId == null || idx == null) return
+    const site = navData.find(c => c.id === catId)?.children.find(s => s.id === subId)?.nav[idx]
+    if (!site) return
+    let newData = [...navData]
+    if (!copy) {
+      /* 移动：从原位置删除 */
+      newData = newData.map(cat => ({
+        ...cat,
+        children: cat.children.map(sub => {
+          if (sub.id !== subId) return sub
+          return { ...sub, nav: sub.nav.filter((_, i) => i !== idx) }
+        }),
+      }))
+    }
+    /* 添加到目标位置 */
+    newData = newData.map(cat => {
+      if (cat.id !== targetCatId) return cat
+      return {
+        ...cat,
+        children: cat.children.map(sub => {
+          if (sub.id !== targetSubId) return sub
+          return { ...sub, nav: [...sub.nav, site] }
+        }),
+      }
+    })
+    updateNavData(newData)
+    setMoveModal({ visible: false })
+  }, [moveModal, navData, updateNavData])
+
+  /* 分享网站 */
+  const handleShare = useCallback((url: string, name: string) => {
+    navigator.clipboard.writeText(url).then(() => {
+      setPublishMsg(`已复制「${name}」的链接`)
+      setTimeout(() => setPublishMsg(''), 3000)
+    }).catch(() => {
+      setPublishMsg('复制失败')
+      setTimeout(() => setPublishMsg(''), 3000)
+    })
+  }, [])
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -270,10 +311,6 @@ function NavContent() {
               {publishing ? '发布中...' : '发布'}
             </button>
           )}
-
-          {isLoggedIn && (
-            <button className="header-logout-btn" onClick={handleLogout}>退出</button>
-          )}
         </div>
       </header>
 
@@ -325,7 +362,7 @@ function NavContent() {
         {/* Main Content */}
         <main className="app-main">
 
-          <div className="main-filters">
+          <div className="main-toolbar">
             <div className="filter-controls">
               <div className="sort-select">
                 <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
@@ -341,13 +378,10 @@ function NavContent() {
                 </button>
               </div>
             </div>
-          </div>
-
-          {isLoggedIn && (
-            <div className="add-cat-bar">
+            {isLoggedIn && (
               <button className="add-cat-btn" onClick={openAddCat}>+ 添加子分类</button>
-            </div>
-          )}
+            )}
+          </div>
 
           {subCategories.map((sub, subIdx) => {
             let sites = sub.nav || []
@@ -392,40 +426,54 @@ function NavContent() {
                 </div>
                 <div className={`site-grid ${viewMode}`}>
                   {sites.map((site, idx) => {
-                    /* 找到原始 nav 数组中的索引 */
                     const origIdx = sub.nav.indexOf(site)
                     return (
                       <div key={`${site.name}-${idx}`} className="site-card-wrap">
                         <a href={site.url} target="_blank" rel="noopener noreferrer" className="site-card">
-                          <div className="site-card-icon">
-                            <img src={resolveIconUrl(site.icon, settings.iconCdnMode, settings.iconCdnCustomBase)} alt={site.name}
-                              onError={(e) => { (e.target as HTMLImageElement).src = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%234F8CFF" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`)}` }} />
-                          </div>
-                          <div className="site-card-info">
-                            <div className="site-card-header">
-                              <span className="site-card-name">{site.name}</span>
-                              {settings.showRating !== false && (
-                                <span className="site-card-rating">{'★'.repeat(site.rate)}{'☆'.repeat(5 - site.rate)}</span>
-                              )}
+                          <div className="site-card-top">
+                            <div className="site-card-icon">
+                              <img src={resolveIconUrl(site.icon, settings.iconCdnMode, settings.iconCdnCustomBase)} alt={site.name}
+                                onError={(e) => { (e.target as HTMLImageElement).src = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%234F8CFF" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`)}` }} />
                             </div>
-                            <p className="site-card-desc">{site.desc}</p>
-                            {site.tag && <span className="site-card-tag">{site.tag}</span>}
+                            <div className="site-card-info">
+                              <div className="site-card-header">
+                                <span className="site-card-name">{site.name}</span>
+                                {settings.showRating !== false && (
+                                  <span className="site-card-rating">{'★'.repeat(site.rate)}{'☆'.repeat(5 - site.rate)}</span>
+                                )}
+                              </div>
+                              <p className="site-card-desc">{site.desc}</p>
+                              {site.tag && <span className="site-card-tag">{site.tag}</span>}
+                            </div>
                           </div>
-                          <svg className="site-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6" /></svg>
                         </a>
                         {isLoggedIn && (
-                          <div className="site-card-actions">
-                            <button className="card-action-btn" title="编辑"
-                              onClick={(e) => { e.preventDefault(); openEditWeb(sub.id, origIdx, site) }}>
-                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <div className="site-card-bar">
+                            <button className="site-bar-btn" title="编辑"
+                              onClick={() => openEditWeb(sub.id, origIdx, site)}>
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
                                 <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
                               </svg>
                             </button>
-                            <button className="card-action-btn card-action-danger" title="删除"
-                              onClick={(e) => { e.preventDefault(); askDeleteWeb(sub.id, origIdx, site.name) }}>
-                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+                            <button className="site-bar-btn" title="分享"
+                              onClick={() => handleShare(site.url, site.name)}>
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                              </svg>
+                            </button>
+                            <button className="site-bar-btn" title="移动"
+                              onClick={() => openMoveWeb(currentCategory!.id, sub.id, origIdx, site.name)}>
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/>
+                                <polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/>
+                              </svg>
+                            </button>
+                            <button className="site-bar-btn site-bar-danger" title="删除"
+                              onClick={() => askDeleteWeb(sub.id, origIdx, site.name)}>
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
                               </svg>
                             </button>
                           </div>
@@ -472,6 +520,15 @@ function NavContent() {
         message={confirmModal.message}
         onConfirm={confirmModal.onConfirm}
         onClose={() => setConfirmModal({ ...confirmModal, visible: false })}
+      />
+      <MoveModal
+        visible={moveModal.visible}
+        allCategories={navData}
+        currentCatId={moveModal.catId || 0}
+        currentSubId={moveModal.subId || 0}
+        websiteName={moveModal.name || ''}
+        onMove={handleMoveWeb}
+        onClose={() => setMoveModal({ visible: false })}
       />
     </div>
   )

@@ -97,6 +97,8 @@ export function Websites() {
   const [checking, setChecking] = useState(false)
   const [checkProgress, setCheckProgress] = useState({ total: 0, done: 0, fail: 0, current: '' })
   const [failedUrls, setFailedUrls] = useState<Set<string>>(new Set())
+  const [moveModal, setMoveModal] = useState<{ catId: number; subId: number; webName: string } | null>(null)
+  const [moveTarget, setMoveTarget] = useState({ catId: 0, subId: 0, copy: false })
   const { confirm } = useConfirm()
   const toast = useToast()
 
@@ -190,6 +192,55 @@ export function Websites() {
       }
     }))
     setMessage('✅ 已删除（保存后生效）')
+  }
+
+  const shareWeb = (url: string, name: string) => {
+    navigator.clipboard.writeText(url).then(() => {
+      toast.success(`已复制「${name}」的链接`)
+    }).catch(() => {
+      toast.error('复制失败')
+    })
+  }
+
+  const openMove = (catId: number, subId: number, webName: string) => {
+    setMoveTarget({ catId, subId, copy: false })
+    setMoveModal({ catId, subId, webName })
+  }
+
+  const doMove = () => {
+    if (!moveModal) return
+    const { catId: srcCatId, subId: srcSubId, webName } = moveModal
+    const { catId: tgtCatId, subId: tgtSubId, copy } = moveTarget
+    if (tgtCatId === srcCatId && tgtSubId === srcSubId) { setMoveModal(null); return }
+    let movedWeb: WebItem | null = null
+    setData(prev => prev.map(cat => {
+      if (cat.id === srcCatId) {
+        return {
+          ...cat,
+          children: cat.children.map(sub => {
+            if (sub.id !== srcSubId) return sub
+            const web = sub.nav.find(w => w.name === webName)
+            if (web) movedWeb = { ...web }
+            return { ...sub, nav: copy ? sub.nav : sub.nav.filter(w => w.name !== webName) }
+          }),
+        }
+      }
+      return cat
+    }))
+    if (movedWeb) {
+      setData(prev => prev.map(cat => {
+        if (cat.id !== tgtCatId) return cat
+        return {
+          ...cat,
+          children: cat.children.map(sub => {
+            if (sub.id !== tgtSubId) return sub
+            return { ...sub, nav: [...sub.nav, movedWeb!] }
+          }),
+        }
+      }))
+    }
+    setMoveModal(null)
+    toast.success(copy ? '已复制' : '已移动')
   }
 
   const addWeb = () => {
@@ -398,11 +449,32 @@ export function Websites() {
             </div>
             <div className="web-card-rating">{'★'.repeat(web.rate)}{'☆'.repeat(5 - web.rate)}</div>
             <div className="web-card-actions">
-              <button className="web-action-btn" onClick={() => setEditItem({ ...web, _oldName: web.name })}>
-                <span>✏️</span> 编辑
+              <button className="web-bar-btn" title="编辑"
+                onClick={() => setEditItem({ ...web, _oldName: web.name })}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+                  <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                </svg>
               </button>
-              <button className="web-action-btn danger" onClick={() => deleteWeb(web.catId, web.subId, web.name)}>
-                <span>🗑️</span> 删除
+              <button className="web-bar-btn" title="分享"
+                onClick={() => shareWeb(web.url, web.name)}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                </svg>
+              </button>
+              <button className="web-bar-btn" title="移动"
+                onClick={() => openMove(web.catId, web.subId, web.name)}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/>
+                  <polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/>
+                </svg>
+              </button>
+              <button className="web-bar-btn web-bar-danger" title="删除"
+                onClick={() => deleteWeb(web.catId, web.subId, web.name)}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                </svg>
               </button>
             </div>
           </div>
@@ -513,6 +585,41 @@ export function Websites() {
             {checkProgress.current && (
               <div className="check-progress-current">正在检测：{checkProgress.current}</div>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* 移动弹窗 */}
+      {moveModal && (
+        <div className="admin-modal-overlay" onClick={() => setMoveModal(null)}>
+          <div className="admin-modal" onClick={e => e.stopPropagation()}>
+            <h3>移动到</h3>
+            <div className="admin-modal-form">
+              <label>一级分类</label>
+              <select value={moveTarget.catId} onChange={e => {
+                const id = Number(e.target.value)
+                const cat = data.find(c => c.id === id)
+                setMoveTarget({ ...moveTarget, catId: id, subId: cat?.children?.[0]?.id || 0 })
+              }}>
+                {data.map(c => <option key={c.id} value={c.id}>{c.icon} {c.title}</option>)}
+              </select>
+              <label>二级分类</label>
+              <select value={moveTarget.subId} onChange={e => setMoveTarget({ ...moveTarget, subId: Number(e.target.value) })}>
+                {(data.find(c => c.id === moveTarget.catId)?.children || []).map(s => (
+                  <option key={s.id} value={s.id}>{s.title}</option>
+                ))}
+              </select>
+              <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}>
+                <input type="checkbox" checked={moveTarget.copy}
+                  onChange={e => setMoveTarget({ ...moveTarget, copy: e.target.checked })}
+                  style={{ width: 16, height: 16 }} />
+                复制
+              </label>
+            </div>
+            <div className="admin-modal-actions">
+              <button className="admin-btn" onClick={() => setMoveModal(null)}>取消</button>
+              <button className="admin-btn-primary" onClick={doMove}>确定</button>
+            </div>
           </div>
         </div>
       )}

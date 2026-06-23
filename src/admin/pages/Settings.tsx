@@ -65,8 +65,8 @@ export function Settings() {
         </div>
         <div className="head-actions">
           {message && <span className={`save-msg ${message.startsWith('✅') ? 'ok' : 'err'}`}>{message}</span>}
-          <button className="btn-primary" onClick={handleSave} disabled={saving}>
-            {saving ? '保存中...' : '💾 保存到 GitHub'}
+          <button className="admin-btn-primary" onClick={handleSave} disabled={saving}>
+            {saving ? '保存中...' : '保存'}
           </button>
         </div>
       </div>
@@ -190,8 +190,8 @@ export function Settings() {
       </section>
 
       <div className="form-actions">
-        <button className="btn-primary btn-large" onClick={handleSave} disabled={saving}>
-          {saving ? '保存中...' : '保存设置'}
+        <button className="admin-btn-primary" onClick={handleSave} disabled={saving}>
+          {saving ? '保存中...' : '保存'}
         </button>
       </div>
     </div>

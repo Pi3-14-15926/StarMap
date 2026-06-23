@@ -45,7 +45,7 @@ export function SearchEngines() {
       <div className="admin-toolbar">
         <span>共 {engines.length} 个搜索引擎</span>
         {message && <span className={`admin-msg ${message.startsWith('✅') ? 'ok' : 'err'}`}>{message}</span>}
-        <button className="admin-btn-primary" onClick={handleSave} disabled={saving}>{saving ? '保存中...' : '💾 保存到 GitHub'}</button>
+        <button className="admin-btn-primary" onClick={handleSave} disabled={saving}>{saving ? '保存中...' : '保存'}</button>
       </div>
 
       <div className="admin-engine-list">
