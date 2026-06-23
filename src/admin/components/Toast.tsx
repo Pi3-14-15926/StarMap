@@ -3,13 +3,14 @@ import { useState, useRef, useCallback, createContext, useContext, type ReactNod
 interface ToastItem {
   id: number
   message: string
-  type: 'success' | 'error' | 'info'
+  type: 'success' | 'error' | 'info' | 'warning'
 }
 
 interface ToastContextType {
   success: (msg: string) => void
   error: (msg: string) => void
   info: (msg: string) => void
+  warning: (msg: string) => void
 }
 
 const ToastContext = createContext<ToastContextType | null>(null)
@@ -45,6 +46,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     success: (msg: string) => add(msg, 'success'),
     error: (msg: string) => add(msg, 'error'),
     info: (msg: string) => add(msg, 'info'),
+    warning: (msg: string) => add(msg, 'warning'),
   }
 
   return (
@@ -53,7 +55,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       <div className="toast-container">
         {list.map((t) => (
           <div key={t.id} className={`toast-item ${t.type}`} onClick={() => remove(t.id)}>
-            {t.type === 'success' ? '✓' : t.type === 'error' ? '✗' : 'ℹ'} {t.message}
+            {t.type === 'success' ? '✓' : t.type === 'error' ? '✗' : t.type === 'warning' ? '⚠' : 'ℹ'} {t.message}
           </div>
         ))}
       </div>

@@ -19,3 +19,8 @@ export async function crawlWebsite(url: string): Promise<CrawlResult> {
   }
   return res.json()
 }
+
+/** 判断爬取功能是否可用（仅 dev 模式下 Vite 中间件生效） */
+export function isCrawlAvailable(): boolean {
+  return import.meta.env.DEV
+}

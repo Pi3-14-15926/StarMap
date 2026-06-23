@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useRef } from 'react'
 import { api } from '../services/data'
 import { useConfirm } from '../components/ConfirmModal'
 import { useToast } from '../components/Toast'
-import { crawlWebsite } from '../services/crawl'
+import { crawlWebsite, isCrawlAvailable } from '../services/crawl'
 import type { Category, WebItem, TagItem } from '@ui/types'
 
 type ViewMode = 'grid' | 'list'
@@ -262,6 +262,10 @@ export function Websites() {
 
   const crawlUrl = async (url: string, target: 'add' | 'edit') => {
     if (!url || crawling) return
+    if (!isCrawlAvailable()) {
+      toast.warning('自动爬取仅在本地开发环境可用，生产环境请手动填写')
+      return
+    }
     try { new URL(url) } catch { return }
     setCrawling(true)
     try {

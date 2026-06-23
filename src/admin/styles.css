@@ -2736,6 +2736,7 @@
   padding: 12px 20px;
   border-radius: 12px;
   background: #FFFFFF;
+  border: 1px solid #EDF1F5;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   font-size: 14px;
   font-weight: 500;
@@ -2773,6 +2774,15 @@
 .toast-info .toast-icon {
   background: rgba(79, 140, 255, 0.12);
   color: #4F8CFF;
+}
+
+.toast-warning {
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.toast-warning .toast-icon {
+  background: rgba(245, 158, 11, 0.12);
+  color: #F59E0B;
 }
 
 .toast-msg {

@@ -107,6 +107,10 @@ export function Info() {
   }
 
   const handleBakeDefaults = async () => {
+    if (!import.meta.env.DEV) {
+      showMessage('⚠️ 写入默认配置仅在本地开发环境可用')
+      return
+    }
     setBaking(true)
     try {
       const settingsRes = await api.getSettings()

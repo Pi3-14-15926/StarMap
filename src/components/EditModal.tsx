@@ -1,6 +1,6 @@
 /* 前台编辑弹窗 - 复用后台 admin-modal 样式 + 自动爬取 + 图标上传/选择 */
 import { useState, useEffect, useRef, useMemo } from 'react'
-import { crawlWebsite } from '../admin/services/crawl'
+import { crawlWebsite, isCrawlAvailable } from '../admin/services/crawl'
 import { compressImage, blobToBase64 } from '../admin/services/imageCompressor'
 import { uploadIcon, listIcons, type IconListItem } from '../admin/services/iconsApi'
 import { resolveIconUrl } from '../admin/services/iconUrl'
@@ -232,6 +232,7 @@ export function EditWebModal({ visible, title, data, subId, allCategories, allTa
 
   const crawlUrl = async (targetUrl: string) => {
     if (!targetUrl || crawling) return
+    if (!isCrawlAvailable()) return
     let fullUrl = targetUrl.trim()
     if (!fullUrl) return
     if (!/^https?:\/\//i.test(fullUrl)) fullUrl = 'https://' + fullUrl
