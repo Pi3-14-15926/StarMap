@@ -1,5 +1,10 @@
 /* ===== StarMap 前台样式 - HyperOS + Apple 混合风格 ===== */
 
+/* 确保 body 背景覆盖 reset.css */
+body {
+  background: var(--bg);
+}
+
 /* ===== Header ===== */
 .app-header {
   height: 64px;
@@ -149,12 +154,15 @@
   height: 36px;
   border-radius: var(--radius-full);
   color: var(--text-secondary);
+  background: var(--bg);
+  border: 1px solid var(--border);
   transition: all var(--duration) var(--ease);
 }
 
 .header-theme-btn:hover {
   background: var(--primary-bg);
   color: var(--primary);
+  border-color: var(--primary-border);
 }
 
 .header-admin-btn {
@@ -792,6 +800,50 @@
   border-left: 1px solid var(--border-light);
 }
 
+/* ===== 关联文章 - 前台卡片展示 ===== */
+.site-card-articles {
+  padding: 8px 12px;
+  border-top: 1px solid var(--border-light);
+}
+.site-card-articles-label {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 4px;
+}
+.site-card-articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.site-card-article-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 0;
+  text-decoration: none;
+  color: var(--primary);
+  font-size: 12px;
+  transition: opacity 0.15s;
+}
+.site-card-article-item:hover { opacity: 0.8; }
+.site-card-article-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #D0D5DD;
+  flex-shrink: 0;
+}
+.site-card-article-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.site-card-article-icon { flex-shrink: 0; opacity: 0.6; }
+
 /* ===== 添加子分类按钮 ===== */
 .add-cat-btn {
   height: 32px;
@@ -1129,6 +1181,168 @@
 }
 
 /* ===== 响应式 ===== */
+
+/* 移动端分类侧边栏 */
+.mobile-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.18s;
+}
+
+.mobile-menu-btn:hover {
+  background: var(--primary-bg);
+  color: var(--primary);
+}
+
+.mobile-sider-mask {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  z-index: 200;
+  animation: fadeIn 0.2s;
+}
+
+.mobile-sider-mask.open {
+  display: block;
+}
+
+.mobile-sider-drawer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: auto;
+  min-width: 180px;
+  max-width: 65vw;
+  background: var(--bg-card);
+  z-index: 201;
+  flex-direction: column;
+  box-shadow: 4px 0 24px rgba(15, 23, 42, 0.12);
+  animation: slideInLeft 0.25s ease;
+}
+
+.mobile-sider-drawer.open {
+  display: flex;
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.mobile-sider-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.mobile-sider-title {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.mobile-sider-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 5px;
+  border: none;
+  background: transparent;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.mobile-sider-close:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.mobile-sider-nav {
+  flex: 1;
+  padding: 6px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.mobile-sider-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.18s;
+  text-align: left;
+}
+
+.mobile-sider-item:hover {
+  background: var(--primary-bg);
+  color: var(--primary);
+}
+
+.mobile-sider-item.active {
+  background: var(--primary-gradient);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(79, 140, 255, 0.28);
+}
+
+.mobile-sider-icon {
+  font-size: 15px;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.mobile-sider-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mobile-sider-name {
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.mobile-sider-count {
+  font-size: 11px;
+  color: var(--text-quaternary);
+  background: var(--bg);
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  font-weight: 500;
+}
+
+.mobile-sider-item.active .mobile-sider-count {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
 @media (max-width: 1200px) {
   .site-grid.grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1142,25 +1356,153 @@
 }
 
 @media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: inline-flex;
+  }
+
   .app-header {
-    padding: 0 var(--sp-md);
-    gap: var(--sp-md);
+    padding: 0 10px;
+    gap: 6px;
+    height: 52px;
+  }
+
+  .header-logo {
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .header-logo img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .header-brand {
+    font-size: 13px;
+  }
+
+  .header-subtitle {
+    display: none;
   }
 
   .header-search {
-    flex: 1;
+    width: 110px;
+    max-width: 110px;
+    height: 28px;
+    padding: 0 6px 0 24px;
+  }
+
+  .header-search svg {
+    width: 12px;
+    height: 12px;
+    left: 6px;
+  }
+
+  .header-search-input {
+    font-size: 11px;
+  }
+
+  .header-shortcut {
+    display: none;
   }
 
   .header-tabs {
     display: none;
   }
 
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+  }
+
+  .header-action-btn {
+    padding: 4px 6px;
+    font-size: 11px;
+    gap: 2px;
+    white-space: nowrap;
+  }
+
+  .header-action-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .header-theme-btn {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    background: var(--bg);
+    border: 1px solid var(--border);
+  }
+
+  .header-theme-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .header-admin-btn {
+    height: 26px;
+    padding: 0 8px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .header-publish-btn {
+    height: 26px;
+    padding: 0 8px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
   .app-sidebar {
     display: none;
   }
 
+  .app-body {
+    min-height: calc(100vh - 52px);
+  }
+
+  .app-main {
+    padding: 10px;
+  }
+
   .site-grid.grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .site-card {
+    padding: 10px;
+  }
+
+  .site-card-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+  }
+
+  .site-card-icon img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .site-card-name {
+    font-size: 12px;
+  }
+
+  .site-card-desc {
+    font-size: 11px;
+    -webkit-line-clamp: 2;
+  }
+
+  .site-card-rating {
+    font-size: 9px;
+  }
+
+  .site-bar-btn {
+    height: 32px;
   }
 
   .main-filters {
@@ -1171,11 +1513,293 @@
   .main-toolbar {
     flex-direction: column;
     align-items: stretch;
+    gap: 8px;
+  }
+
+  .filter-controls {
+    justify-content: space-between;
+  }
+
+  .sub-section-title {
+    font-size: 16px;
+  }
+
+  .filter-tag {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .admin-modal {
+    width: 95%;
+    max-width: none;
+    padding: 1.25rem;
+    border-radius: 1.25rem;
+  }
+
+  .admin-modal-actions {
+    flex-direction: column;
+  }
+
+  .admin-modal-actions .admin-btn-primary,
+  .admin-modal-actions .admin-btn {
+    width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .site-grid.grid {
-    grid-template-columns: 1fr;
+  .mobile-menu-btn {
+    display: inline-flex;
   }
+
+  .app-header {
+    padding: 0 8px;
+    gap: 4px;
+    height: 48px;
+  }
+
+  .header-logo img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .header-brand {
+    font-size: 12px;
+  }
+
+  .header-search {
+    width: 90px;
+    max-width: 90px;
+    height: 26px;
+    padding: 0 5px 0 22px;
+    border-radius: var(--radius-full);
+  }
+
+  .header-search svg {
+    width: 11px;
+    height: 11px;
+    left: 5px;
+  }
+
+  .header-search-input {
+    font-size: 10px;
+  }
+
+  .header-action-btn {
+    padding: 3px 5px;
+    font-size: 10px;
+    gap: 1px;
+    white-space: nowrap;
+  }
+
+  .header-action-btn svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .header-action-btn span {
+    display: none;
+  }
+
+  .header-theme-btn {
+    width: 26px;
+    height: 26px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+  }
+
+  .header-theme-btn svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .header-admin-btn {
+    height: 24px;
+    padding: 0 6px;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+  .header-publish-btn {
+    height: 24px;
+    padding: 0 6px;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+  .site-grid.grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .site-card {
+    padding: 8px;
+  }
+
+  .site-card-header {
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+
+  .site-card-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+  }
+
+  .site-card-icon img {
+    width: 14px;
+    height: 14px;
+  }
+
+  .site-card-name {
+    font-size: 11px;
+    max-width: 100px;
+  }
+
+  .site-card-desc {
+    font-size: 10px;
+    -webkit-line-clamp: 2;
+    margin: 0;
+  }
+
+  .site-card-rating {
+    font-size: 8px;
+  }
+
+  .site-bar-btn {
+    height: 26px;
+  }
+
+  .site-card-bar {
+    border-top: none;
+    margin-top: auto;
+  }
+
+  .sub-section-title {
+    font-size: 15px;
+  }
+
+  .sub-section-count {
+    font-size: 11px;
+  }
+
+  .filter-tag {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .add-cat-btn {
+    height: 28px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+}
+
+/* =====================================================
+   前台夜间模式 - [data-theme='dark']
+   ===================================================== */
+[data-theme='dark'] .header-brand {
+  color: #F0F0F0;
+}
+
+[data-theme='dark'] .header-search-input {
+  color: #F0F0F0;
+}
+
+/* 编辑弹窗（复用后台样式） */
+[data-theme='dark'] .admin-modal {
+  background: #232326;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme='dark'] .admin-modal h3 {
+  color: #F0F0F0;
+}
+
+[data-theme='dark'] .admin-modal-form label {
+  color: #A9AEB8;
+}
+
+[data-theme='dark'] .admin-modal-form input,
+[data-theme='dark'] .admin-modal-form select {
+  background: #2A2A2E;
+  border-color: #3A3A3D;
+  color: #F0F0F0;
+}
+
+[data-theme='dark'] .admin-modal-form input:focus,
+[data-theme='dark'] .admin-modal-form select:focus {
+  background: #2A2A2E;
+}
+
+[data-theme='dark'] .admin-modal::-webkit-scrollbar-thumb {
+  background: rgba(100, 100, 100, 0.4);
+}
+
+/* 前台按钮 */
+[data-theme='dark'] .admin-btn {
+  background: #2A2A2E;
+  border-color: #3A3A3D;
+  color: #F0F0F0;
+}
+
+[data-theme='dark'] .admin-btn:hover:not(:disabled) {
+  background: #353538;
+}
+
+[data-theme='dark'] .admin-btn-primary {
+  box-shadow: 0 6px 20px rgba(79, 140, 255, 0.2);
+}
+
+[data-theme='dark'] .admin-btn-primary:hover:not(:disabled) {
+  box-shadow: 0 10px 28px rgba(79, 140, 255, 0.3);
+}
+
+[data-theme='dark'] .admin-btn-danger {
+  box-shadow: 0 6px 20px rgba(229, 83, 83, 0.2);
+}
+
+[data-theme='dark'] .admin-btn-danger:hover:not(:disabled) {
+  box-shadow: 0 10px 28px rgba(229, 83, 83, 0.3);
+}
+
+/* 标签选择器 */
+[data-theme='dark'] .tag-select-trigger {
+  background: #2A2A2E;
+  border-color: #3A3A3D;
+}
+
+[data-theme='dark'] .tag-select-dropdown {
+  background: #232326;
+  border-color: #3A3A3D;
+}
+
+[data-theme='dark'] .tag-select-option:hover {
+  background: #2A2A2E;
+}
+
+[data-theme='dark'] .tag-select-option.selected {
+  background: rgba(79, 140, 255, 0.15);
+}
+
+[data-theme='dark'] .tag-select-name {
+  color: #F0F0F0;
+}
+
+[data-theme='dark'] .tag-select-desc {
+  color: #6B7280;
+}
+
+[data-theme='dark'] .tag-select-empty {
+  color: #6B7280;
+}
+
+/* 图标选择器 */
+[data-theme='dark'] .icon-picker-tile {
+  background: #2A2A2E;
+  border-color: #3A3A3D;
+}
+
+[data-theme='dark'] .icon-picker-tile:hover {
+  background: rgba(79, 140, 255, 0.1);
 }

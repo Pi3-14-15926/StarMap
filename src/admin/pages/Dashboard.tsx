@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { getCurrentUser } from '../services/auth'
 
@@ -20,13 +21,19 @@ export function Dashboard({ onLogout }: DashboardProps) {
   const location = useLocation()
   const navigate = useNavigate()
   const user = getCurrentUser()
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   const currentTab = menuItems.find(m => location.pathname.startsWith(m.path))?.key || 'dashboard'
   const currentItem = menuItems.find(m => m.key === currentTab)
 
+  // 路由变化时关闭移动端侧边栏
+  useEffect(() => {
+    setMobileOpen(false)
+  }, [location.pathname])
+
   return (
     <div className="admin-layout">
-      {/* 侧边栏 */}
+      {/* 桌面端侧边栏 */}
       <aside className="admin-sidebar">
         <div className="admin-sider-brand" onClick={() => navigate('/admin/dashboard')}>
           <img className="brand-mark" src="/favicon.png" alt="StarMap" width="40" height="40" />
@@ -50,15 +57,51 @@ export function Dashboard({ onLogout }: DashboardProps) {
         </nav>
       </aside>
 
+      {/* 移动端侧边栏遮罩 */}
+      <div className={`mobile-sider-mask ${mobileOpen ? 'open' : ''}`} onClick={() => setMobileOpen(false)} />
+
+      {/* 移动端侧边栏抽屉 */}
+      <div className={`mobile-sider-drawer ${mobileOpen ? 'open' : ''}`}>
+        <button className="mobile-sider-close" onClick={() => setMobileOpen(false)}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+        <div className="admin-sider-brand" onClick={() => { navigate('/admin/dashboard'); setMobileOpen(false) }}>
+          <img className="brand-mark" src="/favicon.png" alt="StarMap" width="40" height="40" />
+          <div className="brand-text">
+            <div className="brand-name">StarMap</div>
+            <div className="brand-sub">Admin Console</div>
+          </div>
+        </div>
+        <nav className="admin-sider-nav">
+          {menuItems.map((item) => (
+            <a
+              key={item.key}
+              onClick={() => { navigate(item.path); setMobileOpen(false) }}
+              className={`nav-item ${currentTab === item.key ? 'active' : ''}`}
+            >
+              <span className="nav-icon">{item.icon}</span>
+              <span className="nav-label">{item.label}</span>
+            </a>
+          ))}
+        </nav>
+      </div>
+
       {/* 主内容 */}
       <div className="admin-inner">
         <header className="admin-header">
           <div className="header-left">
+            <button className="mobile-menu-btn" onClick={() => setMobileOpen(true)}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M3 12h18M3 6h18M3 18h18" />
+              </svg>
+            </button>
             <h1 className="header-title">{currentItem?.label}</h1>
           </div>
           <div className="header-right">
             <button className="btn-ghost" onClick={() => navigate('/')}>
-              <span>🏠</span> 返回首页
+              <span>🏠</span> <span className="btn-text-mobile">返回首页</span>
             </button>
             {user && (
               <div className="header-user">
@@ -70,7 +113,7 @@ export function Dashboard({ onLogout }: DashboardProps) {
               </div>
             )}
             <button className="btn-logout" onClick={onLogout}>
-              <span>🚪</span> 登出
+              <span>🚪</span> <span className="btn-text-mobile">登出</span>
             </button>
           </div>
         </header>

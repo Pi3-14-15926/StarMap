@@ -20,6 +20,12 @@ export default function AdminApp() {
     setLogged(isAuthenticated())
   }, [])
 
+  // 后台也读取并应用主题
+  useEffect(() => {
+    const saved = localStorage.getItem('starmap_theme')
+    document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light')
+  }, [])
+
   if (!logged) return <Login onSuccess={() => setLogged(true)} />
 
   const handleLogout = () => {

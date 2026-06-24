@@ -5,7 +5,7 @@ import { compressImage, blobToBase64 } from '../admin/services/imageCompressor'
 import { uploadIcon, listIcons, type IconListItem } from '../admin/services/iconsApi'
 import { resolveIconUrl } from '../admin/services/iconUrl'
 import { isAuthenticated } from '../admin/services/auth'
-import type { WebItem, SubCategory, Category, TagItem } from '@ui/types'
+import type { WebItem, SubCategory, Category, TagItem, RelatedArticle } from '@ui/types'
 
 /* ===== 标签多选下拉（复用后台 TagSelect） ===== */
 function TagSelect({ value, onChange, tags }: { value: string; onChange: (v: string) => void; tags: TagItem[] }) {
@@ -189,6 +189,7 @@ export function EditWebModal({ visible, title, data, subId, allCategories, allTa
   const [uploading, setUploading] = useState(false)
   const [iconPickerOpen, setIconPickerOpen] = useState(false)
   const [dragOver, setDragOver] = useState(false)
+  const [relatedArticles, setRelatedArticles] = useState<RelatedArticle[]>([])
   const nameRef = useRef<HTMLInputElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -203,6 +204,7 @@ export function EditWebModal({ visible, title, data, subId, allCategories, allTa
       setIcon(data?.icon || '')
       setRate(data?.rate ?? 5)
       setTag(data?.tag || '')
+      setRelatedArticles(data?.relatedArticles || [])
       setCrawling(false)
       setUploading(false)
       if (isAdd && allCategories?.length) {
@@ -276,6 +278,7 @@ export function EditWebModal({ visible, title, data, subId, allCategories, allTa
       icon: icon.trim(),
       rate,
       tag: tag.trim() || undefined,
+      relatedArticles: relatedArticles.length > 0 ? relatedArticles : undefined,
     }, isAdd ? targetSubId : undefined)
   }
 
@@ -350,6 +353,21 @@ export function EditWebModal({ visible, title, data, subId, allCategories, allTa
               <TagSelect value={tag} onChange={v => setTag(v)} tags={allTags} />
             </>
           )}
+
+          {/* 关联文章 */}
+          <label>关联文章</label>
+          <div className="web-article-editor">
+            {relatedArticles.map((a, i) => (
+              <div key={i} className="web-article-row">
+                <input className="web-article-title-input" value={a.title} placeholder="文章标题"
+                  onChange={e => { const arts = [...relatedArticles]; arts[i] = { ...arts[i], title: e.target.value }; setRelatedArticles(arts) }} />
+                <input className="web-article-url-input" value={a.url} placeholder="文章链接"
+                  onChange={e => { const arts = [...relatedArticles]; arts[i] = { ...arts[i], url: e.target.value }; setRelatedArticles(arts) }} />
+                <button type="button" className="web-article-remove-btn" onClick={() => setRelatedArticles(relatedArticles.filter((_, j) => j !== i))}>×</button>
+              </div>
+            ))}
+            <button type="button" className="web-article-add-btn" onClick={() => setRelatedArticles([...relatedArticles, { title: '', url: '' }])}>+ 添加文章</button>
+          </div>
         </div>
         <div className="admin-modal-actions">
           {onDelete && (

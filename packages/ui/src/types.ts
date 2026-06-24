@@ -1,5 +1,11 @@
 /* ===== StarMap 通用类型定义 ===== */
 
+/* 关联文章 */
+export interface RelatedArticle {
+  title: string
+  url: string
+}
+
 /* 网站条目 */
 export interface WebItem {
   name: string
@@ -8,6 +14,7 @@ export interface WebItem {
   icon: string
   rate: number
   tag?: string
+  relatedArticles?: RelatedArticle[]
 }
 
 /* 子分类（第2级） */

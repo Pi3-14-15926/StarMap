@@ -103,7 +103,7 @@ export function Tags() {
         </div>
       </div>
 
-      <div className="tag-table-wrapper">
+      <div className="tag-table-wrapper tag-desktop-only">
         <table className="tag-table">
           <thead>
             <tr>
@@ -188,6 +188,68 @@ export function Tags() {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* 手机端卡片列表 */}
+      <div className="tag-mobile-list">
+        {tags.map((tag, idx) => (
+          <div key={tag.id} className="tag-mobile-card">
+            <div className="tag-mobile-top">
+              <button
+                className={`tag-toggle ${!tag.noOpen ? 'on' : ''}`}
+                onClick={() => toggleNoOpen(idx)}
+              >
+                <span className="tag-toggle-dot" />
+              </button>
+              <span className="tag-dot" style={{ background: tag.color }} />
+              <input
+                className="tag-mobile-name"
+                value={tag.name}
+                placeholder="标签名称"
+                maxLength={10}
+                onChange={(e) => updateTag(idx, 'name', e.target.value)}
+              />
+              <div className="tag-mobile-actions">
+                <button className="tag-action-btn" onClick={() => moveUp(idx)} disabled={idx === 0} title="上移">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 15l-6-6-6 6"/></svg>
+                </button>
+                <button className="tag-action-btn" onClick={() => moveDown(idx)} disabled={idx === tags.length - 1} title="下移">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <button className="tag-action-btn danger" onClick={() => removeTag(idx)} title="删除">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+              </div>
+            </div>
+            <div className="tag-mobile-row">
+              <label className="tag-mobile-label">颜色</label>
+              <label className="tag-color-picker">
+                <input type="color" value={tag.color} onChange={(e) => updateTag(idx, 'color', e.target.value)} />
+                <span className="tag-color-swatch" style={{ background: tag.color }} />
+              </label>
+              <span className="tag-color-value">{tag.color}</span>
+              <label className="tag-mobile-label" style={{ marginLeft: 12 }}>排序</label>
+              <input
+                className="tag-input tag-input-sm"
+                type="number"
+                min={0}
+                value={tag.sort ?? ''}
+                placeholder="—"
+                onChange={(e) => updateTag(idx, 'sort', e.target.value === '' ? '' : Number(e.target.value))}
+              />
+            </div>
+            <div className="tag-mobile-row">
+              <label className="tag-mobile-label">描述</label>
+              <input
+                className="tag-mobile-desc"
+                value={tag.desc || ''}
+                placeholder="添加描述..."
+                maxLength={30}
+                onChange={(e) => updateTag(idx, 'desc', e.target.value)}
+              />
+            </div>
+          </div>
+        ))}
       </div>
 
       {tags.length === 0 && (

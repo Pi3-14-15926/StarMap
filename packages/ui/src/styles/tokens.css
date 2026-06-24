@@ -84,6 +84,20 @@
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
   --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.3);
   --primary-bg: rgba(79, 140, 255, 0.15);
+
+  /* Admin 专用暗色变量 */
+  --admin-bg: #1A1A1D;
+  --admin-card: #232326;
+  --admin-card-header: #2A2A2E;
+  --admin-border: #3A3A3D;
+  --admin-input-bg: #2A2A2E;
+  --admin-input-border: #3A3A3D;
+  --admin-sidebar-bg: rgba(35, 35, 38, 0.92);
+  --admin-nav-hover: rgba(79, 140, 255, 0.12);
+  --admin-overlay: rgba(0, 0, 0, 0.55);
+  --admin-text-primary: #F0F0F0;
+  --admin-text-secondary: #A9AEB8;
+  --admin-text-muted: #6B7280;
 }
 
 /* 全局重置 */
@@ -97,6 +111,7 @@ html {
   font-size: var(--font-size-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--bg);
 }
 
 body {

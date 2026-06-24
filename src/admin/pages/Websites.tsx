@@ -3,7 +3,7 @@ import { api } from '../services/data'
 import { useConfirm } from '../components/ConfirmModal'
 import { useToast } from '../components/Toast'
 import { crawlWebsite, isCrawlAvailable } from '../services/crawl'
-import type { Category, WebItem, TagItem } from '@ui/types'
+import type { Category, WebItem, TagItem, RelatedArticle } from '@ui/types'
 
 type ViewMode = 'grid' | 'list'
 type SortMode = 'default' | 'name' | 'rating'
@@ -92,7 +92,7 @@ export function Websites() {
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
   const [editItem, setEditItem] = useState<FlatWeb | null>(null)
   const [showAddForm, setShowAddForm] = useState(false)
-  const [newWeb, setNewWeb] = useState({ name: '', desc: '', url: '', icon: '', rate: 5, tag: '', catId: 0, subId: 0 })
+  const [newWeb, setNewWeb] = useState({ name: '', desc: '', url: '', icon: '', rate: 5, tag: '', catId: 0, subId: 0, relatedArticles: [] as RelatedArticle[] })
   const [crawling, setCrawling] = useState(false)
   const [checking, setChecking] = useState(false)
   const [checkProgress, setCheckProgress] = useState({ total: 0, done: 0, fail: 0, current: '' })
@@ -251,11 +251,11 @@ export function Websites() {
         ...cat,
         children: cat.children.map(sub => {
           if (sub.id !== newWeb.subId) return sub
-          return { ...sub, nav: [...sub.nav, { name: newWeb.name, desc: newWeb.desc, url: newWeb.url, icon: newWeb.icon, rate: newWeb.rate, tag: newWeb.tag }] }
+          return { ...sub, nav: [...sub.nav, { name: newWeb.name, desc: newWeb.desc, url: newWeb.url, icon: newWeb.icon, rate: newWeb.rate, tag: newWeb.tag, relatedArticles: newWeb.relatedArticles.length > 0 ? newWeb.relatedArticles : undefined }] }
         }),
       }
     }))
-    setNewWeb({ name: '', desc: '', url: '', icon: '', rate: 5, tag: '', catId: newWeb.catId, subId: newWeb.subId })
+    setNewWeb({ name: '', desc: '', url: '', icon: '', rate: 5, tag: '', catId: newWeb.catId, subId: newWeb.subId, relatedArticles: [] })
     setShowAddForm(false)
     setMessage('✅ 已添加（保存后生效）')
   }
@@ -350,7 +350,7 @@ export function Websites() {
       ...cat,
       children: cat.children.map(sub => ({
         ...sub,
-        nav: sub.nav.map(w => (w.name === editItem._oldName ? { name: editItem.name, desc: editItem.desc, url: editItem.url, icon: editItem.icon, rate: editItem.rate, tag: editItem.tag } : w)),
+        nav: sub.nav.map(w => (w.name === editItem._oldName ? { name: editItem.name, desc: editItem.desc, url: editItem.url, icon: editItem.icon, rate: editItem.rate, tag: editItem.tag, relatedArticles: editItem.relatedArticles && editItem.relatedArticles.length > 0 ? editItem.relatedArticles : undefined } : w)),
       })),
     })))
     setEditItem(null)
@@ -451,6 +451,20 @@ export function Websites() {
                 <span key={t} className="web-tag web-tag-custom">{t}</span>
               ))}
             </div>
+            {web.relatedArticles && web.relatedArticles.length > 0 && (
+              <div className="web-card-articles">
+                <span className="web-card-articles-label">📄 关联文章 {web.relatedArticles.length} 篇</span>
+                <div className="web-card-articles-list">
+                  {web.relatedArticles.map((a, i) => (
+                    <a key={i} href={a.url} target="_blank" rel="noopener noreferrer" className="web-card-article-item" onClick={e => e.stopPropagation()}>
+                      <span className="web-card-article-dot" />
+                      <span className="web-card-article-title">{a.title}</span>
+                      <svg className="web-card-article-icon" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
             <div className="web-card-rating">{'★'.repeat(web.rate)}{'☆'.repeat(5 - web.rate)}</div>
             <div className="web-card-actions">
               <button className="web-bar-btn" title="编辑"
@@ -524,6 +538,21 @@ export function Websites() {
               <input type="number" min={1} max={5} value={newWeb.rate} onChange={e => setNewWeb({ ...newWeb, rate: Number(e.target.value) })} />
               <label>标签</label>
               <TagSelect value={newWeb.tag} onChange={v => setNewWeb({ ...newWeb, tag: v })} tags={tags} />
+
+              {/* 关联文章 */}
+              <label>关联文章</label>
+              <div className="web-article-editor">
+                {newWeb.relatedArticles.map((a, i) => (
+                  <div key={i} className="web-article-row">
+                    <input className="web-article-title-input" value={a.title} placeholder="文章标题"
+                      onChange={e => { const arts = [...newWeb.relatedArticles]; arts[i] = { ...arts[i], title: e.target.value }; setNewWeb({ ...newWeb, relatedArticles: arts }) }} />
+                    <input className="web-article-url-input" value={a.url} placeholder="文章链接"
+                      onChange={e => { const arts = [...newWeb.relatedArticles]; arts[i] = { ...arts[i], url: e.target.value }; setNewWeb({ ...newWeb, relatedArticles: arts }) }} />
+                    <button className="web-article-remove-btn" onClick={() => setNewWeb({ ...newWeb, relatedArticles: newWeb.relatedArticles.filter((_, j) => j !== i) })}>×</button>
+                  </div>
+                ))}
+                <button className="web-article-add-btn" onClick={() => setNewWeb({ ...newWeb, relatedArticles: [...newWeb.relatedArticles, { title: '', url: '' }] })}>+ 添加文章</button>
+              </div>
             </div>
             <div className="admin-modal-actions">
               <button className="admin-btn-primary" onClick={addWeb}>添加</button>
@@ -552,6 +581,21 @@ export function Websites() {
               <input type="number" min={1} max={5} value={editItem.rate} onChange={e => setEditItem({ ...editItem, rate: Number(e.target.value) })} />
               <label>标签</label>
               <TagSelect value={editItem.tag || ''} onChange={v => setEditItem({ ...editItem, tag: v })} tags={tags} />
+
+              {/* 关联文章 */}
+              <label>关联文章</label>
+              <div className="web-article-editor">
+                {(editItem.relatedArticles || []).map((a, i) => (
+                  <div key={i} className="web-article-row">
+                    <input className="web-article-title-input" value={a.title} placeholder="文章标题"
+                      onChange={e => { const arts = [...(editItem.relatedArticles || [])]; arts[i] = { ...arts[i], title: e.target.value }; setEditItem({ ...editItem, relatedArticles: arts }) }} />
+                    <input className="web-article-url-input" value={a.url} placeholder="文章链接"
+                      onChange={e => { const arts = [...(editItem.relatedArticles || [])]; arts[i] = { ...arts[i], url: e.target.value }; setEditItem({ ...editItem, relatedArticles: arts }) }} />
+                    <button className="web-article-remove-btn" onClick={() => setEditItem({ ...editItem, relatedArticles: (editItem.relatedArticles || []).filter((_, j) => j !== i) })}>×</button>
+                  </div>
+                ))}
+                <button className="web-article-add-btn" onClick={() => setEditItem({ ...editItem, relatedArticles: [...(editItem.relatedArticles || []), { title: '', url: '' }] })}>+ 添加文章</button>
+              </div>
             </div>
             <div className="admin-modal-actions">
               <button className="admin-btn-primary" onClick={saveEdit}>保存</button>

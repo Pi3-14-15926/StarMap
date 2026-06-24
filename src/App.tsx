@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, lazy, Suspense } from 'react'
+import { useState, useMemo, useCallback, useEffect, lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { StoreProvider, useStore } from './store'
 import { resolveIconUrl } from './admin/services/iconUrl'
@@ -28,7 +28,17 @@ function NavContent() {
 
   const [searchKeyword, setSearchKeyword] = useState('')
   const [sortBy, setSortBy] = useState('默认排序')
-  const [isDark, setIsDark] = useState(false)
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem('starmap_theme')
+    return saved === 'dark'
+  })
+  const [mobileSiderOpen, setMobileSiderOpen] = useState(false)
+
+  // 应用主题
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light')
+    localStorage.setItem('starmap_theme', isDark ? 'dark' : 'light')
+  }, [isDark])
 
   /* 加载标签数据 */
   const [tags] = useState<TagItem[]>(() => {
@@ -257,6 +267,11 @@ function NavContent() {
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Header */}
       <header className="app-header">
+        <button className="mobile-menu-btn" onClick={() => setMobileSiderOpen(true)}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M3 12h18M3 6h18M3 18h18" />
+          </svg>
+        </button>
         <div className="header-logo">
           <img src="/favicon.png" alt="StarMap" width="32" height="32" />
           <div>
@@ -320,6 +335,32 @@ function NavContent() {
           {publishMsg}
         </div>
       )}
+
+      {/* 移动端分类侧边栏 */}
+      <div className={`mobile-sider-mask ${mobileSiderOpen ? 'open' : ''}`} onClick={() => setMobileSiderOpen(false)} />
+      <div className={`mobile-sider-drawer ${mobileSiderOpen ? 'open' : ''}`}>
+        <div className="mobile-sider-header">
+          <img src="/favicon.png" alt="StarMap" width="28" height="28" />
+          <span className="mobile-sider-title">{settings.title || 'StarMap'}</span>
+          <button className="mobile-sider-close" onClick={() => setMobileSiderOpen(false)}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <nav className="mobile-sider-nav">
+          {navData.map((cat) => (
+            <button key={cat.id} onClick={() => { setSelectedCategoryId(cat.id); setMobileSiderOpen(false) }}
+              className={`mobile-sider-item ${selectedCategoryId === cat.id ? 'active' : ''}`}>
+              <span className="mobile-sider-icon">{cat.icon}</span>
+              <span className="mobile-sider-label">
+                <span className="mobile-sider-name">{cat.title}</span>
+                <span className="mobile-sider-count">{getCategoryCount(cat)}</span>
+              </span>
+            </button>
+          ))}
+        </nav>
+      </div>
 
       <div className="app-body">
         {/* Sidebar */}
@@ -447,6 +488,20 @@ function NavContent() {
                             </div>
                           </div>
                         </a>
+                        {site.relatedArticles && site.relatedArticles.length > 0 && (
+                          <div className="site-card-articles">
+                            <span className="site-card-articles-label">📄 关联文章 {site.relatedArticles.length} 篇</span>
+                            <div className="site-card-articles-list">
+                              {site.relatedArticles.map((a, i) => (
+                                <a key={i} href={a.url} target="_blank" rel="noopener noreferrer" className="site-card-article-item" onClick={e => e.stopPropagation()}>
+                                  <span className="site-card-article-dot" />
+                                  <span className="site-card-article-title">{a.title}</span>
+                                  <svg className="site-card-article-icon" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                         {isLoggedIn && (
                           <div className="site-card-bar">
                             <button className="site-bar-btn" title="编辑"
