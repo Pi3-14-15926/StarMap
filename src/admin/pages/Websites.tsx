@@ -92,17 +92,22 @@ export function Websites() {
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
   const [editItem, setEditItem] = useState<FlatWeb | null>(null)
   const [showAddForm, setShowAddForm] = useState(false)
-  const [newWeb, setNewWeb] = useState({ name: '', desc: '', url: '', icon: '', rate: 5, tag: '', catId: 0, subId: 0, relatedArticles: [] as RelatedArticle[] })
+  const [newWeb, setNewWeb] = useState({ name: '', desc: '', url: '', icon: '', rate: 5, tag: '', catId: 0, subId: 0, relatedArticles: [] as RelatedArticle[], hidden: false })
   const [crawling, setCrawling] = useState(false)
   const [checking, setChecking] = useState(false)
   const [checkProgress, setCheckProgress] = useState({ total: 0, done: 0, fail: 0, current: '' })
   const [failedUrls, setFailedUrls] = useState<Set<string>>(new Set())
   const [moveModal, setMoveModal] = useState<{ catId: number; subId: number; webName: string } | null>(null)
   const [moveTarget, setMoveTarget] = useState({ catId: 0, subId: 0, copy: false })
+  const [page, setPage] = useState(1)
+  const PAGE_SIZE = 20
   const { confirm } = useConfirm()
   const toast = useToast()
 
   useEffect(() => { loadData() }, [])
+
+  // 筛选/排序变化时重置页码
+  useEffect(() => { setPage(1) }, [search, filterCat, filterSub, sortBy])
 
   const loadData = async () => {
     setLoading(true)
@@ -162,6 +167,18 @@ export function Websites() {
     else if (sortBy === 'rating') result = [...result].sort((a, b) => b.rate - a.rate)
     return result
   }, [allWebs, search, filterCat, filterSub, sortBy, failedUrls])
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
+  const paged = useMemo(() => {
+    const start = (page - 1) * PAGE_SIZE
+    return filtered.slice(start, start + PAGE_SIZE)
+  }, [filtered, page])
+
+  const pageNumbers = useMemo(() => {
+    if (totalPages <= 7) return Array.from({ length: totalPages }, (_, i) => i + 1)
+    const set = new Set<number>([1, totalPages, page, page - 1, page + 1])
+    return [...set].filter(n => n >= 1 && n <= totalPages).sort((a, b) => a - b)
+  }, [totalPages, page])
 
   const handleSave = async () => {
     setSaving(true)
@@ -251,11 +268,11 @@ export function Websites() {
         ...cat,
         children: cat.children.map(sub => {
           if (sub.id !== newWeb.subId) return sub
-          return { ...sub, nav: [...sub.nav, { name: newWeb.name, desc: newWeb.desc, url: newWeb.url, icon: newWeb.icon, rate: newWeb.rate, tag: newWeb.tag, relatedArticles: newWeb.relatedArticles.length > 0 ? newWeb.relatedArticles : undefined }] }
+          return { ...sub, nav: [...sub.nav, { name: newWeb.name, desc: newWeb.desc, url: newWeb.url, icon: newWeb.icon, rate: newWeb.rate, tag: newWeb.tag, relatedArticles: newWeb.relatedArticles.length > 0 ? newWeb.relatedArticles : undefined, hidden: newWeb.hidden || undefined }] }
         }),
       }
     }))
-    setNewWeb({ name: '', desc: '', url: '', icon: '', rate: 5, tag: '', catId: newWeb.catId, subId: newWeb.subId, relatedArticles: [] })
+    setNewWeb({ name: '', desc: '', url: '', icon: '', rate: 5, tag: '', catId: newWeb.catId, subId: newWeb.subId, relatedArticles: [], hidden: false })
     setShowAddForm(false)
     setMessage('✅ 已添加（保存后生效）')
   }
@@ -350,7 +367,7 @@ export function Websites() {
       ...cat,
       children: cat.children.map(sub => ({
         ...sub,
-        nav: sub.nav.map(w => (w.name === editItem._oldName ? { name: editItem.name, desc: editItem.desc, url: editItem.url, icon: editItem.icon, rate: editItem.rate, tag: editItem.tag, relatedArticles: editItem.relatedArticles && editItem.relatedArticles.length > 0 ? editItem.relatedArticles : undefined } : w)),
+        nav: sub.nav.map(w => (w.name === editItem._oldName ? { name: editItem.name, desc: editItem.desc, url: editItem.url, icon: editItem.icon, rate: editItem.rate, tag: editItem.tag, relatedArticles: editItem.relatedArticles && editItem.relatedArticles.length > 0 ? editItem.relatedArticles : undefined, hidden: editItem.hidden || undefined } : w)),
       })),
     })))
     setEditItem(null)
@@ -419,8 +436,8 @@ export function Websites() {
 
       {/* 网站卡片 */}
       <div className={viewMode === 'grid' ? 'web-grid' : 'web-list'}>
-        {filtered.map((web) => (
-          <div key={`${web.subId}-${web.name}`} className={`web-card ${viewMode === 'list' ? 'web-card-list' : ''}`}>
+        {paged.map((web) => (
+          <div key={`${web.subId}-${web.name}`} className={`web-card ${viewMode === 'list' ? 'web-card-list' : ''} ${web.hidden ? 'web-card-hidden' : ''}`}>
             <div className="web-card-top">
               <img
                 src={web.icon}
@@ -430,6 +447,7 @@ export function Websites() {
               />
               <div className="web-card-info">
                 <div className="web-card-name">{web.name}</div>
+                {web.hidden && <span className="cat-hidden-badge">隐藏</span>}
                 <div className="web-card-url">{web.url}</div>
               </div>
               {web.url && (
@@ -499,6 +517,23 @@ export function Websites() {
         ))}
       </div>
 
+      {/* 分页 */}
+      {totalPages > 1 && (
+        <div className="web-pagination">
+          <span className="web-page-info">共 {filtered.length} 项，第 {page}/{totalPages} 页</span>
+          <div className="web-page-btns">
+            <button className="web-page-btn" disabled={page === 1} onClick={() => setPage(page - 1)}>‹</button>
+            {pageNumbers.map((n, i) => (
+              <span key={n}>
+                {i > 0 && n - pageNumbers[i - 1] > 1 && <span className="web-page-ellipsis">…</span>}
+                <button className={`web-page-btn ${n === page ? 'active' : ''}`} onClick={() => setPage(n)}>{n}</button>
+              </span>
+            ))}
+            <button className="web-page-btn" disabled={page === totalPages} onClick={() => setPage(page + 1)}>›</button>
+          </div>
+        </div>
+      )}
+
       {filtered.length === 0 && (
         <div className="web-empty">
           <div className="web-empty-icon">📭</div>
@@ -553,6 +588,15 @@ export function Websites() {
                 ))}
                 <button className="web-article-add-btn" onClick={() => setNewWeb({ ...newWeb, relatedArticles: [...newWeb.relatedArticles, { title: '', url: '' }] })}>+ 添加文章</button>
               </div>
+
+              {/* 隐藏开关 */}
+              <label className="cat-hidden-toggle">
+                <span>隐藏</span>
+                <div className={`toggle-switch ${newWeb.hidden ? 'on' : ''}`} onClick={() => setNewWeb({ ...newWeb, hidden: !newWeb.hidden })}>
+                  <div className="toggle-knob" />
+                </div>
+                <span className="toggle-hint">{newWeb.hidden ? '已隐藏' : '显示中'}</span>
+              </label>
             </div>
             <div className="admin-modal-actions">
               <button className="admin-btn-primary" onClick={addWeb}>添加</button>
@@ -596,6 +640,15 @@ export function Websites() {
                 ))}
                 <button className="web-article-add-btn" onClick={() => setEditItem({ ...editItem, relatedArticles: [...(editItem.relatedArticles || []), { title: '', url: '' }] })}>+ 添加文章</button>
               </div>
+
+              {/* 隐藏开关 */}
+              <label className="cat-hidden-toggle">
+                <span>隐藏</span>
+                <div className={`toggle-switch ${editItem.hidden ? 'on' : ''}`} onClick={() => setEditItem({ ...editItem, hidden: !editItem.hidden })}>
+                  <div className="toggle-knob" />
+                </div>
+                <span className="toggle-hint">{editItem.hidden ? '已隐藏' : '显示中'}</span>
+              </label>
             </div>
             <div className="admin-modal-actions">
               <button className="admin-btn-primary" onClick={saveEdit}>保存</button>

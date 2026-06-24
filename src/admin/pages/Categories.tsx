@@ -9,7 +9,7 @@ export function Categories() {
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [selected, setSelected] = useState<Set<string>>(new Set())
-  const [editModal, setEditModal] = useState<{ type: 'cat' | 'sub'; catId: number; subId?: number; title: string; icon: string } | null>(null)
+  const [editModal, setEditModal] = useState<{ type: 'cat' | 'sub'; catId: number; subId?: number; title: string; icon: string; hidden?: boolean } | null>(null)
   const [moveModal, setMoveModal] = useState<{ catId: number; subId: number; subTitle: string } | null>(null)
   const [addCatModal, setAddCatModal] = useState(false)
   const [addSubModal, setAddSubModal] = useState<number | null>(null)
@@ -128,13 +128,13 @@ export function Categories() {
     if (!editModal.title.trim()) { toast.error('名称不能为空'); return }
     if (editModal.type === 'cat') {
       setData((prev) => prev.map((cat) =>
-        cat.id === editModal.catId ? { ...cat, title: editModal.title.trim(), icon: editModal.icon.trim() || cat.icon } : cat
+        cat.id === editModal.catId ? { ...cat, title: editModal.title.trim(), icon: editModal.icon.trim() || cat.icon, hidden: editModal.hidden } : cat
       ))
     } else {
       setData((prev) => prev.map((cat) => {
         if (cat.id !== editModal.catId) return cat
         return { ...cat, children: cat.children.map((sub) =>
-          sub.id === editModal.subId ? { ...sub, title: editModal.title.trim() } : sub
+          sub.id === editModal.subId ? { ...sub, title: editModal.title.trim(), hidden: editModal.hidden } : sub
         ) }
       }))
     }
@@ -162,6 +162,33 @@ export function Categories() {
     }))
     setMoveModal(null)
     toast.success('已移动')
+  }
+
+  /* 一级分类排序 */
+  const moveCat = (catId: number, dir: -1 | 1) => {
+    setData((prev) => {
+      const idx = prev.findIndex(c => c.id === catId)
+      if (idx < 0) return prev
+      const target = idx + dir
+      if (target < 0 || target >= prev.length) return prev
+      const next = [...prev]
+      ;[next[idx], next[target]] = [next[target], next[idx]]
+      return next
+    })
+  }
+
+  /* 二级分类排序 */
+  const moveSub = (catId: number, subId: number, dir: -1 | 1) => {
+    setData((prev) => prev.map(cat => {
+      if (cat.id !== catId) return cat
+      const idx = cat.children.findIndex(s => s.id === subId)
+      if (idx < 0) return cat
+      const target = idx + dir
+      if (target < 0 || target >= cat.children.length) return cat
+      const next = [...cat.children]
+      ;[next[idx], next[target]] = [next[target], next[idx]]
+      return { ...cat, children: next }
+    }))
   }
 
   /* 添加一级分类 */
@@ -227,17 +254,20 @@ export function Categories() {
           const siteCount = cat.children.reduce((a, s) => a + s.nav.length, 0)
           const catSelected = selected.has(`cat-${cat.id}`)
           return (
-            <div key={cat.id} className="cat-card">
+            <div key={cat.id} className={`cat-card ${cat.hidden ? 'cat-hidden' : ''}`}>
               <div className="cat-card-header">
                 <div className="cat-card-left">
                   <input type="checkbox" checked={catSelected}
                     onChange={() => toggleSelect(`cat-${cat.id}`)} />
                   <span className="cat-card-icon">{cat.icon}</span>
                   <span className="cat-card-name">{cat.title}</span>
+                  {cat.hidden && <span className="cat-hidden-badge">隐藏</span>}
                   <span className="cat-card-badge">{cat.children.length} 子分类 · {siteCount} 网站</span>
                 </div>
                 <div className="cat-card-right">
-                  <button className="cat-action-btn" onClick={() => setEditModal({ type: 'cat', catId: cat.id, title: cat.title, icon: cat.icon })} title="编辑">✏️</button>
+                  <button className="cat-action-btn" onClick={() => moveCat(cat.id, -1)} title="上移" disabled={data[0]?.id === cat.id}>▲</button>
+                  <button className="cat-action-btn" onClick={() => moveCat(cat.id, 1)} title="下移" disabled={data[data.length - 1]?.id === cat.id}>▼</button>
+                  <button className="cat-action-btn" onClick={() => setEditModal({ type: 'cat', catId: cat.id, title: cat.title, icon: cat.icon, hidden: cat.hidden })} title="编辑">✏️</button>
                   <button className="cat-action-btn" onClick={() => setAddSubModal(cat.id)} title="添加子分类">+</button>
                   <button className="cat-action-btn danger" onClick={() => deleteCat(cat.id, cat.title)} title="删除">×</button>
                 </div>
@@ -247,14 +277,16 @@ export function Categories() {
                 {cat.children.map((sub) => {
                   const subSelected = selected.has(`sub-${cat.id}-${sub.id}`)
                   return (
-                    <div key={sub.id} className="cat-sub-item">
+                    <div key={sub.id} className={`cat-sub-item ${sub.hidden ? 'cat-hidden' : ''}`}>
                       <input type="checkbox" checked={subSelected}
                         onChange={() => toggleSelect(`sub-${cat.id}-${sub.id}`)} />
                       <span className="cat-sub-dot" />
                       <span className="cat-sub-name">{sub.title}</span>
                       <span className="cat-sub-count">{sub.nav.length}</span>
                       <div className="cat-sub-actions">
-                        <button className="cat-sub-btn" onClick={() => setEditModal({ type: 'sub', catId: cat.id, subId: sub.id, title: sub.title, icon: '' })} title="编辑">✏️</button>
+                        <button className="cat-sub-btn" onClick={() => moveSub(cat.id, sub.id, -1)} title="上移" disabled={cat.children[0]?.id === sub.id}>▲</button>
+                        <button className="cat-sub-btn" onClick={() => moveSub(cat.id, sub.id, 1)} title="下移" disabled={cat.children[cat.children.length - 1]?.id === sub.id}>▼</button>
+                        <button className="cat-sub-btn" onClick={() => setEditModal({ type: 'sub', catId: cat.id, subId: sub.id, title: sub.title, icon: '', hidden: sub.hidden })} title="编辑">✏️</button>
                         <button className="cat-sub-btn" onClick={() => setMoveModal({ catId: cat.id, subId: sub.id, subTitle: sub.title })} title="移动">↗️</button>
                         <button className="cat-sub-btn danger" onClick={() => deleteSub(cat.id, sub.id, sub.title)} title="删除">×</button>
                       </div>
@@ -290,6 +322,13 @@ export function Categories() {
               <label>名称</label>
               <input value={editModal.title} onChange={(e) => setEditModal({ ...editModal, title: e.target.value })}
                 onKeyDown={(e) => e.key === 'Enter' && saveEdit()} autoFocus />
+              <label className="cat-hidden-toggle">
+                <span>隐藏</span>
+                <div className={`toggle-switch ${editModal.hidden ? 'on' : ''}`} onClick={() => setEditModal({ ...editModal, hidden: !editModal.hidden })}>
+                  <div className="toggle-knob" />
+                </div>
+                <span className="toggle-hint">{editModal.hidden ? '已隐藏' : '显示中'}</span>
+              </label>
             </div>
             <div className="cm-actions">
               <button className="admin-btn" onClick={() => setEditModal(null)}>取消</button>

@@ -1,5 +1,6 @@
 /* GitHub API 服务 - 使用 Token 读写仓库文件 */
 import { getToken, getRepoInfo } from './auth'
+import { localApi } from './local'
 
 const GITHUB_API = 'https://api.github.com'
 
@@ -142,7 +143,7 @@ async function commitFilesBatch(files: { path: string; content: string }[], mess
   }
 }
 
-/** 将所有数据提交到仓库，触发 GitHub Pages 重新构建 */
+/** 将 localStorage 中的所有数据提交到仓库，触发 GitHub Pages 重新构建 */
 export async function commitAllData(): Promise<{ files: number; repo: string }> {
   const token = getToken()
   if (!token) throw new Error('未登录，请先登录')
@@ -151,18 +152,12 @@ export async function commitAllData(): Promise<{ files: number; repo: string }> 
 
   const enc = (obj: any) => JSON.stringify(obj, null, 2)
 
-  // 读取所有数据
-  const [dbRes, settingsRes, searchRes, tagRes] = await Promise.all([
-    api.getDb(),
-    api.getSettings(),
-    api.getSearch(),
-    api.getTags(),
-  ])
-
-  const db = dbRes?.content || []
-  const settings = settingsRes?.content || {}
-  const search = searchRes?.content || []
-  const tags = tagRes?.content || []
+  // 从 localStorage 读取所有数据（而非 GitHub）
+  const local = localApi.exportAll()
+  const db = local.db
+  const settings = local.settings
+  const search = local.search
+  const tags = local.tags
 
   if (!db.length) throw new Error('没有数据可提交')
 

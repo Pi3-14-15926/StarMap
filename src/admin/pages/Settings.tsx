@@ -146,6 +146,46 @@ export function Settings() {
         </div>
       </section>
 
+      {/* 导航跳转卡片 */}
+      <section className="settings-card">
+        <header className="card-head">
+          <div className="card-icon" style={{ background: 'linear-gradient(135deg, #4F8CFF, #8C6CFF)', boxShadow: '0 6px 20px rgba(79,140,255,0.28)' }}>🧭</div>
+          <div>
+            <h3 className="card-title">导航跳转卡片</h3>
+            <p className="card-desc">配置首页顶部的快捷导航按钮，最多 3 个</p>
+          </div>
+        </header>
+
+        {[0, 1, 2].map((i) => {
+          const cards = (settings.navCards || []) as { title: string; icon: string; url: string }[]
+          const card = cards[i] || { title: '', icon: '', url: '' }
+          return (
+            <div key={i} className="nav-card-row">
+              <span className="nav-card-idx">{i + 1}</span>
+              <input className="field-input" style={{ width: 80 }} value={card.icon} placeholder="图标"
+                onChange={(e) => {
+                  const newCards = [...cards]
+                  newCards[i] = { ...newCards[i], icon: e.target.value }
+                  update('navCards', newCards)
+                }} />
+              <input className="field-input" style={{ flex: 1 }} value={card.title} placeholder="按钮标题"
+                onChange={(e) => {
+                  const newCards = [...cards]
+                  newCards[i] = { ...newCards[i], title: e.target.value }
+                  update('navCards', newCards)
+                }} />
+              <input className="field-input" style={{ flex: 2 }} value={card.url} placeholder="跳转链接，如 https://example.com"
+                onChange={(e) => {
+                  const newCards = [...cards]
+                  newCards[i] = { ...newCards[i], url: e.target.value }
+                  update('navCards', newCards)
+                }} />
+            </div>
+          )
+        })}
+        <p className="card-hint">留空的卡片不会显示。卡片将在首页顶部搜索框右侧展示。</p>
+      </section>
+
       {/* 图标 CDN 加速 */}
       <section className="settings-card">
         <header className="card-head">

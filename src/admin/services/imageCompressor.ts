@@ -76,3 +76,15 @@ export function fmtSize(bytes: number): string {
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
   return `${(bytes / 1024 / 1024).toFixed(2)} MB`
 }
+
+/** 根据网站名称生成安全文件名 */
+export function slugifyForIcon(name: string): string {
+  const base = (name || '').trim()
+  if (!base) return 'icon'
+  return base
+    .replace(/[\/\\:*?"<>|]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60) || 'icon'
+}

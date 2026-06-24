@@ -69,8 +69,8 @@ interface StoreState {
   setSelectedCategoryId: (id: number | null) => void
   selectedSubCategory: string | null
   setSelectedSubCategory: (title: string | null) => void
-  viewMode: 'grid' | 'list'
-  setViewMode: (mode: 'grid' | 'list') => void
+  viewMode: 'grid' | 'list' | 'compact'
+  setViewMode: (mode: 'grid' | 'list' | 'compact') => void
   sortBy: string
   setSortBy: (sort: string) => void
   /* 前台编辑 */
@@ -93,7 +93,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(
     (defaultNavData as NavData)[0]?.children?.[0]?.title || null
   )
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
+  const [viewMode, setViewMode] = useState<'grid' | 'list' | 'compact'>('grid')
   const [sortBy, setSortBy] = useState<string>('默认排序')
   const [isLoggedIn, setIsLoggedIn] = useState(() => isAuthenticated())
   const [currentUser, setCurrentUser] = useState<GitHubUser | null>(() => getCurrentUser())

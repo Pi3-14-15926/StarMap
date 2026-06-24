@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react'
 import { api } from '../services/data'
+import { localApi } from '../services/local'
 import { commitAllData } from '../services/github'
 import { getRepoDisplay, isAuthenticated } from '../services/auth'
 
@@ -109,8 +110,8 @@ export function ImportExport() {
   /* 恢复默认 - 重置所有设置为初始值 */
   const handleResetDefaults = async () => {
     try {
-      localStorage.removeItem('starmap_local_settings')
-      showMessage('✅ 设置已恢复为默认值')
+      localApi.resetAll()
+      showMessage('✅ 所有数据已恢复为默认值')
     } catch (e: any) {
       showMessage(`❌ 恢复失败: ${e.message}`)
     }

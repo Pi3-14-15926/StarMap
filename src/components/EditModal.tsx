@@ -1,7 +1,7 @@
 /* 前台编辑弹窗 - 复用后台 admin-modal 样式 + 自动爬取 + 图标上传/选择 */
 import { useState, useEffect, useRef, useMemo } from 'react'
 import { crawlWebsite, isCrawlAvailable } from '../admin/services/crawl'
-import { compressImage, blobToBase64 } from '../admin/services/imageCompressor'
+import { compressImage, blobToBase64, slugifyForIcon } from '../admin/services/imageCompressor'
 import { uploadIcon, listIcons, type IconListItem } from '../admin/services/iconsApi'
 import { resolveIconUrl } from '../admin/services/iconUrl'
 import { isAuthenticated } from '../admin/services/auth'
@@ -190,6 +190,7 @@ export function EditWebModal({ visible, title, data, subId, allCategories, allTa
   const [iconPickerOpen, setIconPickerOpen] = useState(false)
   const [dragOver, setDragOver] = useState(false)
   const [relatedArticles, setRelatedArticles] = useState<RelatedArticle[]>([])
+  const [hidden, setHidden] = useState(false)
   const nameRef = useRef<HTMLInputElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -205,6 +206,7 @@ export function EditWebModal({ visible, title, data, subId, allCategories, allTa
       setRate(data?.rate ?? 5)
       setTag(data?.tag || '')
       setRelatedArticles(data?.relatedArticles || [])
+      setHidden(data?.hidden || false)
       setCrawling(false)
       setUploading(false)
       if (isAdd && allCategories?.length) {
@@ -255,7 +257,10 @@ export function EditWebModal({ visible, title, data, subId, allCategories, allTa
     try {
       const compressed = await compressImage(file, { maxSize: 256, quality: 0.85 })
       const base64 = await blobToBase64(compressed.blob)
-      const result = await uploadIcon(compressed.filename, base64)
+      const ext = compressed.filename.split('.').pop() || 'webp'
+      const slug = slugifyForIcon(name)
+      const finalName = `${slug}.${ext}`
+      const result = await uploadIcon(finalName, base64)
       setIcon(result.rawUrl)
     } catch { /* 静默 */ }
     finally { setUploading(false) }
@@ -279,6 +284,7 @@ export function EditWebModal({ visible, title, data, subId, allCategories, allTa
       rate,
       tag: tag.trim() || undefined,
       relatedArticles: relatedArticles.length > 0 ? relatedArticles : undefined,
+      hidden: hidden || undefined,
     }, isAdd ? targetSubId : undefined)
   }
 
@@ -368,6 +374,15 @@ export function EditWebModal({ visible, title, data, subId, allCategories, allTa
             ))}
             <button type="button" className="web-article-add-btn" onClick={() => setRelatedArticles([...relatedArticles, { title: '', url: '' }])}>+ 添加文章</button>
           </div>
+
+          {/* 隐藏开关 */}
+          <label className="cat-hidden-toggle">
+            <span>隐藏</span>
+            <div className={`toggle-switch ${hidden ? 'on' : ''}`} onClick={() => setHidden(!hidden)}>
+              <div className="toggle-knob" />
+            </div>
+            <span className="toggle-hint">{hidden ? '已隐藏' : '显示中'}</span>
+          </label>
         </div>
         <div className="admin-modal-actions">
           {onDelete && (
@@ -398,18 +413,20 @@ interface EditCategoryModalProps {
   visible: boolean
   title: string
   data?: SubCategory
-  onSave: (title: string) => void
+  onSave: (title: string, hidden?: boolean) => void
   onDelete?: () => void
   onClose: () => void
 }
 
 export function EditCategoryModal({ visible, title, data, onSave, onDelete, onClose }: EditCategoryModalProps) {
   const [name, setName] = useState('')
+  const [hidden, setHidden] = useState(false)
   const nameRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (visible) {
       setName(data?.title || '')
+      setHidden(data?.hidden || false)
       setTimeout(() => nameRef.current?.focus(), 100)
     }
   }, [visible, data])
@@ -419,7 +436,7 @@ export function EditCategoryModal({ visible, title, data, onSave, onDelete, onCl
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!name.trim()) return
-    onSave(name.trim())
+    onSave(name.trim(), hidden)
   }
 
   return (
@@ -429,6 +446,13 @@ export function EditCategoryModal({ visible, title, data, onSave, onDelete, onCl
         <div className="admin-modal-form">
           <label>子分类名称 <span style={{ color: '#E53935' }}>*</span></label>
           <input ref={nameRef} value={name} onChange={e => setName(e.target.value)} placeholder="输入子分类名称" />
+          <label className="cat-hidden-toggle">
+            <span>隐藏</span>
+            <div className={`toggle-switch ${hidden ? 'on' : ''}`} onClick={() => setHidden(!hidden)}>
+              <div className="toggle-knob" />
+            </div>
+            <span className="toggle-hint">{hidden ? '已隐藏' : '显示中'}</span>
+          </label>
         </div>
         <div className="admin-modal-actions">
           {onDelete && (

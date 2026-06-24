@@ -2430,6 +2430,59 @@
   border-left: 1px solid #EDF1F5;
 }
 
+/* ===== 网站管理分页 ===== */
+.web-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 0;
+}
+.web-page-info {
+  font-size: 13px;
+  color: #86909C;
+  margin-right: 4px;
+}
+.web-page-btns {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.web-page-btn {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid #EDF1F5;
+  border-radius: 8px;
+  background: #fff;
+  color: #4E5969;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.web-page-btn:hover:not(:disabled):not(.active) {
+  background: #F2F3F5;
+  color: #1D2129;
+  border-color: #C9CDD4;
+}
+.web-page-btn.active {
+  background: linear-gradient(135deg, #4F8CFF, #8C6CFF);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(79,140,255,0.28);
+}
+.web-page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.web-page-ellipsis {
+  min-width: 24px;
+  text-align: center;
+  color: #C9CDD4;
+  font-size: 14px;
+}
+
 .web-empty {
   display: flex;
   flex-direction: column;
@@ -2814,6 +2867,17 @@
   background: #F9FAFB;
   border-color: #D1D5DB;
   color: #1F2937;
+}
+.cat-action-btn:disabled,
+.cat-sub-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.cat-action-btn:disabled:hover,
+.cat-sub-btn:disabled:hover {
+  background: none;
+  border-color: #EDF1F5;
+  color: inherit;
 }
 
 .cat-action-btn.danger {
@@ -3477,6 +3541,77 @@
 
 .tag-mobile-list { display: none; }
 
+/* ===== 隐藏开关组件 ===== */
+.cat-hidden-toggle {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+.toggle-switch {
+  width: 40px;
+  height: 22px;
+  border-radius: 11px;
+  background: #D0D5DD;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.toggle-switch.on {
+  background: #4F8CFF;
+}
+.toggle-knob {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+.toggle-switch.on .toggle-knob {
+  transform: translateX(18px);
+}
+.toggle-hint {
+  font-size: 12px;
+  color: #86909C;
+}
+
+/* ===== 隐藏徽章 ===== */
+.cat-hidden-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 4px;
+  background: #FFF3E0;
+  color: #E65100;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* ===== 变灰效果 ===== */
+.cat-hidden,
+.web-card-hidden {
+  opacity: 0.5;
+  filter: grayscale(0.6);
+}
+
+[data-theme='dark'] .cat-hidden-badge {
+  background: #3A2A10;
+  color: #FFB74D;
+}
+[data-theme='dark'] .toggle-switch {
+  background: #3A3A3D;
+}
+[data-theme='dark'] .toggle-switch.on {
+  background: #4F8CFF;
+}
+
 /* ===== 标签多选下拉 ===== */
 .tag-select {
   position: relative;
@@ -3886,6 +4021,31 @@
 
 .toggle-switch.on .toggle-knob {
   transform: translateX(20px);
+}
+
+/* === 导航跳转卡片配置行 === */
+.nav-card-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid #F0F2F5;
+}
+.nav-card-row:last-of-type {
+  border-bottom: none;
+}
+.nav-card-idx {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #4F8CFF, #8C6CFF);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 /* === 保存按钮区 === */
@@ -5047,6 +5207,18 @@
 [data-theme='dark'] .web-card-articles-label { color: #8A8A8E; }
 [data-theme='dark'] .web-card-article-dot { background: #3A3A3D; }
 
+/* 暗色 - 分页 */
+[data-theme='dark'] .web-page-btn {
+  background: #232326;
+  border-color: #3A3A3D;
+  color: #A9AEB8;
+}
+[data-theme='dark'] .web-page-btn:hover:not(:disabled):not(.active) {
+  background: #2A2A2E;
+  color: #E0E0E0;
+  border-color: #4A4A4D;
+}
+
 [data-theme='dark'] .check-stat-num {
   color: #F0F0F0;
 }
@@ -5628,6 +5800,12 @@
   .web-card-url { font-size: 10px; }
   .web-card-desc { font-size: 11px; -webkit-line-clamp: 2; }
   .web-card-actions .web-bar-btn { height: 32px; font-size: 12px; }
+
+  /* 分页 */
+  .web-pagination { justify-content: flex-start; flex-wrap: wrap; }
+  .web-page-btns { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .web-page-btn { min-width: 28px; height: 28px; font-size: 12px; padding: 0 6px; }
+
   .web-empty { padding: 2rem 1rem; }
 
   /* ===== 分类管理 (Categories) ===== */
@@ -5747,6 +5925,10 @@
 
   .favicon-row { flex-direction: column; align-items: stretch; gap: 8px; }
   .favicon-preview { align-self: flex-start; }
+
+  /* 导航卡片配置 */
+  .nav-card-row { flex-wrap: wrap; }
+  .nav-card-row .field-input { min-width: 100%; }
 
   /* 关联文章编辑器 */
   .web-article-row { flex-wrap: wrap; }

@@ -1,0 +1,50 @@
+// 此文件由 "写入默认" 功能自动生成，请勿手动修改
+import type { Settings } from '../types'
+
+export const DEFAULT_SETTINGS: Settings = {
+  "title": "StarMap",
+  "subtitle": "发现最好的工具与资源",
+  "description": "精选各种实用网站",
+  "keywords": "免费导航,开源导航",
+  "logo": "https://i.postimg.cc/j5yhCmXp/dog.png",
+  "favicon": "",
+  "theme": "auto",
+  "homeTitle": "StarMap",
+  "icp": "",
+  "footerHtml": "",
+  "showGithub": false,
+  "githubUrl": "https://github.com/your-username/StarMap",
+  "showRuntime": true,
+  "runtimeDate": "2026-06-18",
+  "showLogin": true,
+  "showRating": false,
+  "defaultSearchEngine": "google",
+  "iconCdnMode": "jsdelivr",
+  "iconCdnCustomBase": "",
+  "tags": [
+    "优选",
+    "神器",
+    "魔法",
+    "中文",
+    "English",
+    "GitHub"
+  ],
+  "colorPrimary": "#4F8CFF",
+  "hashMode": true,
+  "branch": "main",
+  "gitRepoUrl": "https://github.com/your-username/StarMap",
+  "imageRepoUrl": "",
+  "version": "1.0.0",
+  "navCards": [
+    {
+      "icon": "",
+      "title": "",
+      "url": "https://www.qiyinqin.com/"
+    },
+    {
+      "icon": "",
+      "title": "",
+      "url": "https://app.qiyinqin.cn/"
+    }
+  ]
+}

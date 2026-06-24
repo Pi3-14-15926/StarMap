@@ -15,6 +15,7 @@ export interface WebItem {
   rate: number
   tag?: string
   relatedArticles?: RelatedArticle[]
+  hidden?: boolean
 }
 
 /* 子分类（第2级） */
@@ -22,6 +23,7 @@ export interface SubCategory {
   title: string
   id: number
   nav: WebItem[]
+  hidden?: boolean
 }
 
 /* 顶级分类（第1级） */
@@ -30,9 +32,17 @@ export interface Category {
   id: number
   icon: string
   children: SubCategory[]
+  hidden?: boolean
 }
 
 export type NavData = Category[]
+
+/* 导航跳转卡片 */
+export interface NavCard {
+  title: string
+  icon: string
+  url: string
+}
 
 /* 搜索引擎 */
 export interface SearchEngine {
@@ -70,6 +80,7 @@ export interface Settings {
   version: string
   iconCdnMode?: 'jsdelivr' | 'statically' | 'githack' | 'custom' | 'none'
   iconCdnCustomBase?: string
+  navCards?: NavCard[]
 }
 
 /* 标签 */

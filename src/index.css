@@ -108,17 +108,13 @@ body {
   font-weight: 500;
   color: var(--text-secondary);
   transition: all var(--duration) var(--ease);
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .header-tab:hover {
   background: var(--primary-bg);
   color: var(--primary);
-}
-
-.header-tab.active {
-  background: var(--primary-gradient);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(79, 140, 255, 0.28);
 }
 
 /* 右侧操作 */
@@ -844,6 +840,120 @@ body {
 }
 .site-card-article-icon { flex-shrink: 0; opacity: 0.6; }
 
+/* ===== 紧凑卡片视图 ===== */
+.site-grid.compact {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+}
+.site-card-compact-wrap {
+  border-radius: 10px;
+}
+.site-card-compact {
+  padding: 10px;
+  border-radius: 10px;
+  gap: 0;
+}
+.site-card-compact .site-card-top {
+  gap: 8px;
+}
+.site-card-compact .site-card-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+}
+.site-card-compact .site-card-icon img {
+  width: 20px;
+  height: 20px;
+}
+.site-card-compact .site-card-info {
+  gap: 0;
+}
+.site-card-compact .site-card-header {
+  gap: 0;
+}
+.site-card-compact .site-card-name {
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== 隐藏开关组件（前台复用） ===== */
+.cat-hidden-toggle {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+.toggle-switch {
+  width: 40px;
+  height: 22px;
+  border-radius: 11px;
+  background: #D0D5DD;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.toggle-switch.on {
+  background: var(--primary, #4F8CFF);
+}
+.toggle-knob {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+.toggle-switch.on .toggle-knob {
+  transform: translateX(18px);
+}
+.toggle-hint {
+  font-size: 12px;
+  color: #86909C;
+}
+
+/* ===== 隐藏徽章 ===== */
+.cat-hidden-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 4px;
+  background: #FFF3E0;
+  color: #E65100;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* ===== 变灰效果 ===== */
+.sidebar-item-hidden {
+  opacity: 0.5;
+  filter: grayscale(0.6);
+}
+.sub-section-hidden {
+  opacity: 0.5;
+  filter: grayscale(0.6);
+}
+.site-card-hidden {
+  opacity: 0.5;
+  filter: grayscale(0.6);
+}
+
+[data-theme='dark'] .cat-hidden-badge {
+  background: #3A2A10;
+  color: #FFB74D;
+}
+[data-theme='dark'] .toggle-switch {
+  background: #3A3A3D;
+}
+
 /* ===== 添加子分类按钮 ===== */
 .add-cat-btn {
   height: 32px;
@@ -1385,20 +1495,27 @@ body {
   }
 
   .header-search {
-    width: 110px;
-    max-width: 110px;
+    width: auto;
+    min-width: 0;
+    max-width: 80px;
     height: 28px;
-    padding: 0 6px 0 24px;
+    padding: 0 6px 0 8px;
+    gap: 4px;
   }
 
   .header-search svg {
     width: 12px;
     height: 12px;
-    left: 6px;
+    flex-shrink: 0;
   }
 
   .header-search-input {
     font-size: 11px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
   }
 
   .header-shortcut {
@@ -1567,21 +1684,24 @@ body {
   }
 
   .header-search {
-    width: 90px;
-    max-width: 90px;
+    width: auto;
+    min-width: 0;
+    max-width: 70px;
     height: 26px;
-    padding: 0 5px 0 22px;
+    padding: 0 5px 0 6px;
+    gap: 3px;
     border-radius: var(--radius-full);
   }
 
   .header-search svg {
     width: 11px;
     height: 11px;
-    left: 5px;
+    flex-shrink: 0;
   }
 
   .header-search-input {
     font-size: 10px;
+    text-align: left;
   }
 
   .header-action-btn {

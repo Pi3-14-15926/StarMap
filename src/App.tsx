@@ -163,7 +163,7 @@ function NavContent() {
     setCatModal({ visible: true, data, editIdx: idx })
   }, [])
 
-  const handleSaveCat = useCallback((title: string) => {
+  const handleSaveCat = useCallback((title: string, hidden?: boolean) => {
     const { data, editIdx } = catModal
     if (!currentCategory) return
     const catIdx = navData.findIndex((c) => c.id === currentCategory.id)
@@ -171,10 +171,10 @@ function NavContent() {
     const newData = [...navData]
     const newChildren = [...newData[catIdx].children]
     if (data && editIdx != null) {
-      newChildren[editIdx] = { ...newChildren[editIdx], title }
+      newChildren[editIdx] = { ...newChildren[editIdx], title, hidden: hidden || undefined }
     } else {
       const maxId = navData.reduce((m, c) => Math.max(m, ...c.children.map((s) => s.id)), 0)
-      newChildren.push({ id: maxId + 1, title, nav: [] })
+      newChildren.push({ id: maxId + 1, title, nav: [], hidden: hidden || undefined })
     }
     newData[catIdx] = { ...newData[catIdx], children: newChildren }
     updateNavData(newData)
@@ -285,19 +285,14 @@ function NavContent() {
             <circle cx="11" cy="11" r="8" />
             <path d="M21 21l-4.3-4.3" />
           </svg>
-          <input value={searchKeyword} onChange={(e) => setSearchKeyword(e.target.value)} placeholder="搜索网站、工具或资源..." className="header-search-input" />
+          <input value={searchKeyword} onChange={(e) => setSearchKeyword(e.target.value)} placeholder="搜索..." className="header-search-input" />
         </div>
 
         <nav className="header-tabs">
-          {[
-            { key: 'nav', label: '导航', icon: '🧭' },
-            { key: 'software', label: '软件', icon: '📦' },
-            { key: 'tools', label: '工具', icon: '🛠' },
-            { key: 'blog', label: '博客', icon: '📝' },
-          ].map((tab) => (
-            <button key={tab.key} onClick={() => setCurrentModule(tab.key as any)} className={`header-tab ${currentModule === tab.key ? 'active' : ''}`}>
-              <span>{tab.icon}</span><span>{tab.label}</span>
-            </button>
+          {(settings.navCards || []).filter(c => c.title && c.url).map((card, i) => (
+            <a key={i} href={card.url} target="_blank" rel="noopener noreferrer" className="header-tab">
+              <span>{card.icon}</span><span>{card.title}</span>
+            </a>
           ))}
         </nav>
 
@@ -349,9 +344,9 @@ function NavContent() {
           </button>
         </div>
         <nav className="mobile-sider-nav">
-          {navData.map((cat) => (
+          {navData.filter(cat => isLoggedIn || !cat.hidden).map((cat) => (
             <button key={cat.id} onClick={() => { setSelectedCategoryId(cat.id); setMobileSiderOpen(false) }}
-              className={`mobile-sider-item ${selectedCategoryId === cat.id ? 'active' : ''}`}>
+              className={`mobile-sider-item ${selectedCategoryId === cat.id ? 'active' : ''} ${cat.hidden ? 'sidebar-item-hidden' : ''}`}>
               <span className="mobile-sider-icon">{cat.icon}</span>
               <span className="mobile-sider-label">
                 <span className="mobile-sider-name">{cat.title}</span>
@@ -366,9 +361,9 @@ function NavContent() {
         {/* Sidebar */}
         <aside className="app-sidebar">
           <nav className="sidebar-nav">
-            {navData.map((cat) => (
+            {navData.filter(cat => isLoggedIn || !cat.hidden).map((cat) => (
               <button key={cat.id} onClick={() => setSelectedCategoryId(cat.id)}
-                className={`sidebar-item ${selectedCategoryId === cat.id ? 'active' : ''}`}>
+                className={`sidebar-item ${selectedCategoryId === cat.id ? 'active' : ''} ${cat.hidden ? 'sidebar-item-hidden' : ''}`}>
                 <span className="sidebar-item-icon">{cat.icon}</span>
                 <span className="sidebar-item-title">{cat.title}</span>
                 <span className="sidebar-item-count">{getCategoryCount(cat)}</span>
@@ -411,11 +406,14 @@ function NavContent() {
                 </select>
               </div>
               <div className="view-toggle">
-                <button className={`view-btn ${viewMode === 'grid' ? 'active' : ''}`} onClick={() => setViewMode('grid')}>
+                <button className={`view-btn ${viewMode === 'grid' ? 'active' : ''}`} onClick={() => setViewMode('grid')} title="标准卡片">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1" /><rect x="9" y="1" width="6" height="6" rx="1" /><rect x="1" y="9" width="6" height="6" rx="1" /><rect x="9" y="9" width="6" height="6" rx="1" /></svg>
                 </button>
-                <button className={`view-btn ${viewMode === 'list' ? 'active' : ''}`} onClick={() => setViewMode('list')}>
+                <button className={`view-btn ${viewMode === 'list' ? 'active' : ''}`} onClick={() => setViewMode('list')} title="列表视图">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="2" width="14" height="3" rx="1" /><rect x="1" y="7" width="14" height="3" rx="1" /><rect x="1" y="12" width="14" height="3" rx="1" /></svg>
+                </button>
+                <button className={`view-btn ${viewMode === 'compact' ? 'active' : ''}`} onClick={() => setViewMode('compact')} title="紧凑视图">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="4" height="4" rx="1" /><rect x="6" y="1" width="4" height="4" rx="1" /><rect x="11" y="1" width="4" height="4" rx="1" /><rect x="1" y="6" width="4" height="4" rx="1" /><rect x="6" y="6" width="4" height="4" rx="1" /><rect x="11" y="6" width="4" height="4" rx="1" /><rect x="1" y="11" width="4" height="4" rx="1" /><rect x="6" y="11" width="4" height="4" rx="1" /><rect x="11" y="11" width="4" height="4" rx="1" /></svg>
                 </button>
               </div>
             </div>
@@ -424,8 +422,11 @@ function NavContent() {
             )}
           </div>
 
-          {subCategories.map((sub, subIdx) => {
+          {subCategories.filter(sub => isLoggedIn || !sub.hidden).map((sub, subIdx) => {
             let sites = sub.nav || []
+            if (!isLoggedIn) {
+              sites = sites.filter(s => !s.hidden)
+            }
             if (hiddenTagNames.size > 0) {
               sites = sites.filter((s) => !s.tag || !hiddenTagNames.has(s.tag))
             }
@@ -437,7 +438,7 @@ function NavContent() {
             }
             if (sites.length === 0 && !isLoggedIn) return null
             return (
-              <div key={sub.id} className="sub-section">
+              <div key={sub.id} className={`sub-section ${sub.hidden ? 'sub-section-hidden' : ''}`}>
                 <div className="sub-section-header">
                   <h2 className="sub-section-title">{sub.title}</h2>
                   <span className="sub-section-count">{sites.length}</span>
@@ -468,9 +469,10 @@ function NavContent() {
                 <div className={`site-grid ${viewMode}`}>
                   {sites.map((site, idx) => {
                     const origIdx = sub.nav.indexOf(site)
+                    const isCompact = viewMode === 'compact'
                     return (
-                      <div key={`${site.name}-${idx}`} className="site-card-wrap">
-                        <a href={site.url} target="_blank" rel="noopener noreferrer" className="site-card">
+                      <div key={`${site.name}-${idx}`} className={`site-card-wrap ${site.hidden ? 'site-card-hidden' : ''} ${isCompact ? 'site-card-compact-wrap' : ''}`}>
+                        <a href={site.url} target="_blank" rel="noopener noreferrer" className={`site-card ${isCompact ? 'site-card-compact' : ''}`}>
                           <div className="site-card-top">
                             <div className="site-card-icon">
                               <img src={resolveIconUrl(site.icon, settings.iconCdnMode, settings.iconCdnCustomBase)} alt={site.name}
@@ -479,16 +481,16 @@ function NavContent() {
                             <div className="site-card-info">
                               <div className="site-card-header">
                                 <span className="site-card-name">{site.name}</span>
-                                {settings.showRating !== false && (
+                                {!isCompact && settings.showRating !== false && (
                                   <span className="site-card-rating">{'★'.repeat(site.rate)}{'☆'.repeat(5 - site.rate)}</span>
                                 )}
                               </div>
-                              <p className="site-card-desc">{site.desc}</p>
-                              {site.tag && <span className="site-card-tag">{site.tag}</span>}
+                              {!isCompact && <p className="site-card-desc">{site.desc}</p>}
+                              {!isCompact && site.tag && <span className="site-card-tag">{site.tag}</span>}
                             </div>
                           </div>
                         </a>
-                        {site.relatedArticles && site.relatedArticles.length > 0 && (
+                        {!isCompact && site.relatedArticles && site.relatedArticles.length > 0 && (
                           <div className="site-card-articles">
                             <span className="site-card-articles-label">📄 关联文章 {site.relatedArticles.length} 篇</span>
                             <div className="site-card-articles-list">
@@ -502,7 +504,7 @@ function NavContent() {
                             </div>
                           </div>
                         )}
-                        {isLoggedIn && (
+                        {!isCompact && isLoggedIn && (
                           <div className="site-card-bar">
                             <button className="site-bar-btn" title="编辑"
                               onClick={() => openEditWeb(sub.id, origIdx, site)}>
