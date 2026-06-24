@@ -1,22 +1,32 @@
-/* 本地数据服务 - 从 localStorage 读取（有数据则用，没有则回退到 JSON 默认） */
-import defaultDb from '../../../data/nav/db.json'
-import defaultSettings from '../../../data/nav/settings.json'
-import defaultSearch from '../../../data/nav/search.json'
-import defaultTags from '../../../data/nav/tag.json'
+/* 本地数据服务 - 从 localStorage 读取（有数据则用，没有则回退到运行时 fetch） */
+import type { NavData, Settings, SearchEngine, TagItem } from '@ui/types'
+
+const BASE = import.meta.env.BASE_URL || '/'
+
+/* 运行时 fetch 默认值（带缓存击穿） */
+async function fetchDefault<T>(file: string): Promise<T> {
+  try {
+    const res = await fetch(`${BASE}data/nav/${file}`, { cache: 'no-store' })
+    if (!res.ok) return null as T
+    return await res.json()
+  } catch {
+    return null as T
+  }
+}
 
 /* 读取：优先 localStorage，没有或为空则用默认值 */
-function loadLocal<T>(key: string, defaults: T): T {
+function loadLocal<T>(key: string): T | null {
   try {
     const raw = localStorage.getItem(key)
     if (raw != null && raw !== '') {
       const parsed = JSON.parse(raw) as any
       if (parsed != null) {
         if (Array.isArray(parsed) && parsed.length > 0) return parsed as T
-        if (typeof parsed === 'object' && !Array.isArray(parsed) && Object.keys(parsed).length > 0) return parsed as T
+        if (typeof parsed === 'object' && Object.keys(parsed).length > 0) return parsed as T
       }
     }
   } catch { /* 忽略 */ }
-  return defaults
+  return null
 }
 
 /* 保存到 localStorage */
@@ -26,23 +36,35 @@ function saveLocal(key: string, data: any) {
 
 /* 本地 API */
 export const localApi = {
-  getDb: async () => ({ content: loadLocal('starmap_local_db', defaultDb), sha: 'local' as const }),
+  getDb: async () => ({
+    content: loadLocal<NavData>('starmap_local_db') || await fetchDefault<NavData>('db.json'),
+    sha: 'local' as const,
+  }),
   saveDb: async (data: any) => { saveLocal('starmap_local_db', data) },
 
-  getSettings: async () => ({ content: loadLocal('starmap_local_settings', defaultSettings), sha: 'local' as const }),
+  getSettings: async () => ({
+    content: loadLocal<Settings>('starmap_local_settings') || await fetchDefault<Settings>('settings.json'),
+    sha: 'local' as const,
+  }),
   saveSettings: async (data: any) => { saveLocal('starmap_local_settings', data) },
 
-  getSearch: async () => ({ content: loadLocal('starmap_local_search', defaultSearch), sha: 'local' as const }),
+  getSearch: async () => ({
+    content: loadLocal<SearchEngine[]>('starmap_local_search') || await fetchDefault<SearchEngine[]>('search.json'),
+    sha: 'local' as const,
+  }),
   saveSearch: async (data: any) => { saveLocal('starmap_local_search', data) },
 
-  getTags: async () => ({ content: loadLocal('starmap_local_tags', defaultTags), sha: 'local' as const }),
+  getTags: async () => ({
+    content: loadLocal<TagItem[]>('starmap_local_tags') || await fetchDefault<TagItem[]>('tag.json'),
+    sha: 'local' as const,
+  }),
   saveTags: async (data: any) => { saveLocal('starmap_local_tags', data) },
 
-  exportAll: () => ({
-    db: loadLocal('starmap_local_db', defaultDb),
-    settings: loadLocal('starmap_local_settings', defaultSettings),
-    search: loadLocal('starmap_local_search', defaultSearch),
-    tags: loadLocal('starmap_local_tags', defaultTags),
+  exportAll: async () => ({
+    db: loadLocal<NavData>('starmap_local_db') || await fetchDefault<NavData>('db.json'),
+    settings: loadLocal<Settings>('starmap_local_settings') || await fetchDefault<Settings>('settings.json'),
+    search: loadLocal<SearchEngine[]>('starmap_local_search') || await fetchDefault<SearchEngine[]>('search.json'),
+    tags: loadLocal<TagItem[]>('starmap_local_tags') || await fetchDefault<TagItem[]>('tag.json'),
   }),
 
   importAll: (data: { db?: any; settings?: any; search?: any; tags?: any }) => {

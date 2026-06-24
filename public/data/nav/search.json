@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Google",
+    "icon": "https://www.google.com/favicon.ico",
+    "url": "https://www.google.com/search?q=",
+    "isDefault": true
+  },
+  {
+    "name": "Bing",
+    "icon": "https://www.bing.com/favicon.ico",
+    "url": "https://www.bing.com/search?q=",
+    "isDefault": false
+  },
+  {
+    "name": "Baidu",
+    "icon": "https://www.baidu.com/favicon.ico",
+    "url": "https://www.baidu.com/s?wd=",
+    "isDefault": false
+  }
+]

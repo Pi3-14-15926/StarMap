@@ -5,16 +5,15 @@ import { resolveIconUrl } from './admin/services/iconUrl'
 import { commitAllData } from './admin/services/github'
 
 import { EditWebModal, EditCategoryModal, ConfirmModal, MoveModal } from './components/EditModal'
-import type { WebItem, Category, SubCategory, TagItem } from '@ui/types'
+import type { WebItem, Category, SubCategory } from '@ui/types'
 import AdminApp from './admin'
-
-import defaultTags from '../data/nav/tag.json'
 
 /* ===== 主站内容 ===== */
 function NavContent() {
   const {
     navData,
     settings,
+    tags,
     hiddenTagNames,
     currentModule,
     setCurrentModule,
@@ -39,18 +38,6 @@ function NavContent() {
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light')
     localStorage.setItem('starmap_theme', isDark ? 'dark' : 'light')
   }, [isDark])
-
-  /* 加载标签数据 */
-  const [tags] = useState<TagItem[]>(() => {
-    try {
-      const raw = localStorage.getItem('starmap_local_tags')
-      if (raw) {
-        const parsed = JSON.parse(raw)
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed as TagItem[]
-      }
-    } catch { /* 忽略 */ }
-    return defaultTags as TagItem[]
-  })
 
   /* 发布 */
   const [publishing, setPublishing] = useState(false)

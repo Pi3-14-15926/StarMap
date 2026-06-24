@@ -153,7 +153,7 @@ export async function commitAllData(): Promise<{ files: number; repo: string }> 
   const enc = (obj: any) => JSON.stringify(obj, null, 2)
 
   // 从 localStorage 读取所有数据（而非 GitHub）
-  const local = localApi.exportAll()
+  const local = await localApi.exportAll()
   const db = local.db
   const settings = local.settings
   const search = local.search
@@ -164,12 +164,20 @@ export async function commitAllData(): Promise<{ files: number; repo: string }> 
   const timestamp = new Date().toISOString().slice(0, 19).replace('T', ' ')
   const message = `chore(data): 发布数据更新 ${timestamp}`
 
+  // 更新 manifest.json
+  const manifest = { updatedAt: new Date().toISOString() }
+
   // 构建文件列表
   const files: { path: string; content: string }[] = [
     { path: 'data/nav/db.json', content: enc(db) },
     { path: 'data/nav/settings.json', content: enc(settings) },
     { path: 'data/nav/search.json', content: enc(search) },
     { path: 'data/nav/tag.json', content: enc(tags) },
+    { path: 'public/data/nav/db.json', content: enc(db) },
+    { path: 'public/data/nav/settings.json', content: enc(settings) },
+    { path: 'public/data/nav/search.json', content: enc(search) },
+    { path: 'public/data/nav/tag.json', content: enc(tags) },
+    { path: 'public/data/nav/manifest.json', content: enc(manifest) },
   ]
 
   await commitFilesBatch(files, message)

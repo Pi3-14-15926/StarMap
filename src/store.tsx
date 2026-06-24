@@ -2,66 +2,28 @@
 import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react'
 import type { NavData, Settings, SearchEngine, AppModule, TagItem } from '@ui/types'
 import { isAuthenticated, getCurrentUser, type GitHubUser } from './admin/services/auth'
+import { initData, onUpdate, startPolling, getData } from './dataService'
 
-import defaultNavData from '../data/nav/db.json'
-import defaultSettings from '../data/nav/settings.json'
-import defaultSearchEngines from '../data/nav/search.json'
-
-/* 从 localStorage 读取，回退到 JSON 默认值 */
-function loadNavData(): NavData {
+/* 从 localStorage 读取 */
+function loadLocal<T>(key: string): T | null {
   try {
-    const raw = localStorage.getItem('starmap_local_db')
-    if (raw) {
+    const raw = localStorage.getItem(key)
+    if (raw != null && raw !== '') {
       const parsed = JSON.parse(raw)
-      if (Array.isArray(parsed) && parsed.length > 0) return parsed as NavData
-    }
-  } catch { /* 忽略 */ }
-  return defaultNavData as NavData
-}
-
-function loadSettings(): Settings {
-  try {
-    const raw = localStorage.getItem('starmap_local_settings')
-    if (raw) {
-      const parsed = JSON.parse(raw)
-      if (parsed && typeof parsed === 'object' && Object.keys(parsed).length > 0) {
-        return { ...defaultSettings, ...parsed } as Settings
+      if (parsed != null) {
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed as T
+        if (typeof parsed === 'object' && !Array.isArray(parsed) && Object.keys(parsed).length > 0) return parsed as T
       }
     }
   } catch { /* 忽略 */ }
-  return defaultSettings as Settings
-}
-
-function loadSearchEngines(): SearchEngine[] {
-  try {
-    const raw = localStorage.getItem('starmap_local_search')
-    if (raw) {
-      const parsed = JSON.parse(raw)
-      if (Array.isArray(parsed) && parsed.length > 0) return parsed as SearchEngine[]
-    }
-  } catch { /* 忽略 */ }
-  return defaultSearchEngines as SearchEngine[]
-}
-
-function loadHiddenTagNames(): Set<string> {
-  try {
-    const raw = localStorage.getItem('starmap_local_tags')
-    if (raw) {
-      const parsed = JSON.parse(raw)
-      if (Array.isArray(parsed)) {
-        return new Set(
-          parsed.filter((t: TagItem) => t.noOpen).map((t: TagItem) => t.name)
-        )
-      }
-    }
-  } catch { /* 忽略 */ }
-  return new Set()
+  return null
 }
 
 interface StoreState {
   navData: NavData
   settings: Settings
   searchEngines: SearchEngine[]
+  tags: TagItem[]
   hiddenTagNames: Set<string>
   currentModule: AppModule
   setCurrentModule: (m: AppModule) => void
@@ -84,15 +46,18 @@ interface StoreState {
 const StoreContext = createContext<StoreState | null>(null)
 
 export function StoreProvider({ children }: { children: ReactNode }) {
-  const [navData, setNavData] = useState<NavData>(loadNavData)
-  const [settings, setSettings] = useState<Settings>(loadSettings)
-  const [searchEngines] = useState<SearchEngine[]>(loadSearchEngines)
-  const [hiddenTagNames] = useState<Set<string>>(loadHiddenTagNames)
+  /* 先从 localStorage 加载（快速显示），再从服务器拉取最新数据 */
+  const [navData, setNavData] = useState<NavData>(() => loadLocal<NavData>('starmap_local_db') || [])
+  const [settings, setSettings] = useState<Settings>(() => loadLocal<Settings>('starmap_local_settings') || ({} as Settings))
+  const [searchEngines, setSearchEngines] = useState<SearchEngine[]>(() => loadLocal<SearchEngine[]>('starmap_local_search') || [])
+  const [hiddenTagNames, setHiddenTagNames] = useState<Set<string>>(() => {
+    const tags = loadLocal<TagItem[]>('starmap_local_tags')
+    return tags ? new Set(tags.filter(t => t.noOpen).map(t => t.name)) : new Set()
+  })
+  const [tags, setTags] = useState<TagItem[]>(() => loadLocal<TagItem[]>('starmap_local_tags') || [])
   const [currentModule, setCurrentModule] = useState<AppModule>('nav')
   const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(1)
-  const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(
-    (defaultNavData as NavData)[0]?.children?.[0]?.title || null
-  )
+  const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(null)
   const [viewMode, setViewMode] = useState<'grid' | 'list' | 'compact'>('grid')
   const [sortBy, setSortBy] = useState<string>('默认排序')
   const [isLoggedIn, setIsLoggedIn] = useState(() => isAuthenticated())
@@ -111,6 +76,37 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     return () => window.removeEventListener('storage', handler)
   }, [refreshLoginState])
 
+  /* 首次加载：从服务器拉取最新数据 */
+  useEffect(() => {
+    initData().then(data => {
+      if (!data) return
+      setNavData(data.db)
+      setSettings(data.settings)
+      setSearchEngines(data.search)
+      setTags(data.tags)
+      setHiddenTagNames(new Set(data.tags.filter(t => t.noOpen).map(t => t.name)))
+      /* 设置默认选中第一个子分类 */
+      if (!selectedSubCategory && data.db.length > 0) {
+        setSelectedSubCategory(data.db[0]?.children?.[0]?.title || null)
+      }
+    })
+    /* 启动轮询检测更新 */
+    startPolling()
+  }, []) /* eslint-disable-line react-hooks/exhaustive-deps */
+
+  /* 监听数据更新（轮询检测到变化时） */
+  useEffect(() => {
+    return onUpdate(() => {
+      const data = getData()
+      if (!data) return
+      setNavData(data.db)
+      setSettings(data.settings)
+      setSearchEngines(data.search)
+      setTags(data.tags)
+      setHiddenTagNames(new Set(data.tags.filter(t => t.noOpen).map(t => t.name)))
+    })
+  }, [])
+
   const updateNavData = useCallback((data: NavData) => {
     setNavData(data)
     localStorage.setItem('starmap_local_db', JSON.stringify(data))
@@ -127,6 +123,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         navData,
         settings,
         searchEngines,
+        tags,
         hiddenTagNames,
         currentModule,
         setCurrentModule,
