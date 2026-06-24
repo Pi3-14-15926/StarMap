@@ -28,7 +28,7 @@
     "name": "中文",
     "color": "#4F8CFF",
     "desc": "中文界面资源",
-    "noOpen": false,
+    "noOpen": true,
     "sort": 4
   },
   {
@@ -36,7 +36,7 @@
     "name": "English",
     "color": "#8C6CFF",
     "desc": "英文界面资源",
-    "noOpen": false,
+    "noOpen": true,
     "sort": 5
   },
   {
