@@ -17,7 +17,7 @@ export default defineConfig({
       '@blog': path.resolve(__dirname, 'apps/blog'),
     },
   },
-  base: './',
+  base: '/StarMap/',
   build: {
     outDir: 'dist',
     emptyOutDir: true,

@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback, useEffect, lazy, Suspense } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import { StoreProvider, useStore } from './store'
 import { resolveIconUrl } from './admin/services/iconUrl'
 import { commitAllData } from './admin/services/github'
@@ -603,7 +603,7 @@ function LoadingFallback() {
 /* ===== 根组件 ===== */
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/admin/*" element={
           <Suspense fallback={<LoadingFallback />}>
@@ -616,6 +616,6 @@ export default function App() {
           </StoreProvider>
         } />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
