@@ -273,7 +273,7 @@ function NavContent() {
           </svg>
         </button>
         <div className="header-logo">
-          <img src="/favicon.png" alt="StarMap" width="32" height="32" />
+          <img src={`${import.meta.env.BASE_URL}favicon.png`} alt="StarMap" width="32" height="32" />
           <div>
             <div className="header-brand">{settings.title || 'StarMap'}</div>
             <div className="header-subtitle">{settings.subtitle || '发现最好的工具与资源'}</div>
@@ -335,7 +335,7 @@ function NavContent() {
       <div className={`mobile-sider-mask ${mobileSiderOpen ? 'open' : ''}`} onClick={() => setMobileSiderOpen(false)} />
       <div className={`mobile-sider-drawer ${mobileSiderOpen ? 'open' : ''}`}>
         <div className="mobile-sider-header">
-          <img src="/favicon.png" alt="StarMap" width="28" height="28" />
+          <img src={`${import.meta.env.BASE_URL}favicon.png`} alt="StarMap" width="28" height="28" />
           <span className="mobile-sider-title">{settings.title || 'StarMap'}</span>
           <button className="mobile-sider-close" onClick={() => setMobileSiderOpen(false)}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

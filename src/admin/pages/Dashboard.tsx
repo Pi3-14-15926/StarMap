@@ -36,7 +36,7 @@ export function Dashboard({ onLogout }: DashboardProps) {
       {/* 桌面端侧边栏 */}
       <aside className="admin-sidebar">
         <div className="admin-sider-brand" onClick={() => navigate('/admin/dashboard')}>
-          <img className="brand-mark" src="/favicon.png" alt="StarMap" width="40" height="40" />
+          <img className="brand-mark" src={`${import.meta.env.BASE_URL}favicon.png`} alt="StarMap" width="40" height="40" />
           <div className="brand-text">
             <div className="brand-name">StarMap</div>
             <div className="brand-sub">Admin Console</div>
@@ -68,7 +68,7 @@ export function Dashboard({ onLogout }: DashboardProps) {
           </svg>
         </button>
         <div className="admin-sider-brand" onClick={() => { navigate('/admin/dashboard'); setMobileOpen(false) }}>
-          <img className="brand-mark" src="/favicon.png" alt="StarMap" width="40" height="40" />
+          <img className="brand-mark" src={`${import.meta.env.BASE_URL}favicon.png`} alt="StarMap" width="40" height="40" />
           <div className="brand-text">
             <div className="brand-name">StarMap</div>
             <div className="brand-sub">Admin Console</div>

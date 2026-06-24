@@ -30,7 +30,7 @@ export function Login({ onSuccess }: LoginProps) {
       <div className="login-card">
         <header className="login-header">
           <div className="logo-mark">
-            <img src="/favicon.png" alt="StarMap" className="logo-img" />
+            <img src={`${import.meta.env.BASE_URL}favicon.png`} alt="StarMap" className="logo-img" />
           </div>
           <h1 className="brand-name">StarMap</h1>
           <p className="brand-sub">管理员登录</p>
