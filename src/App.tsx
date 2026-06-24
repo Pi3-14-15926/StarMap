@@ -313,7 +313,7 @@ function NavContent() {
           </button>
 
           {settings.showLogin !== false && (
-            <a href="admin/dashboard" className="header-admin-btn">管理</a>
+            <a href="#/admin/dashboard" className="header-admin-btn">管理</a>
           )}
 
           {isLoggedIn && (
