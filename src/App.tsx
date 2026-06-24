@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback, useEffect, lazy, Suspense } from 'react'
-import { HashRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { StoreProvider, useStore } from './store'
 import { resolveIconUrl } from './admin/services/iconUrl'
 import { commitAllData } from './admin/services/github'
@@ -300,7 +300,7 @@ function NavContent() {
           </button>
 
           {settings.showLogin !== false && (
-            <a href="#/admin/dashboard" className="header-admin-btn">管理</a>
+            <a href="/admin/dashboard" className="header-admin-btn">管理</a>
           )}
 
           {isLoggedIn && (
@@ -590,7 +590,7 @@ function LoadingFallback() {
 /* ===== 根组件 ===== */
 export default function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
         <Route path="/admin/*" element={
           <Suspense fallback={<LoadingFallback />}>
@@ -603,6 +603,6 @@ export default function App() {
           </StoreProvider>
         } />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   )
 }
