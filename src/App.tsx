@@ -376,10 +376,6 @@ function NavContent() {
               </div>
             )}
           </div>
-          <div className="sidebar-footer">
-            <div>© 2026 StarMap</div>
-            <div>发现最好的工具与资源</div>
-          </div>
         </aside>
 
         {/* Main Content */}
@@ -529,7 +525,7 @@ function NavContent() {
               </div>
             )
           })}
-          <div className="main-footer">共 {filteredSites.length} 个网站</div>
+          <div className="main-footer">© 2026 StarMap · Built by 齐尹秦</div>
         </main>
       </div>
 

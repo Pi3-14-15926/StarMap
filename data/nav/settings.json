@@ -8,6 +8,7 @@
   "theme": "auto",
   "homeTitle": "StarMap",
   "icp": "",
+  "footerText": "",
   "footerHtml": "",
   "showGithub": false,
   "githubUrl": "https://github.com/your-username/StarMap",
@@ -15,7 +16,6 @@
   "runtimeDate": "2026-06-18",
   "showLogin": true,
   "showRating": false,
-  "defaultSearchEngine": "google",
   "iconCdnMode": "jsdelivr",
   "iconCdnCustomBase": "",
   "tags": [

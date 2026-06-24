@@ -63,6 +63,7 @@ export interface Settings {
   theme: 'light' | 'dark' | 'auto'
   homeTitle: string
   icp: string
+  footerText: string
   footerHtml: string
   showGithub: boolean
   githubUrl: string
@@ -70,7 +71,6 @@ export interface Settings {
   runtimeDate: string
   showLogin: boolean
   showRating: boolean
-  defaultSearchEngine: string
   tags: string[]
   colorPrimary: string
   hashMode: boolean

@@ -46,9 +46,9 @@ export function Settings() {
     { key: 'homeTitle', label: '首页标题', type: 'text' },
     { key: 'githubUrl', label: 'GitHub 地址', type: 'text' },
     { key: 'colorPrimary', label: '主题色', type: 'color' },
-    { key: 'defaultSearchEngine', label: '默认搜索引擎', type: 'text' },
     { key: 'runtimeDate', label: '上线日期', type: 'date' },
     { key: 'icp', label: 'ICP 备案号', type: 'text' },
+    { key: 'footerText', label: '页脚文字', type: 'text' },
     { key: 'footerHtml', label: '页脚 HTML', type: 'textarea' },
   ]
 
