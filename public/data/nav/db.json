@@ -346,6 +346,20 @@
             "icon": "https://github.githubassets.com/favicons/favicon.svg",
             "rate": 5,
             "tag": "GitHub"
+          },
+          {
+            "name": "Emojiall",
+            "url": "https://www.emojiall.com/zh-hans",
+            "desc": "emo表情大全",
+            "icon": "",
+            "rate": 5
+          },
+          {
+            "name": "Iconfont",
+            "url": "https://www.iconfont.cn/",
+            "desc": "阿里巴巴矢量图标库",
+            "icon": "",
+            "rate": 5
           }
         ]
       }
