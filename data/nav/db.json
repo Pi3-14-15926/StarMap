@@ -136,6 +136,13 @@
             "url": "http://wenku.baiduvvv.com/doc",
             "icon": "https://gimg3.baidu.com/yule/src=https%3A%2F%2Favatar.bdstatic.com%2Fit%2Fu%3D1513894369%2C2256247764%26fm%3D3012%26app%3D3012%26autime%3D1776561825%26size%3Db360%2C360&refer=http%3A%2F%2Fwww.baidu.com&app=2019&size=w931&n=0&g=0n&er=404&q=75&fmt=auto&maxorilen2heic=2000000?sec=1776963600&t=a99b0ebd04cecaec30bd9bf9d1f9950d",
             "rate": 5
+          },
+          {
+            "name": "Qiuziti 字体识别下载",
+            "url": "https://www.qiuziti.com/",
+            "desc": "可以识别截图字体",
+            "icon": "",
+            "rate": 5
           }
         ]
       },
